@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/res/image">
+        <file alias="back">res/image/back.png</file>
+        <file alias="config">res/image/config.png</file>
+        <file alias="exit">res/image/exit.png</file>
+        <file alias="button">res/image/button.png</file>
+        <file alias="jewels">res/image/jewels.svg</file>
+        <file alias="logo">res/image/logo.svg</file>
+        <file alias="background">res/image/background.jpg</file>
+    </qresource>
+</RCC>
