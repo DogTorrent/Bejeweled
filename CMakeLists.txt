@@ -30,7 +30,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Quick Qt5::QuickControls2)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
-file(GLOB PROJECT_SOURCES "*.qml" "*.h" "*.cpp")
+file(GLOB PROJECT_SOURCES "qml.qrc" "*.h" "*.cpp")
 file(GLOB QRC_BIG_RESOURCES "*.qrc")
 
 qt5_add_big_resources(PROJECT_SOURCES ${QRC_BIG_RESOURCES})
