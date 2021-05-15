@@ -14,6 +14,6 @@ Item {
         normalImage: 0
         horverImage: 1
         onclickImage: 2
-        onClicked: changePage("title_page")
+        onClicked: setMainPage("title_page.qml")
     }
 }

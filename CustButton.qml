@@ -25,8 +25,8 @@ RoundButton {
     }
     Ripple {
         id: ripple
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
         width: shouldRippleCoverBorder ? parent.width : parent.width - parent.borderWidth * 2
         height: shouldRippleCoverBorder ? parent.height : parent.height - parent.borderWidth * 2
         pressed: parent.pressed
@@ -35,6 +35,7 @@ RoundButton {
         property var radius: shouldRippleCoverBorder ? parent.radius : parent.radius
                                                        - parent.borderWidth
         clipRadius: radius
+        // 防止涟漪效果超出范围，加个蒙版
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {

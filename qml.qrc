@@ -6,5 +6,7 @@
         <file>config_page.qml</file>
         <file>CustButton.qml</file>
         <file>ImageButton.qml</file>
+        <file>PopupMask.qml</file>
+        <file>stop_menu.qml</file>
     </qresource>
 </RCC>

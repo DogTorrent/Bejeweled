@@ -7,16 +7,15 @@ Window {
     height: 720
     visible: true
     title: qsTr("Bejeweled")
+
     Loader {
-        id: pageLoader
+        id: mainPageLoader
         asynchronous: true
         source: "title_page.qml"
         anchors.fill: parent
     }
-
-    signal changePage(string pageName)
-
-    onChangePage: {
-        pageLoader.source = pageName + ".qml"
+    signal setMainPage(string pagePath)
+    onSetMainPage: {
+        mainPageLoader.source = pagePath
     }
 }

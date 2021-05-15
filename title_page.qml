@@ -1,56 +1,102 @@
 import QtQuick 2.12
+import QtQuick.Window 2.1
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material.impl 2.12
+import QtGraphicalEffects 1.12
 
 Item {
     anchors.fill: parent
 
     Image {
         id: backGround
-        source: "qrc:/res/image/background"
-        anchors.fill: parent
+        source: "qrc:/res/image/background" //16:9
+        width: 1920
+        height: 1080
+        //保证居中
+        x: -(width / 2 - parent.width / 2)
+        y: -(height / 2 - parent.height / 2)
+        scale: (parent.width / parent.height >= width
+                / height) ? parent.width / width : parent.height / height
     }
 
     Image {
         id: logo
-        source: "qrc:/res/image/logo"
-        width: 1024
-        height: 512
+        source: "qrc:/res/image/logo" //2:1
+        width: height * 2
+        height: parent.height / 2 - 50
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -100
+        anchors.verticalCenterOffset: -height / 2
     }
 
-    CustButton {
-        id: startButton
-        implicitWidth: 240
-        implicitHeight: 100
+    Column {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: 200
-        text: "Start Game"
-        font.pixelSize: 30
-        font.family: "Arial"
-        radius: 20
-        color: "#FFC66D"
-        borderColor: "#FFA607"
-        borderWidth: 8
-        rippleColor: "#40FFFFFF"
-        shouldRippleCoverBorder: true
-        onClicked: changePage("game_page")
-    }
+        anchors.verticalCenterOffset: (buttonHeight + spacing) * 4 / 2 + 50
+        property var buttonWidth: 240
+        property var buttonHeight: Math.min(
+                                       60,
+                                       (parent.height / 2 - 50) / 4 - spacing)
+        spacing: 10
 
-    ImageButton {
-        id: configButton
-        anchors.right: parent.right
-        implicitWidth: 64
-        implicitHeight: 64
-        imagePath: "qrc:/res/image/config"
-        imageWidth: 192
-        imageHeight: 64
-        column: 3
-        row: 1
-        normalImage: 0
-        horverImage: 1
-        onclickImage: 2
-        onClicked: changePage("config_page")
+        CustButton {
+            id: startButton
+            width: parent.buttonWidth
+            height: parent.buttonHeight
+            text: "开始游戏"
+            font.pixelSize: 30
+            font.family: "Microsoft Yahei"
+            radius: 5
+            color: "#FFA607"
+            borderWidth: 0
+            rippleColor: "#60FFFFFF"
+            shouldRippleCoverBorder: true
+            onClicked: setMainPage("game_page.qml")
+        }
+        CustButton {
+            id: configButton
+            width: parent.buttonWidth
+            height: parent.buttonHeight
+            text: "游戏设置"
+            font.pixelSize: 30
+            font.family: "Microsoft Yahei"
+            radius: 5
+            color: "#E5E5E5"
+            borderWidth: 0
+            rippleColor: "#F0FFFFFF"
+            shouldRippleCoverBorder: true
+            onClicked: setMainPage("config_page.qml")
+        }
+        CustButton {
+            id: rankButton
+            width: parent.buttonWidth
+            height: parent.buttonHeight
+            text: "分数榜"
+            font.pixelSize: 30
+            font.family: "Microsoft Yahei"
+            radius: 5
+            color: "#E5E5E5"
+            borderWidth: 0
+            rippleColor: "#F0FFFFFF"
+            shouldRippleCoverBorder: true
+            onClicked: {
+
+            }
+        }
+        CustButton {
+            id: exitButton
+            width: parent.buttonWidth
+            height: parent.buttonHeight
+            text: "退出游戏"
+            font.pixelSize: 30
+            font.family: "Microsoft Yahei"
+            radius: 5
+            color: "#E5E5E5"
+            borderWidth: 0
+            rippleColor: "#F0FFFFFF"
+            shouldRippleCoverBorder: true
+            onClicked: Qt.quit()
+        }
     }
 }
