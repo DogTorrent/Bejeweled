@@ -11,13 +11,13 @@ Item {
     Image {
         id: backGround
         source: "qrc:/res/image/background" //16:9
-        width: 1920
-        height: 1080
+        property var aspectRatio: 16 / 9
+        width: (parent.width / parent.height
+                >= aspectRatio) ? parent.width : parent.height * aspectRatio
+        height: width / aspectRatio
         //保证居中
         x: -(width / 2 - parent.width / 2)
         y: -(height / 2 - parent.height / 2)
-        scale: (parent.width / parent.height >= width
-                / height) ? parent.width / width : parent.height / height
     }
 
     Image {
@@ -49,7 +49,8 @@ Item {
             font.family: "Microsoft Yahei"
             radius: 5
             color: "#FFA607"
-            borderWidth: 0
+            borderWidth: 3
+            borderColor: "#5D101D"
             rippleColor: "#60FFFFFF"
             shouldRippleCoverBorder: true
             onClicked: setMainPage("game_page.qml")
@@ -63,8 +64,9 @@ Item {
             font.family: "Microsoft Yahei"
             radius: 5
             color: "#E5E5E5"
-            borderWidth: 0
-            rippleColor: "#F0FFFFFF"
+            borderWidth: 3
+            borderColor: "#5D101D"
+            rippleColor: "#90FFFFFF"
             shouldRippleCoverBorder: true
             onClicked: setMainPage("config_page.qml")
         }
@@ -77,8 +79,9 @@ Item {
             font.family: "Microsoft Yahei"
             radius: 5
             color: "#E5E5E5"
-            borderWidth: 0
-            rippleColor: "#F0FFFFFF"
+            borderWidth: 3
+            borderColor: "#5D101D"
+            rippleColor: "#90FFFFFF"
             shouldRippleCoverBorder: true
             onClicked: {
 
@@ -93,8 +96,9 @@ Item {
             font.family: "Microsoft Yahei"
             radius: 5
             color: "#E5E5E5"
-            borderWidth: 0
-            rippleColor: "#F0FFFFFF"
+            borderWidth: 3
+            borderColor: "#5D101D"
+            rippleColor: "#90FFFFFF"
             shouldRippleCoverBorder: true
             onClicked: Qt.quit()
         }

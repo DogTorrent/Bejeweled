@@ -5,52 +5,44 @@ Item {
     id: stopMenu
     anchors.fill: parent
 
-    property bool isMenuShow: false
+    enabled: false
+    property var animationDuration: 230
+    property var bottomLayerComponent
 
     signal show
     signal hide
 
-    onShow: {
-        stopMenuMask.show()
-        buttonColume.show()
-    }
-
-    onHide: {
-        stopMenuMask.hide()
-        buttonColume.hide()
-    }
+    onShow: enabled = true
+    onHide: enabled = false
 
     PopupMask {
         id: stopMenuMask
         anchors.fill: parent
         rippleCenterX: parent.width
         rippleCenterY: 0
-        rippleAnimDuration: 230
+        animationDuration: stopMenu.animationDuration
         maskColor: "#A0000000"
         enableMaskGrowAnim: true
         enableBlurAnim: true
         blurRadius: 60
-        blurSource: backGround
+        blurSource: bottomLayerComponent
+        enabled: stopMenu.enabled
     }
 
     Column {
-        id: buttonColume
+        id: buttonColumn
         spacing: 15
         property var buttonWidth: 300
         property var buttonHeight: 80
         property var buttonNum: 3
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        opacity: parent.isMenuShow ? 1 : 0
-
-        signal show
-        signal hide
-        onShow: parent.isMenuShow = true
-        onHide: parent.isMenuShow = false
+        opacity: stopMenu.enabled ? 1 : 0
+        enabled: stopMenu.enabled
 
         Behavior on opacity {
             NumberAnimation {
-                duration: 200
+                duration: stopMenu.animationDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -65,10 +57,11 @@ Item {
             color: "#B0FFFFFF"
             borderColor: "#C0FFFFFF"
             rippleColor: "#D0FFFFFF"
-            x: stopMenu.isMenuShow ? 0 : 20
+            x: stopMenu.enabled ? 0 : 20
+            enabled: stopMenu.enabled
             Behavior on x {
                 NumberAnimation {
-                    duration: 200
+                    duration: stopMenu.animationDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -84,10 +77,11 @@ Item {
             color: "#B0FFFFFF"
             borderColor: "#C0FFFFFF"
             rippleColor: "#D0FFFFFF"
-            x: stopMenu.isMenuShow ? 0 : 40
+            x: stopMenu.enabled ? 0 : 40
+            enabled: stopMenu.enabled
             Behavior on x {
                 NumberAnimation {
-                    duration: 200
+                    duration: stopMenu.animationDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -105,10 +99,11 @@ Item {
             color: "#B0FFFFFF"
             borderColor: "#C0FFFFFF"
             rippleColor: "#D0FFFFFF"
-            x: stopMenu.isMenuShow ? 0 : 60
+            x: stopMenu.enabled ? 0 : 60
+            enabled: stopMenu.enabled
             Behavior on x {
                 NumberAnimation {
-                    duration: 200
+                    duration: stopMenu.animationDuration
                     easing.type: Easing.InOutQuad
                 }
             }

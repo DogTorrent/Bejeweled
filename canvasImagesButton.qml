@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
 Canvas {
+    id: canvas
     implicitWidth: 240
     implicitHeight: 100
     property var imagePath: ""
@@ -16,33 +17,38 @@ Canvas {
     property var text: ""
     signal clicked
 
-    property int currBtnState: 0
+    property int currBtnState: normalImage
     Component.onCompleted: loadImage(imagePath)
     onImageLoaded: requestPaint()
     onCurrBtnStateChanged: requestPaint()
+    onNormalImageChanged: requestPaint()
+    onHorverImageChanged: requestPaint()
+    onOnclickImageChanged: requestPaint()
     onPaint: {
-        var singleWidth = imageWidth / column
-        var singleHeight = imageHeight / row
+        var singleWidth = canvas.imageWidth / canvas.column
+        var singleHeight = canvas.imageHeight / canvas.row
 
-        var currCol = currBtnState % column
-        var currRow = (currBtnState - currCol) / column
+        var currCol = canvas.currBtnState % canvas.column
+        var currRow = (canvas.currBtnState - currCol) / canvas.column
 
         var ctx = getContext("2d")
-        ctx.clearRect(0, 0, width, height)
-        ctx.drawImage(imagePath, currCol * singleWidth, currRow * singleHeight,
-                      singleWidth, singleHeight, 0, 0, width, height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(canvas.imagePath, currCol * singleWidth,
+                      currRow * singleHeight, singleWidth, singleHeight, 0, 0,
+                      canvas.width, canvas.height)
         if (text) {
-            ctx.font = canvasFont
-            ctx.fillStyle = canvasFontColor
+            ctx.font = canvas.canvasFont
+            ctx.fillStyle = canvas.canvasFontColor
             ctx.textAlign = "center"
             ctx.textBaseline = "middle"
-            ctx.fillText(text, singleWidth / 2, singleHeight / 2)
+            ctx.fillText(canvas.text, singleWidth / 2, singleHeight / 2)
         }
     }
 
     MouseArea {
         anchors.fill: parent
-        hoverEnabled: true
+        enabled: parent.enabled
+        hoverEnabled: enabled
         onEntered: parent.currBtnState = horverImage
         onExited: parent.currBtnState = normalImage
         onPressed: parent.currBtnState = onclickImage

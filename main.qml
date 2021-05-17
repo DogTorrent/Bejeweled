@@ -10,7 +10,7 @@ Window {
 
     Loader {
         id: mainPageLoader
-        asynchronous: true
+        asynchronous: false
         source: "title_page.qml"
         anchors.fill: parent
     }

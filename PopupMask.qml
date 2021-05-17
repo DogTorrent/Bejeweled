@@ -4,68 +4,69 @@ import QtQuick.Controls.Material.impl 2.12
 import QtGraphicalEffects 1.12
 
 Rectangle {
+    id: mask
     anchors.fill: parent
     color: "#00000000"
     property var rippleCenterX: width / 2
     property var rippleCenterY: height / 2
-    property var rippleAnimDuration: 200
+    property var animationDuration: 200
     property var maskColor: "#C0000000"
     property var blurRadius: 50
     property var blurSource
     property bool enableMaskGrowAnim: true
     property bool enableBlurAnim: true
-    property bool isMaskShow: false
+    enabled: false
     signal show
     signal hide
     signal clicked
     FastBlur {
+        id: fastBlur
         source: blurSource
-        opacity: blurSource ? 1 : 0
-        anchors.fill: parent
-        radius: isMaskShow ? blurRadius : 0
+        opacity: source && mask.enabled ? 1 : 0
+        width: source ? source.width : 0
+        height: source ? source.height : 0
+        x: source ? source.x : 0
+        y: source ? source.y : 0
+        scale: source ? source.scale : 0
+        radius: enabled ? blurRadius : 0
         Behavior on radius {
             NumberAnimation {
-                duration: enableBlurAnim ? rippleAnimDuration : 0
+                duration: enableBlurAnim ? animationDuration : 0
                 easing.type: Easing.InOutQuad
             }
         }
     }
     Rectangle {
         id: ripple
-        radius: isMaskShow ? maxRadius : 0
+        radius: mask.enabled ? maxRadius : 0
         //计算圆角，使得无论圆心在哪，圆都能够覆盖其parent
         property var maxRadius: Math.sqrt(
                                     Math.pow(Math.max(
-                                                 Math.abs(parent.width - rippleCenterX), Math.abs(
-                                                     0 - rippleCenterX)),
+                                                 Math.abs(mask.width
+                                                          - mask.rippleCenterX), Math.abs(
+                                                     0 - mask.rippleCenterX)),
                                              2) + Math.pow(
                                         Math.max(Math.abs(
-                                                     parent.height - rippleCenterY),
-                                                 Math.abs(0 - rippleCenterY)), 2))
+                                                     mask.height - mask.rippleCenterY),
+                                                 Math.abs(0 - mask.rippleCenterY)), 2))
         width: radius * 2
         height: radius * 2
-        x: (-width) / 2 + rippleCenterX
-        y: (-height) / 2 + rippleCenterY
+        x: (-width) / 2 + mask.rippleCenterX
+        y: (-height) / 2 + mask.rippleCenterY
         color: maskColor
         MouseArea {
             id: mouseArea
             anchors.fill: parent
-            enabled: false
-            onClicked: parent.parent.clicked()
+            enabled: mask.enabled
+            onClicked: mask.clicked()
         }
         Behavior on radius {
             NumberAnimation {
-                duration: enableMaskGrowAnim ? rippleAnimDuration : 0
+                duration: mask.enableMaskGrowAnim ? mask.animationDuration : 0
                 easing.type: Easing.InOutQuad
             }
         }
     }
-    onShow: {
-        mouseArea.enabled = true
-        isMaskShow = true
-    }
-    onHide: {
-        mouseArea.enabled = false
-        isMaskShow = false
-    }
+    onShow: enabled = true
+    onHide: enabled = false
 }

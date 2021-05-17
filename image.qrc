@@ -7,5 +7,6 @@
         <file alias="jewels">res/image/jewels.svg</file>
         <file alias="logo">res/image/logo.svg</file>
         <file alias="background">res/image/background.jpg</file>
+        <file alias="pause">res/image/pause.svg</file>
     </qresource>
 </RCC>

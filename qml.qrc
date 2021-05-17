@@ -5,8 +5,10 @@
         <file>game_page.qml</file>
         <file>config_page.qml</file>
         <file>CustButton.qml</file>
-        <file>ImageButton.qml</file>
+        <file>canvasImagesButton.qml</file>
         <file>PopupMask.qml</file>
         <file>stop_menu.qml</file>
+        <file>game_board.qml</file>
+        <file>ImagesButton.qml</file>
     </qresource>
 </RCC>

@@ -1,40 +1,60 @@
-import QtQuick 2.0
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.12
 
 Item {
-    ImageButton {
-        id: configButton
-        anchors.left: parent.left
-        implicitWidth: 64
-        implicitHeight: 64
-        imagePath: "qrc:/res/image/back"
-        imageWidth: 192
-        imageHeight: 64
-        column: 3
-        row: 1
-        normalImage: 0
-        horverImage: 1
-        onclickImage: 2
-        onClicked: setMainPage("title_page.qml")
-    }
+    anchors.fill: parent
+    Item {
+        id: gamePageMain
+        anchors.fill: parent
+        Image {
+            id: backGround
+            source: "qrc:/res/image/background" //16:9
+            property var aspectRatio: 16 / 9
+            width: (parent.width / parent.height
+                    >= aspectRatio) ? parent.width : parent.height * aspectRatio
+            height: width / aspectRatio
+            //保证居中
+            x: -(width / 2 - Window.width / 2)
+            y: -(height / 2 - Window.height / 2)
+        }
 
-    Image {
-        id: backGround
-        source: "qrc:/res/image/background" //16:9
-        width: 1920
-        height: 1080
-        //保证居中
-        x: -(width / 2 - parent.width / 2)
-        y: -(height / 2 - parent.height / 2)
-        scale: (parent.width / parent.height >= width
-                / height) ? parent.width / width : parent.height / height
+        ImagesButton {
+            id: stopButton
+            anchors.right: parent.right
+            implicitWidth: 64
+            implicitHeight: 64
+            imagePath: "qrc:/res/image/pause"
+            column: 3
+            row: 1
+            normalImage: 0
+            horverImage: 1
+            onclickImage: 2
+            onClicked: stopMenuLoader.item.show()
+        }
+
+        Loader {
+            id: gameBoardLoader
+            source: "game_board.qml"
+            asynchronous: true
+
+            width: Math.min(parent.width, parent.height) * 4 / 5
+            height: width
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+        }
     }
 
     Loader {
         id: stopMenuLoader
-        source: "stop_menu.qml"
         anchors.fill: parent
         signal loadStopMenu
         signal closeStopMenu
+        Component.onCompleted: setSource("stop_menu.qml", {
+                                             "bottomLayerComponent": gamePageMain
+                                         })
+
         onLoadStopMenu: {
             item.show()
         }
@@ -48,8 +68,8 @@ Item {
         focus: true
         Keys.enabled: true
         Keys.onEscapePressed: {
-            stopMenuLoader.item.isMenuShow ? stopMenuLoader.closeStopMenu(
-                                                 ) : stopMenuLoader.loadStopMenu()
+            stopMenuLoader.item.enabled ? stopMenuLoader.closeStopMenu(
+                                              ) : stopMenuLoader.loadStopMenu()
         }
         Component.onCompleted: forceActiveFocus()
         onActiveFocusChanged: forceActiveFocus()
