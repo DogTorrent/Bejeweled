@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.15
-import QtQuick.Controls.Styles 1.4
-import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Material.impl 2.12
-import QtGraphicalEffects 1.12
+import QtQuick.Controls 2.1
+import QtQuick.Controls.Styles 1.0
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Material.impl 2.0
+import QtGraphicalEffects 1.0
 
 RoundButton {
     implicitWidth: 240

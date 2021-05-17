@@ -1,7 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Material.impl 2.12
-import QtGraphicalEffects 1.12
+import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: mask
