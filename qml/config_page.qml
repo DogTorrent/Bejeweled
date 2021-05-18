@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "component"
 
 Item {
     ImagesButton {
@@ -12,6 +13,6 @@ Item {
         normalImage: 0
         horverImage: 1
         onclickImage: 2
-        onClicked: setMainPage("title_page.qml")
+        onClicked: setMainPage("qrc:/qml/title_page.qml")
     }
 }

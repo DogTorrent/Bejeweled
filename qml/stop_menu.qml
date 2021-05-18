@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.1
+import "component"
 
 Item {
     id: stopMenu
@@ -65,7 +66,7 @@ Item {
                     easing.type: Easing.InOutQuad
                 }
             }
-            onClicked: setMainPage("title_page.qml")
+            onClicked: setMainPage("qrc:/qml/title_page.qml")
         }
         CustButton {
             text: qsTr("⚙ 游戏设置")

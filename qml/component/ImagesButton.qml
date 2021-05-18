@@ -11,6 +11,7 @@ Item {
     property int normalImage: 0
     property int horverImage: 0
     property int onclickImage: 0
+    property bool containsMouse: mouseArea.containsMouse
     property font font
     property string text
     signal clicked
@@ -48,6 +49,7 @@ Item {
         font: parent.font
     }
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         enabled: parent.enabled
         hoverEnabled: enabled

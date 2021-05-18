@@ -1,14 +1,16 @@
 <RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>title_page.qml</file>
-        <file>game_page.qml</file>
-        <file>config_page.qml</file>
-        <file>CustButton.qml</file>
-        <file>canvasImagesButton.qml</file>
-        <file>PopupMask.qml</file>
-        <file>stop_menu.qml</file>
-        <file>game_board.qml</file>
-        <file>ImagesButton.qml</file>
+    <qresource prefix="/qml">
+        <file alias="main_window.qml">qml/main_window.qml</file>
+        <file alias="title_page.qml">qml/title_page.qml</file>
+        <file alias="game_page.qml">qml/game_page.qml</file>
+        <file alias="config_page.qml">qml/config_page.qml</file>
+        <file alias="stop_menu.qml">qml/stop_menu.qml</file>
+        <file alias="game_board.qml">qml/game_board.qml</file>
+    </qresource>
+    <qresource prefix="/qml/component">
+        <file alias="CustButton.qml">qml/component/CustButton.qml</file>
+        <file alias="CanvasImagesButton.qml">qml/component/CanvasImagesButton.qml</file>
+        <file alias="PopupMask.qml">qml/component/PopupMask.qml</file>
+        <file alias="ImagesButton.qml">qml/component/ImagesButton.qml</file>
     </qresource>
 </RCC>

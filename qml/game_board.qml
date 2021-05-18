@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.7
+import "component"
 
 Item {
     id: gameBoard
@@ -11,6 +12,7 @@ Item {
         model: boardModel
         cellWidth: width / 8
         cellHeight: width / 8
+        interactive: false
         delegate: Component {
             Rectangle {
                 border.width: 1
@@ -45,8 +47,10 @@ Item {
         model: jewelModel
         cellWidth: width / 8
         cellHeight: width / 8
+        interactive: false
+        keyNavigationEnabled: true
+        property int lastSelectIndex: -1
         delegate: Component {
-
             ImagesButton {
                 id: jewelSample
                 imagePath: "qrc:/res/image/jewels"
@@ -59,18 +63,39 @@ Item {
                 onclickImage: mainImage
                 Rectangle {
                     id: borderRec
-                    border.width: 0
+                    border.width: parent.containsMouse
+                                  || index === jewelGrid.lastSelectIndex ? 5 : 0
                     anchors.fill: parent
                     color: "#00515151"
                     border.color: "lightblue"
                 }
-                onEntered: {
-                    borderRec.border.width = 5
+                onClicked: {
+                    jewelGrid.update()
+                    if (jewelGrid.lastSelectIndex != -1) {
+                        //原x,y在边界，为了防止indexAt()识别出错，给x移到正中心
+                        var l = jewelGrid.indexAt(
+                                    x - jewelGrid.cellWidth / 2.0,
+                                    y + jewelGrid.cellHeight / 2.0)
+                        var r = jewelGrid.indexAt(
+                                    x + jewelGrid.cellWidth * 1.5,
+                                    y + jewelGrid.cellHeight / 2.0)
+                        var u = jewelGrid.indexAt(
+                                    x + jewelGrid.cellWidth / 2.0,
+                                    y - jewelGrid.cellHeight / 2.0)
+                        var d = jewelGrid.indexAt(
+                                    x + jewelGrid.cellWidth / 2.0,
+                                    y + jewelGrid.cellHeight * 1.5)
+                        if (jewelGrid.lastSelectIndex === l
+                                || jewelGrid.lastSelectIndex === r
+                                || jewelGrid.lastSelectIndex === u
+                                || jewelGrid.lastSelectIndex === d) {
+                            gameBoard.move(jewelGrid.lastSelectIndex, index)
+                        }
+                        jewelGrid.lastSelectIndex = -1
+                    } else {
+                        jewelGrid.lastSelectIndex = index
+                    }
                 }
-                onExited: {
-                    borderRec.border.width = 0
-                }
-                onClicked: move(1, 2)
             }
         }
         displaced: Transition {
@@ -101,6 +126,12 @@ Item {
     }
     signal move(var from, var to)
     onMove: {
-        jewelModel.move(from, to, 1)
+        if (from < to) {
+            jewelModel.move(from, to, 1)
+            jewelModel.move(to - 1, from, 1)
+        } else {
+            jewelModel.move(from, to, 1)
+            jewelModel.move(to + 1, from, 1)
+        }
     }
 }

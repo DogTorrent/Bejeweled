@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.1
+import "component"
 
 Item {
     anchors.fill: parent
@@ -34,7 +35,7 @@ Item {
 
         Loader {
             id: gameBoardLoader
-            source: "game_board.qml"
+            source: "qrc:/qml/game_board.qml"
             asynchronous: true
 
             width: Math.min(parent.width, parent.height) * 4 / 5
@@ -49,7 +50,8 @@ Item {
         anchors.fill: parent
         signal loadStopMenu
         signal closeStopMenu
-        Component.onCompleted: setSource("stop_menu.qml", {
+        asynchronous: true
+        Component.onCompleted: setSource("qrc:/qml/stop_menu.qml", {
                                              "bottomLayerComponent": gamePageMain
                                          })
 

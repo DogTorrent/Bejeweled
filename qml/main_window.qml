@@ -10,7 +10,7 @@ Window {
     Loader {
         id: mainPageLoader
         asynchronous: false
-        source: "title_page.qml"
+        source: "qrc:/qml/title_page.qml"
         anchors.fill: parent
     }
     signal setMainPage(string pagePath)

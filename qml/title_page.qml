@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "component"
 
 Item {
     anchors.fill: parent
@@ -48,7 +49,7 @@ Item {
             borderColor: "#5D101D"
             rippleColor: "#60FFFFFF"
             shouldRippleCoverBorder: true
-            onClicked: setMainPage("game_page.qml")
+            onClicked: setMainPage("qrc:/qml/game_page.qml")
         }
         CustButton {
             id: configButton
@@ -63,7 +64,7 @@ Item {
             borderColor: "#5D101D"
             rippleColor: "#90FFFFFF"
             shouldRippleCoverBorder: true
-            onClicked: setMainPage("config_page.qml")
+            onClicked: setMainPage("qrc:/qml/config_page.qml")
         }
         CustButton {
             id: rankButton
