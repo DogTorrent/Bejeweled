@@ -1,8 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import "component"
 
 Item {
-    anchors.fill: parent
 
     Image {
         id: backGround
@@ -14,6 +13,9 @@ Item {
         //保证居中
         x: -(width / 2 - parent.width / 2)
         y: -(height / 2 - parent.height / 2)
+        //        smooth: settings.value("Graphic/enable_smooth", "true") === "true"
+        //        mipmap: settings.value("Graphic/enable_mipmap", "true") === "true"
+        //        cache: settings.value("Graphic/enable_cache", "true") === "true"
     }
 
     Image {
@@ -24,6 +26,9 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: -height / 2
+        //        smooth: settings.value("Graphic/enable_smooth", "true") === "true"
+        //        mipmap: settings.value("Graphic/enable_mipmap", "true") === "true"
+        //        cache: settings.value("Graphic/enable_cache", "true") === "true"
     }
 
     Column {
@@ -41,7 +46,7 @@ Item {
             width: parent.buttonWidth
             height: parent.buttonHeight
             text: "开始游戏"
-            font.pixelSize: 30
+            font.pointSize: 18
             font.family: "Microsoft Yahei"
             radius: 5
             color: "#FFA607"

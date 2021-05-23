@@ -2,8 +2,6 @@ import QtQuick 2.0
 
 Canvas {
     id: canvas
-    implicitWidth: 240
-    implicitHeight: 100
     property var imagePath: ""
     property int imageWidth: 240
     property int imageHeight: 100

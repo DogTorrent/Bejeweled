@@ -111,4 +111,19 @@ Item {
             onClicked: stopMenu.hide()
         }
     }
+
+    Loader {
+        id: configPageLoader
+        asynchronous: false
+        source: ""
+        anchors.fill: parent
+        signal open
+        signal close
+        onOpen: {
+            source = "qrc:/qml/config_page.qml"
+        }
+        onClose: {
+            source = ""
+        }
+    }
 }

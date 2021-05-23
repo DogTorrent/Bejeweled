@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
+#include <QSettings>
+#include <QTextCodec>
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +11,10 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-//    QQuickStyle::setStyle("Material");
+
+    QSettings settings("config.ini",QSettings::IniFormat);
+    settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/qml/main_window.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

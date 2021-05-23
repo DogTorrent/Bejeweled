@@ -1,8 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
-    implicitWidth: 240
-    implicitHeight: 100
+    id: imagesButton
     property string imagePath: ""
     property int imageWidth: image.sourceSize.width
     property int imageHeight: image.sourceSize.height
@@ -11,9 +10,12 @@ Item {
     property int normalImage: 0
     property int horverImage: 0
     property int onclickImage: 0
-    property bool containsMouse: mouseArea.containsMouse
+    property alias containsMouse: mouseArea.containsMouse
     property font font
     property string text
+    property bool smooth: true
+    property bool mipmap: true
+    property bool cache: true
     signal clicked
     signal entered
     signal exited
@@ -22,9 +24,7 @@ Item {
 
     property int currBtnState: normalImage
 
-    Rectangle {
-        id: buttonRect
-        color: "#00000000"
+    Item {
         clip: true
         anchors.fill: parent
         Image {
@@ -32,6 +32,9 @@ Item {
             source: imagePath
             width: parent.width * column
             height: parent.height * row
+            smooth: imagesButton.smooth
+            mipmap: imagesButton.mipmap
+            cache: imagesButton.cache
 
             property var currCol: currBtnState % column
             property var currRow: (currBtnState - currCol) / column

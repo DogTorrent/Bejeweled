@@ -1,9 +1,8 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Window 2.1
 import "component"
 
 Item {
-    anchors.fill: parent
     Item {
         id: gamePageMain
         anchors.fill: parent
@@ -17,6 +16,9 @@ Item {
             //保证居中
             x: -(width / 2 - Window.width / 2)
             y: -(height / 2 - Window.height / 2)
+            //            smooth: settings.value("Graphic/enable_smooth", "true") === "true"
+            //            mipmap: settings.value("Graphic/enable_mipmap", "true") === "true"
+            //            cache: settings.value("Graphic/enable_cache", "true") === "true"
         }
 
         ImagesButton {
@@ -31,6 +33,9 @@ Item {
             horverImage: 1
             onclickImage: 2
             onClicked: stopMenuLoader.item.show()
+            //            smooth: settings.value("Graphic/enable_smooth", "true") === "true"
+            //            mipmap: settings.value("Graphic/enable_mipmap", "true") === "true"
+            //            cache: settings.value("Graphic/enable_cache", "true") === "true"
         }
 
         Loader {

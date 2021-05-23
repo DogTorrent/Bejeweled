@@ -6,15 +6,12 @@ import QtQuick.Controls.Material.impl 2.0
 import QtGraphicalEffects 1.0
 
 RoundButton {
-    implicitWidth: 240
-    implicitHeight: 100
-    font.family: "Arial"
-    radius: 20
     property var color: "#FFC66D"
     property var borderColor: "#FFA607"
     property var borderWidth: 2
     property var rippleColor: "#40FFFFFF"
     property bool shouldRippleCoverBorder: true
+
     background: Rectangle {
         width: parent.width
         height: parent.height

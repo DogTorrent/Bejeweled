@@ -61,6 +61,11 @@ Item {
                 normalImage: mainImage
                 horverImage: mainImage
                 onclickImage: mainImage
+                //                smooth: settings.value("Graphic/enable_smooth",
+                //                                       "true") === "true"
+                //                mipmap: settings.value("Graphic/enable_mipmap",
+                //                                       "true") === "true"
+                //                cache: settings.value("Graphic/enable_cache", "true") === "true"
                 Rectangle {
                     id: borderRec
                     border.width: parent.containsMouse
