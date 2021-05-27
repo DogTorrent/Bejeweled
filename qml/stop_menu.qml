@@ -50,8 +50,9 @@ Item {
 
         CustButton {
             text: qsTr("🏃‍ 标题界面")
-            font.family: "Microsoft Yahei"
-            font.pixelSize: 25
+            //            font.family: "Microsoft Yahei"
+            //            font.pixelSize: 25
+            font.pointSize: 18
             width: parent.buttonWidth
             height: parent.buttonHeight
             radius: height / 2
@@ -70,8 +71,9 @@ Item {
         }
         CustButton {
             text: qsTr("⚙ 游戏设置")
-            font.family: "Microsoft Yahei"
-            font.pixelSize: 25
+            //            font.family: "Microsoft Yahei"
+            //            font.pixelSize: 25
+            font.pointSize: 18
             width: parent.buttonWidth
             height: parent.buttonHeight
             radius: height / 2
@@ -92,8 +94,9 @@ Item {
         }
         CustButton {
             text: qsTr("🎮 继续游戏")
-            font.family: "Microsoft Yahei"
-            font.pixelSize: 25
+            //            font.family: "Microsoft Yahei"
+            //            font.pixelSize: 25
+            font.pointSize: 18
             width: parent.buttonWidth
             height: parent.buttonHeight
             radius: height / 2

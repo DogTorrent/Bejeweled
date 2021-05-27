@@ -1,10 +1,12 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Window 2.1
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.0
 
 ApplicationWindow {
     id: mainWindow
+    font.family: settings_other.font_family
+    font.pointSize: settings_other.font_pt_size
     Item {
         id: settings
         Settings {
@@ -14,8 +16,7 @@ ApplicationWindow {
             //语言
             property string language: value("language", "简体中文")
             //是否全屏
-            property bool enable_fullscreen: value("enable_fullscreen",
-                                                   "false") === "true"
+            property bool enable_fullscreen: value("enable_fullscreen", false)
             //窗口宽度
             property int width: value("width", 1280)
             //窗口高度
@@ -58,7 +59,7 @@ ApplicationWindow {
             fileName: "config.ini"
             category: "Other"
             //字体
-            property string font_family: value("font_family", "Microsoft Yahei")
+            property string font_family: value("font_family", "Microsoft YaHei")
             //字号
             property real font_pt_size: value("font_pt_size", 18)
         }
@@ -79,9 +80,9 @@ ApplicationWindow {
         //保证居中
         x: -(width / 2 - Window.width / 2)
         y: -(height / 2 - Window.height / 2)
-        //            smooth: settings.value("Graphic/enable_smooth", "true") === "true"
-        //            mipmap: settings.value("Graphic/enable_mipmap", "true") === "true"
-        //            cache: settings.value("Graphic/enable_cache", "true") === "true"
+        smooth: settings_graphic.enable_smooth
+        mipmap: settings_graphic.enable_mipmap
+        cache: settings_graphic.enable_cache
     }
 
     StackView {

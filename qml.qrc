@@ -6,11 +6,19 @@
         <file alias="config_page.qml">qml/config_page.qml</file>
         <file alias="stop_menu.qml">qml/stop_menu.qml</file>
         <file alias="game_board.qml">qml/game_board.qml</file>
+        <file alias="config_sound_panel.qml">qml/config_sound_panel.qml</file>
+        <file alias="config_control_panel.qml">qml/config_control_panel.qml</file>
+        <file alias="config_general_panel.qml">qml/config_general_panel.qml</file>
+        <file alias="config_graphic_panel.qml">qml/config_graphic_panel.qml</file>
+        <file alias="config_other_panel.qml">qml/config_other_panel.qml</file>
     </qresource>
     <qresource prefix="/qml/component">
         <file alias="CustButton.qml">qml/component/CustButton.qml</file>
         <file alias="CanvasImagesButton.qml">qml/component/CanvasImagesButton.qml</file>
         <file alias="PopupMask.qml">qml/component/PopupMask.qml</file>
         <file alias="ImagesButton.qml">qml/component/ImagesButton.qml</file>
+        <file alias="SwitchOption.qml">qml/component/SwitchOption.qml</file>
+        <file alias="SliderOption.qml">qml/component/SliderOption.qml</file>
+        <file alias="ComboBoxOption.qml">qml/component/ComboBoxOption.qml</file>
     </qresource>
 </RCC>
