@@ -109,18 +109,16 @@ ApplicationWindow {
         }
     }
 
-    Loader {
-        id: configPageLoader
-        asynchronous: false
-        source: "qrc:/qml/config_page.qml"
-        anchors.fill: parent
-        visible: false
-        enabled: false
+    function setMainPage(page){
+        mainPageView.replace(null, page)
     }
-
-    signal setMainPage(string pagePath)
-    onSetMainPage: {
-        //mainPageLoader.source = pagePath
-        mainPageView.replace(null, pagePath)
+    function pushMainPage(page) {
+        mainPageView.push(page)
+    }
+    function popMainPage(page) {
+        if (page)
+            mainPageView.pop(page)
+        else
+            mainPageView.pop()
     }
 }

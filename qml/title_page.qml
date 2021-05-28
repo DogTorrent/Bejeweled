@@ -45,9 +45,7 @@ Item {
             id: startButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: "开始游戏"
-            font.pointSize: 18
-            //            font.family: "Microsoft Yahei"
+            text: qsTr("开始游戏")
             radius: 5
             color: "#FFA607"
             borderWidth: 3
@@ -60,24 +58,20 @@ Item {
             id: configButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: "游戏设置"
-            font.pointSize: 18
-            //            font.family: "Microsoft Yahei"
+            text: qsTr("游戏设置")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3
             borderColor: "#5D101D"
             rippleColor: "#90FFFFFF"
             shouldRippleCoverBorder: true
-            onClicked: setMainPage("qrc:/qml/config_page.qml")
+            onClicked: pushMainPage("qrc:/qml/config_page.qml")
         }
         CustButton {
             id: rankButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: "分数榜"
-            font.pointSize: 18
-            //            font.family: "Microsoft Yahei"
+            text: qsTr("分数榜")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3
@@ -92,9 +86,7 @@ Item {
             id: exitButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: "退出游戏"
-            font.pointSize: 18
-            //            font.family: "Microsoft Yahei"
+            text: qsTr("退出游戏")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3

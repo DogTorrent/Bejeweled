@@ -88,9 +88,7 @@ Item {
                     easing.type: Easing.InOutQuad
                 }
             }
-            onClicked: {
-
-            }
+            onClicked: pushMainPage("qrc:/qml/config_page.qml")
         }
         CustButton {
             text: qsTr("🎮 继续游戏")

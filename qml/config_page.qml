@@ -1,6 +1,5 @@
-import QtQuick 2.3
+import QtQuick 2.15
 import QtQuick.Controls 2.0
-import QtQuick.Window 2.0
 import QtGraphicalEffects 1.0
 import "component"
 
@@ -13,8 +12,8 @@ Item {
                 >= aspectRatio) ? parent.width : parent.height * aspectRatio
         height: width / aspectRatio
         //保证居中
-        x: -(width / 2 - Window.width / 2)
-        y: -(height / 2 - Window.height / 2)
+        x: -(width / 2 - parent.width / 2)
+        y: -(height / 2 - parent.height / 2)
         smooth: settings_graphic.enable_smooth
         mipmap: settings_graphic.enable_mipmap
         cache: settings_graphic.enable_cache
@@ -53,7 +52,7 @@ Item {
 
     ListView {
         id: leftMenu
-        height: parent.height
+        height: parent.height - backButton.height
         width: parent.width / 5
         currentIndex: 0
         onCurrentIndexChanged: {
@@ -66,21 +65,31 @@ Item {
 
         delegate: Component {
             CustButton {
+                id: delegateButton
                 text: buttonText
-                width: ListView.isCurrentItem ? leftMenu.width + 10 : leftMenu.width
+                width: ListView.isCurrentItem
+                       || hovered ? leftMenu.width + 10 : leftMenu.width
                 height: 80 //Math.min(leftMenu.height / leftMenu.count, 80)
                 radius: 0
                 color: ListView.isCurrentItem ? "#EFEFEF" : "#B0B8B8B8"
                 borderWidth: 0
                 Behavior on width {
+                    id: widthBehavior
                     NumberAnimation {
                         duration: 300
-                        easing.type: Easing.OutQuad
+                        easing.type: Easing.InOutQuad
+                        onRunningChanged: {
+                            if (!running) {
+                                widthBehavior.enabled = false
+                            }
+                        }
                     }
                 }
+                onHoveredChanged: widthBehavior.enabled = true
                 onClicked: {
                     leftMenu.currentIndex = index
                 }
+                hoverEnabled: true
             }
         }
 
@@ -107,5 +116,25 @@ Item {
                 buttonText: qsTr("其他")
             }
         }
+    }
+
+    CustButton {
+        id: backButton
+        text: qsTr("返回")
+        x: 0
+        y: parent.height - height
+        width: hovered ? leftMenu.width + 10 : leftMenu.width
+        height: 80 //Math.min(leftMenu.height / leftMenu.count, 80)
+        radius: 0
+        color: hovered ? "#EFEFEF" : "#B0B8B8B8"
+        borderWidth: 0
+        Behavior on width {
+            NumberAnimation {
+                duration: 300
+                easing.type: Easing.OutQuad
+            }
+        }
+        onClicked: popMainPage()
+        hoverEnabled: true
     }
 }
