@@ -9,7 +9,7 @@ Column {
     property color colHighlightColor: "#B0E1ECFF"
 
     SwitchOption {
-        titleText.text: qsTr("播放BGM")
+        titleText.text: qsTr("BGM")
         optionSwitch.checked: settings_sound.enable_bgm
         optionSwitch.onCheckedChanged: settings_sound.enable_bgm = optionSwitch.checked
 
@@ -21,7 +21,7 @@ Column {
     }
 
     SwitchOption {
-        titleText.text: qsTr("播放音效")
+        titleText.text: qsTr("Effect Sound")
         optionSwitch.checked: settings_sound.enable_effect_sound
         optionSwitch.onCheckedChanged: settings_sound.enable_effect_sound = optionSwitch.checked
 
@@ -33,7 +33,7 @@ Column {
     }
 
     SliderOption {
-        titleText.text: qsTr("BGM音量")
+        titleText.text: qsTr("BGM Volume")
         optionSlider.value: settings_sound.bgm_volume
         optionSlider.onValueChanged: settings_sound.bgm_volume = optionSlider.value
 
@@ -50,7 +50,7 @@ Column {
     }
 
     SliderOption {
-        titleText.text: qsTr("音效音量")
+        titleText.text: qsTr("Effect Sound Volume")
         optionSlider.value: settings_sound.effect_sound_volume
         optionSlider.onValueChanged: settings_sound.effect_sound_volume = optionSlider.value
 

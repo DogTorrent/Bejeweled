@@ -10,7 +10,7 @@ Column {
     property color colHighlightColor: "#B0E1ECFF"
 
     SwitchOption {
-        titleText.text: qsTr("全屏模式")
+        titleText.text: qsTr("Fullscreen")
         optionSwitch.checked: settings_general.enable_fullscreen
         optionSwitch.onCheckedChanged: settings_general.enable_fullscreen = optionSwitch.checked
 
@@ -22,7 +22,7 @@ Column {
     }
 
     SliderOption {
-        titleText.text: qsTr("窗口宽度")
+        titleText.text: qsTr("Window Width")
         optionSlider.value: settings_general.width
         optionSlider.onValueChanged: settings_general.width = optionSlider.value
 
@@ -39,7 +39,7 @@ Column {
     }
 
     SliderOption {
-        titleText.text: qsTr("窗口高度")
+        titleText.text: qsTr("Window Height")
         optionSlider.value: settings_general.height
         optionSlider.onValueChanged: settings_general.height = optionSlider.value
 
@@ -56,7 +56,7 @@ Column {
     }
 
     ComboBoxOption {
-        titleText.text: qsTr("显示语言")
+        titleText.text: qsTr("Language")
 
         width: parent.width
         height: 80 //Math.min(parent.height / parent.children.length, 80)

@@ -65,7 +65,6 @@ Item {
 
         delegate: Component {
             CustButton {
-                id: delegateButton
                 text: buttonText
                 width: ListView.isCurrentItem
                        || hovered ? leftMenu.width + 10 : leftMenu.width
@@ -74,18 +73,11 @@ Item {
                 color: ListView.isCurrentItem ? "#EFEFEF" : "#B0B8B8B8"
                 borderWidth: 0
                 Behavior on width {
-                    id: widthBehavior
                     NumberAnimation {
                         duration: 300
                         easing.type: Easing.InOutQuad
-                        onRunningChanged: {
-                            if (!running) {
-                                widthBehavior.enabled = false
-                            }
-                        }
                     }
                 }
-                onHoveredChanged: widthBehavior.enabled = true
                 onClicked: {
                     leftMenu.currentIndex = index
                 }
@@ -97,30 +89,30 @@ Item {
             id: buttonModel
             ListElement {
                 page: "qrc:/qml/config_general_panel.qml"
-                buttonText: qsTr("全局")
+                buttonText: qsTr("General")
             }
             ListElement {
                 page: "qrc:/qml/config_graphic_panel.qml"
-                buttonText: qsTr("图像")
+                buttonText: qsTr("Graphic")
             }
             ListElement {
                 page: "qrc:/qml/config_sound_panel.qml"
-                buttonText: qsTr("声音")
+                buttonText: qsTr("Sound")
             }
             ListElement {
                 page: "qrc:/qml/config_control_panel.qml"
-                buttonText: qsTr("控制")
+                buttonText: qsTr("Control")
             }
             ListElement {
                 page: "qrc:/qml/config_other_panel.qml"
-                buttonText: qsTr("其他")
+                buttonText: qsTr("Other")
             }
         }
     }
 
     CustButton {
         id: backButton
-        text: qsTr("返回")
+        text: qsTr("Back")
         x: 0
         y: parent.height - height
         width: hovered ? leftMenu.width + 10 : leftMenu.width

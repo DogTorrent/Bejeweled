@@ -45,7 +45,8 @@ Item {
             id: startButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: qsTr("开始游戏")
+            text: qsTr("START")
+
             radius: 5
             color: "#FFA607"
             borderWidth: 3
@@ -58,7 +59,7 @@ Item {
             id: configButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: qsTr("游戏设置")
+            text: qsTr("CONFIG")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3
@@ -71,7 +72,7 @@ Item {
             id: rankButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: qsTr("分数榜")
+            text: qsTr("SCORE")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3
@@ -86,7 +87,7 @@ Item {
             id: exitButton
             width: parent.buttonWidth
             height: parent.buttonHeight
-            text: qsTr("退出游戏")
+            text: qsTr("EXIT")
             radius: 5
             color: "#E5E5E5"
             borderWidth: 3

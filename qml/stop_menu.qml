@@ -49,7 +49,7 @@ Item {
         }
 
         CustButton {
-            text: qsTr("🏃‍ 标题界面")
+            text: qsTr("🏃‍ TITLE")
             //            font.family: "Microsoft Yahei"
             //            font.pixelSize: 25
             font.pointSize: 18
@@ -70,7 +70,7 @@ Item {
             onClicked: setMainPage("qrc:/qml/title_page.qml")
         }
         CustButton {
-            text: qsTr("⚙ 游戏设置")
+            text: qsTr("⚙ CONFIG")
             //            font.family: "Microsoft Yahei"
             //            font.pixelSize: 25
             font.pointSize: 18
@@ -91,7 +91,7 @@ Item {
             onClicked: pushMainPage("qrc:/qml/config_page.qml")
         }
         CustButton {
-            text: qsTr("🎮 继续游戏")
+            text: qsTr("🎮 CANCEL")
             //            font.family: "Microsoft Yahei"
             //            font.pixelSize: 25
             font.pointSize: 18

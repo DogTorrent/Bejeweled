@@ -10,7 +10,7 @@ Column {
 
     ComboBoxOption {
         id: fontComboBox
-        titleText.text: qsTr("字体名称")
+        titleText.text: qsTr("Font Name")
         optionComboBox.currentIndex: Qt.fontFamilies().indexOf(
                                          settings_other.font_family)
         optionComboBox.model: Qt.fontFamilies()
@@ -35,7 +35,7 @@ Column {
     }
 
     ComboBoxOption {
-        titleText.text: qsTr("字号大小")
+        titleText.text: qsTr("Font Size")
         optionComboBox.currentIndex: optionComboBox.model.indexOf(
                                          settings_other.font_pt_size)
         optionComboBox.model: [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]

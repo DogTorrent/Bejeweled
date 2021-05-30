@@ -9,7 +9,7 @@ Column {
     property color colHighlightColor: "#B0E1ECFF"
 
     SwitchOption {
-        titleText.text: qsTr("平滑过渡")
+        titleText.text: qsTr("Smooth Transition")
         optionSwitch.checked: settings_graphic.enable_smooth
         optionSwitch.onCheckedChanged: settings_graphic.enable_smooth = optionSwitch.checked
 
@@ -21,7 +21,7 @@ Column {
     }
 
     SwitchOption {
-        titleText.text: qsTr("Mipmap过滤")
+        titleText.text: qsTr("Mipmap Filtering")
         optionSwitch.checked: settings_graphic.enable_mipmap
         optionSwitch.onCheckedChanged: settings_graphic.enable_mipmap = optionSwitch.checked
 
@@ -33,7 +33,7 @@ Column {
     }
 
     SwitchOption {
-        titleText.text: qsTr("图像缓存")
+        titleText.text: qsTr("Image Cache")
         optionSwitch.checked: settings_graphic.enable_cache
         optionSwitch.onCheckedChanged: settings_graphic.enable_cache = optionSwitch.checked
 

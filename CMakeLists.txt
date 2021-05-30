@@ -1,56 +1,51 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(Bejeweled LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 11)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(REQUIRED_LIBS Core Quick QuickControls2)
+set(REQUIRED_LIBS Core Quick QuickControls2 LinguistTools)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Quick Qt5::QuickControls2)
-
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check https://doc.qt.io/qt/deployment-android.html for more information.
-# They need to be set before the find_package(...) calls below.
-
-#if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
-#    endif()
-#endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
-file(GLOB PROJECT_SOURCES "qml.qrc" "*.h" "*.cpp")
-file(GLOB QRC_BIG_RESOURCES "*.qrc")
+# Add C++ source files
+file(GLOB_RECURSE CPP_FILES "*.cpp" "*.h")
 
-qt5_add_big_resources(PROJECT_SOURCES ${QRC_BIG_RESOURCES})
+# Add QtQuick files
+set(QML_FILES "qml.qrc")
+
+# Add resource(image, audio, etc.) files
+qt5_add_big_resources(RESOURCE_FILES "res.qrc")
+
+# Add translation files
+file(GLOB_RECURSE TS_FILES RELATIVE ${PROJECT_SOURCE_DIR} "*.ts")
+
+# Set the output location of binary translation files based on the translation files
+foreach(TS_FILE ${TS_FILES})
+    get_filename_component(TS_FILE_DIR ${TS_FILE} DIRECTORY)
+    set_source_files_properties(${TS_FILE} PROPERTIES OUTPUT_LOCATION ${TS_FILE_DIR})
+endforeach()
+
+# Auto update binary translation files
+qt5_create_translation(QM_FILES ${PROJECT_SOURCE_DIR} ${TS_FILES})
+
+set(PROJECT_SOURCES ${QML_FILES} ${CPP_FILES} ${RESOURCE_FILES} ${QM_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(${PROJECT_NAME}
-        ${PROJECT_SOURCES}
-    )
+    qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 else()
-    if(ANDROID)
-        add_library(${PROJECT_NAME} SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(${PROJECT_NAME}
-          ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 endif()
 
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE ${REQUIRED_LIBS_QUALIFIED})

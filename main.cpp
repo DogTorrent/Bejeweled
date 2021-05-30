@@ -3,6 +3,7 @@
 #include <QQuickStyle>
 #include <QSettings>
 #include <QTextCodec>
+#include "translation.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +24,8 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+    auto translationHandler = new TranslationHandler(&engine);
+    //translationHandler->reTranslate(QString("简体中文"));
 
     return app.exec();
 }

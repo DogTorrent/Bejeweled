@@ -9,7 +9,7 @@ Column {
     property color colHighlightColor: "#B0E1ECFF"
 
     ComboBoxOption {
-        titleText.text: qsTr("暂停按键")
+        titleText.text: qsTr("Stop Key")
 
         width: parent.width
         height: Math.min(parent.height / parent.children.length, 80)
