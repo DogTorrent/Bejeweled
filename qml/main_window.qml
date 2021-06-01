@@ -14,13 +14,17 @@ ApplicationWindow {
             fileName: "config.ini"
             category: "General"
             //语言
-            property string language: value("language", "简体中文")
+            property string language
             //是否全屏
             property bool enable_fullscreen: value("enable_fullscreen", false)
             //窗口宽度
             property int width: value("width", 1280)
             //窗口高度
             property int height: value("height", 720)
+
+            Component.onCompleted: language = value("language", "简体中文")
+
+            onLanguageChanged: TranslationHandler.reTranslate(language)
         }
         Settings {
             id: settings_graphic
@@ -70,19 +74,10 @@ ApplicationWindow {
     visibility: settings_general.enable_fullscreen ? Window.FullScreen : Window.Windowed
     title: qsTr("Bejeweled")
 
-    Image {
+    Loader {
         id: backGround
-        source: "qrc:/res/image/background" //16:9
-        property var aspectRatio: 16 / 9
-        width: (parent.width / parent.height
-                >= aspectRatio) ? parent.width : parent.height * aspectRatio
-        height: width / aspectRatio
-        //保证居中
-        x: -(width / 2 - Window.width / 2)
-        y: -(height / 2 - Window.height / 2)
-        smooth: settings_graphic.enable_smooth
-        mipmap: settings_graphic.enable_mipmap
-        cache: settings_graphic.enable_cache
+        anchors.fill: parent
+        source: "qrc:/qml/back_ground.qml"
     }
 
     StackView {
@@ -109,7 +104,7 @@ ApplicationWindow {
         }
     }
 
-    function setMainPage(page){
+    function setMainPage(page) {
         mainPageView.replace(null, page)
     }
     function pushMainPage(page) {

@@ -122,7 +122,7 @@
 <context>
     <name>main_window</name>
     <message>
-        <location filename="../qml/main_window.qml" line="71"/>
+        <location filename="../qml/main_window.qml" line="75"/>
         <source>Bejeweled</source>
         <translation>宝石迷阵</translation>
     </message>
@@ -131,17 +131,17 @@
     <name>stop_menu</name>
     <message>
         <location filename="../qml/stop_menu.qml" line="52"/>
-        <source>🏃‍ TITLE</source>
+        <source>TITLE</source>
         <translation>标题界面</translation>
     </message>
     <message>
         <location filename="../qml/stop_menu.qml" line="73"/>
-        <source>⚙ CONFIG</source>
+        <source>CONFIG</source>
         <translation>游戏设置</translation>
     </message>
     <message>
         <location filename="../qml/stop_menu.qml" line="94"/>
-        <source>🎮 CANCEL</source>
+        <source>CANCEL</source>
         <translation>继续游戏</translation>
     </message>
 </context>

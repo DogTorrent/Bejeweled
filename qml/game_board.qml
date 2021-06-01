@@ -76,17 +76,15 @@ Item {
                     jewelGrid.update()
                     if (jewelGrid.lastSelectIndex != -1) {
                         //原x,y在边界，为了防止indexAt()识别出错，给x移到正中心
-                        var l = jewelGrid.indexAt(
-                                    x - jewelGrid.cellWidth / 2.0,
-                                    y + jewelGrid.cellHeight / 2.0)
+                        var l = jewelGrid.indexAt(x - jewelGrid.cellWidth / 2,
+                                                  y + jewelGrid.cellHeight / 2)
                         var r = jewelGrid.indexAt(
                                     x + jewelGrid.cellWidth * 1.5,
-                                    y + jewelGrid.cellHeight / 2.0)
-                        var u = jewelGrid.indexAt(
-                                    x + jewelGrid.cellWidth / 2.0,
-                                    y - jewelGrid.cellHeight / 2.0)
+                                    y + jewelGrid.cellHeight / 2)
+                        var u = jewelGrid.indexAt(x + jewelGrid.cellWidth / 2,
+                                                  y - jewelGrid.cellHeight / 2)
                         var d = jewelGrid.indexAt(
-                                    x + jewelGrid.cellWidth / 2.0,
+                                    x + jewelGrid.cellWidth / 2,
                                     y + jewelGrid.cellHeight * 1.5)
                         if (jewelGrid.lastSelectIndex === l
                                 || jewelGrid.lastSelectIndex === r

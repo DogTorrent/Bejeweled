@@ -63,5 +63,11 @@ Column {
         titleText.font.family: settings_other.font_family
         titleText.font.pointSize: settings_other.font_pt_size
         backgroundRec.color: recMouseArea.containsMouse ? parent.colHighlightColor : parent.colColor
+        optionComboBox.model: TranslationHandler.languages()
+        optionComboBox.onCurrentTextChanged: {
+            settings_general.language = optionComboBox.currentText
+        }
+        optionComboBox.currentIndex: TranslationHandler.languages().indexOf(
+                                         settings_general.language)
     }
 }

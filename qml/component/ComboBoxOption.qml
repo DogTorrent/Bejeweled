@@ -25,12 +25,10 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         font.pointSize: 12
         delegate: ItemDelegate {
-            parent: option
             width: option.width
             contentItem: Text {
                 text: modelData
-                font.family: option.font.family
-                font.pointSize: option.font.pointSize
+                font: option.font
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }

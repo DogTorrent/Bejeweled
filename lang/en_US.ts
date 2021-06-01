@@ -122,7 +122,7 @@
 <context>
     <name>main_window</name>
     <message>
-        <location filename="../qml/main_window.qml" line="71"/>
+        <location filename="../qml/main_window.qml" line="75"/>
         <source>Bejeweled</source>
         <translation>Bejeweled</translation>
     </message>
@@ -131,18 +131,18 @@
     <name>stop_menu</name>
     <message>
         <location filename="../qml/stop_menu.qml" line="52"/>
-        <source>🏃‍ TITLE</source>
-        <translation>🏃‍ TITLE</translation>
+        <source>TITLE</source>
+        <translation>TITLE</translation>
     </message>
     <message>
         <location filename="../qml/stop_menu.qml" line="73"/>
-        <source>⚙ CONFIG</source>
-        <translation>⚙ CONFIG</translation>
+        <source>CONFIG</source>
+        <translation>CONFIG</translation>
     </message>
     <message>
         <location filename="../qml/stop_menu.qml" line="94"/>
-        <source>🎮 CANCEL</source>
-        <translation>🎮 CANCEL</translation>
+        <source>CANCEL</source>
+        <translation>CANCEL</translation>
     </message>
 </context>
 <context>

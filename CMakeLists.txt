@@ -17,7 +17,7 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
 # Add C++ source files
-file(GLOB_RECURSE CPP_FILES "*.cpp" "*.h")
+file(GLOB CPP_FILES "*.cpp" "*.h")
 
 # Add QtQuick files
 set(QML_FILES "qml.qrc")

@@ -6,19 +6,11 @@ Item {
     Item {
         id: gamePageMain
         anchors.fill: parent
-        Image {
+
+        Loader {
             id: backGround
-            source: "qrc:/res/image/background" //16:9
-            property var aspectRatio: 16 / 9
-            width: (parent.width / parent.height
-                    >= aspectRatio) ? parent.width : parent.height * aspectRatio
-            height: width / aspectRatio
-            //保证居中
-            x: -(width / 2 - Window.width / 2)
-            y: -(height / 2 - Window.height / 2)
-            smooth: settings_graphic.enable_smooth
-            mipmap: settings_graphic.enable_mipmap
-            cache: settings_graphic.enable_cache
+            anchors.fill: parent
+            source: "qrc:/qml/back_ground.qml"
         }
 
         ImagesButton {

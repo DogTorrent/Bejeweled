@@ -13,10 +13,12 @@ class TranslationHandler : public QObject
 public:
     explicit TranslationHandler(QQmlEngine *engine);
     Q_INVOKABLE void reTranslate(const QString lang);
+    Q_INVOKABLE QStringList languages();
+    Q_INVOKABLE QString getCurrLang();
 private:
     QMap<QString, std::shared_ptr<QTranslator>> transMap;
     QQmlEngine *engine;
-    QTranslator *lastQTranslator;
+    QString currLang;
 
 signals:
 

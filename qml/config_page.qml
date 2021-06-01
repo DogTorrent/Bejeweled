@@ -4,20 +4,13 @@ import QtGraphicalEffects 1.0
 import "component"
 
 Item {
-    Image {
-        id: backGround
-        source: "qrc:/res/image/background" //16:9
-        property var aspectRatio: 16 / 9
-        width: (parent.width / parent.height
-                >= aspectRatio) ? parent.width : parent.height * aspectRatio
-        height: width / aspectRatio
-        //保证居中
-        x: -(width / 2 - parent.width / 2)
-        y: -(height / 2 - parent.height / 2)
-        smooth: settings_graphic.enable_smooth
-        mipmap: settings_graphic.enable_mipmap
-        cache: settings_graphic.enable_cache
+
+    Loader {
+        id:backGround
+        anchors.fill: parent
+        source: "qrc:/qml/back_ground.qml"
     }
+
     FastBlur {
         id: fastBlur
         source: backGround

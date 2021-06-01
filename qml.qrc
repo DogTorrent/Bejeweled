@@ -18,5 +18,6 @@
         <file>qml/component/SwitchOption.qml</file>
         <file>qml/component/SliderOption.qml</file>
         <file>qml/component/ComboBoxOption.qml</file>
+        <file>qml/back_ground.qml</file>
     </qresource>
 </RCC>
