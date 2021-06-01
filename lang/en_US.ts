@@ -66,32 +66,32 @@
 <context>
     <name>config_page</name>
     <message>
-        <location filename="../qml/config_page.qml" line="92"/>
+        <location filename="../qml/config_page.qml" line="85"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="96"/>
+        <location filename="../qml/config_page.qml" line="89"/>
         <source>Graphic</source>
         <translation>Graphic</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="100"/>
+        <location filename="../qml/config_page.qml" line="93"/>
         <source>Sound</source>
         <translation>Sound</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="104"/>
+        <location filename="../qml/config_page.qml" line="97"/>
         <source>Control</source>
         <translation>Control</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="108"/>
+        <location filename="../qml/config_page.qml" line="101"/>
         <source>Other</source>
         <translation>Other</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="115"/>
+        <location filename="../qml/config_page.qml" line="108"/>
         <source>Back</source>
         <translation>Back</translation>
     </message>
@@ -148,22 +148,22 @@
 <context>
     <name>title_page</name>
     <message>
-        <location filename="../qml/title_page.qml" line="48"/>
+        <location filename="../qml/title_page.qml" line="39"/>
         <source>START</source>
         <translation>START</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="62"/>
+        <location filename="../qml/title_page.qml" line="53"/>
         <source>CONFIG</source>
         <translation>CONFIG</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="75"/>
+        <location filename="../qml/title_page.qml" line="66"/>
         <source>SCORE</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="90"/>
+        <location filename="../qml/title_page.qml" line="81"/>
         <source>EXIT</source>
         <translation>EXIT</translation>
     </message>

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Bejeweled" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Bejeweled" TARGET_NAME="Bejeweled" CONFIG_NAME="Debug (Qt)" RUN_TARGET_PROJECT_NAME="Bejeweled" RUN_TARGET_NAME="Bejeweled">
+    <envs>
+      <env name="Path" value="D:\ProgramFiles\Qt\5.15.2\mingw81_64\bin;D:\ProgramFiles\Qt\5.15.2\mingw81_64\qml\" />
+    </envs>
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

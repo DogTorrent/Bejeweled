@@ -66,32 +66,32 @@
 <context>
     <name>config_page</name>
     <message>
-        <location filename="../qml/config_page.qml" line="92"/>
+        <location filename="../qml/config_page.qml" line="85"/>
         <source>General</source>
         <translation>全局</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="96"/>
+        <location filename="../qml/config_page.qml" line="89"/>
         <source>Graphic</source>
         <translation>图像</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="100"/>
+        <location filename="../qml/config_page.qml" line="93"/>
         <source>Sound</source>
         <translation>声音</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="104"/>
+        <location filename="../qml/config_page.qml" line="97"/>
         <source>Control</source>
         <translation>控制</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="108"/>
+        <location filename="../qml/config_page.qml" line="101"/>
         <source>Other</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../qml/config_page.qml" line="115"/>
+        <location filename="../qml/config_page.qml" line="108"/>
         <source>Back</source>
         <translation>返回</translation>
     </message>
@@ -148,22 +148,22 @@
 <context>
     <name>title_page</name>
     <message>
-        <location filename="../qml/title_page.qml" line="48"/>
+        <location filename="../qml/title_page.qml" line="39"/>
         <source>START</source>
         <translation>开始游戏</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="62"/>
+        <location filename="../qml/title_page.qml" line="53"/>
         <source>CONFIG</source>
         <translation>游戏设置</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="75"/>
+        <location filename="../qml/title_page.qml" line="66"/>
         <source>SCORE</source>
         <translation>分数榜</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="90"/>
+        <location filename="../qml/title_page.qml" line="81"/>
         <source>EXIT</source>
         <translation>退出游戏</translation>
     </message>

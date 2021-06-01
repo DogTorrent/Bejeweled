@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Bejeweled" targetName="big_resources_res" />
+      <config projectName="Bejeweled" targetName="rcc_object_res" />
+      <config projectName="Bejeweled" targetName="Bejeweled" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="false" />
+      <configuration PROFILE_NAME="Debug (Qt)" CONFIG_NAME="Debug" TOOLCHAIN_NAME="MinGW (Qt)" GENERATION_OPTIONS="-G Ninja" GENERATION_DIR="$PROJECT_DIR$/../build-Bejeweled-Desktop_Qt_5_15_2_MinGW_64_bit-Debug" BUILD_OPTIONS="-- -j 6" ENABLED="true">
+        <ADDITIONAL_GENERATION_ENVIRONMENT>
+          <envs>
+            <env name="Path" value="D:\ProgramFiles\Qt\5.15.2\mingw81_64\bin;D:\ProgramFiles\Qt\5.15.2\mingw81_64\qml\" />
+          </envs>
+        </ADDITIONAL_GENERATION_ENVIRONMENT>
+      </configuration>
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ae6fece2-ad5a-48c9-a3e4-5ed6331c9400" name="默认变更列表" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Bejeweled.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/en_US.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en_US.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/zh_CN.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lang/zh_CN.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug (Qt)" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tMCCLEgPNXLwBPSTY4R0hzvDx7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
+    <property name="last.edited.regexp" value="* a" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../build-Bejeweled-Desktop_Qt_5_15_2_MinGW_64_bit-Debug" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="ae6fece2-ad5a-48c9-a3e4-5ed6331c9400" name="默认变更列表" comment="" />
+      <created>1622569442839</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622569442839</updated>
+      <workItem from="1622569445128" duration="1459000" />
+      <workItem from="1622570942291" duration="1159000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
