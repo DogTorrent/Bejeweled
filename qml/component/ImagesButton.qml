@@ -23,6 +23,9 @@ Item {
     signal released
 
     property int currBtnState: normalImage
+    onNormalImageChanged: currBtnState = normalImage
+    onHorverImageChanged: currBtnState = horverImage
+    onOnclickImageChanged: currBtnState = onclickImage
 
     Item {
         clip: true

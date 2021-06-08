@@ -255,9 +255,9 @@ void GameService::blocksDown() {
 
                 if (upBlock >= 0 && upBlock < 8) {
                     for (int k = upBlock; k > upSpace; k--) {
-//                        nums[(x + k - upBlock) * colCount + y] = nums[k * colCount + y];
-//                        nums[k * colCount + y] = 8;
-                        swap(x + k - upBlock,y,k,y);
+                        //                        nums[(x + k - upBlock) * colCount + y] = nums[k * colCount + y];
+                        //                        nums[k * colCount + y] = 8;
+                        swap(x + k - upBlock, y, k, y);
                     }
 
                     x++;
