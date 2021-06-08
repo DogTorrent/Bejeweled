@@ -1,4 +1,6 @@
 import QtQuick 2.3
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.1
 import "component"
 
@@ -39,6 +41,40 @@ Item {
             height: width
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
+        }
+
+        ProgressBar {
+            id: timeLimitBar
+            minimumValue: 0
+            maximumValue: 100
+            value: 100
+            orientation: Qt.Vertical
+            width: 30
+            height: gameBoardLoader.height
+            x: (parent.width + gameBoardLoader.x + gameBoardLoader.width - width) / 2
+            y: gameBoardLoader.y
+            style: ProgressBarStyle {
+                background: Rectangle {
+                    radius: 2
+                    color: "#A0515151"
+                    border.color: "#5D101D"
+                    border.width: 2
+                }
+                progress: Rectangle {
+                    color: "orange"
+                    border.color: "#5D101D"
+                    border.width: 2
+                }
+            }
+            Timer {
+                interval: 50
+                repeat: true
+                running: true
+                triggeredOnStart: true
+                onTriggered: {
+                    timeLimitBar.value -= 0.1
+                }
+            }
         }
     }
 

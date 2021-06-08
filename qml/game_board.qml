@@ -74,13 +74,17 @@ Item {
                         var d = jewelGrid.indexAt(
                                     x + jewelGrid.cellWidth / 2,
                                     y + jewelGrid.cellHeight * 1.5)
+                        //如果上一次选择项是本次选择项的上、下、左或右
                         if (jewelGrid.lastSelectIndex === l
                                 || jewelGrid.lastSelectIndex === r
                                 || jewelGrid.lastSelectIndex === u
                                 || jewelGrid.lastSelectIndex === d) {
-                            GameService.inputSwap(jewelGrid.lastSelectIndex,
-                                                  index)
-                            //gameBoard.move(jewelGrid.lastSelectIndex, index)
+                            //如果当前没有正在执行的任务
+                            if (gameServiceConnection.jobQueue.length == 0
+                                    && !itemMovingTransition.running)
+                                //调用后端尝试执行交换
+                                GameService.inputSwap(
+                                            jewelGrid.lastSelectIndex, index)
                         }
                         jewelGrid.lastSelectIndex = -1
                     } else {
@@ -117,7 +121,7 @@ Item {
     Connections {
         id: gameServiceConnection
         target: GameService
-        property var jobQueue: []
+        property var jobQueue: [] //任务列表
         function onItemMoved(from, to) {
             jobQueue.push(["ItemMoved", () => {
                                if (from < to) {
@@ -130,7 +134,7 @@ Item {
                            }])
         }
         function onItemChanged(number, type) {
-            jobQueue.push(["ItemChanged", () => {
+            jobQueue.push(["ItemChanged" + type, () => {
                                jewelModel.set(number, {
                                                   "mainImage": type
                                               })
@@ -150,10 +154,19 @@ Item {
                 if (temp[0] === "ItemMoved") {
                     gameServiceConnection.jobQueue.shift()
                     temp[1]()
-                } else if (temp[0] === "ItemChanged") {
+                } else {
                     if (!itemMovingTransition.running) {
-                        gameServiceConnection.jobQueue.shift()
-                        temp[1]()
+                        var next = temp
+                        //如果任务队列后面也全是ItemChange型，则全部一起改
+                        while (next) {
+                            if (next[0] === "ItemMoved")
+                                break
+                            if (next[0] === "ItemChanged8")
+                                timeLimitBar.value += 1
+                            gameServiceConnection.jobQueue.shift()
+                            next[1]()
+                            next = gameServiceConnection.jobQueue[0]
+                        }
                     }
                 }
             }
