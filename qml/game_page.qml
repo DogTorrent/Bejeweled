@@ -15,23 +15,6 @@ Item {
             source: "qrc:/qml/back_ground.qml"
         }
 
-        ImagesButton {
-            id: stopButton
-            anchors.right: parent.right
-            implicitWidth: 64
-            implicitHeight: 64
-            imagePath: "qrc:/res/image/pause"
-            column: 3
-            rowCount: 1
-            normalImage: 0
-            horverImage: 1
-            onclickImage: 2
-            onClicked: stopMenuLoader.item.show()
-            smooth: settings_graphic.enable_smooth
-            mipmap: settings_graphic.enable_mipmap
-            cache: settings_graphic.enable_cache
-        }
-
         Loader {
             id: gameBoardLoader
             source: "qrc:/qml/game_board.qml"
@@ -67,14 +50,31 @@ Item {
                 }
             }
             Timer {
+                id: timeLimitBarTimer
                 interval: 50
                 repeat: true
                 running: true
-                triggeredOnStart: true
                 onTriggered: {
                     timeLimitBar.value -= 0.1
                 }
             }
+        }
+
+        ImagesButton {
+            id: stopButton
+            anchors.right: parent.right
+            implicitWidth: 64
+            implicitHeight: 64
+            imagePath: "qrc:/res/image/pause"
+            column: 3
+            rowCount: 1
+            normalImage: 0
+            horverImage: 1
+            onclickImage: 2
+            onClicked: stopMenuLoader.loadStopMenu()
+            smooth: settings_graphic.enable_smooth
+            mipmap: settings_graphic.enable_mipmap
+            cache: settings_graphic.enable_cache
         }
     }
 
@@ -89,9 +89,11 @@ Item {
                                          })
 
         onLoadStopMenu: {
+            timeLimitBarTimer.stop()
             item.show()
         }
         onCloseStopMenu: {
+            timeLimitBarTimer.start()
             item.hide()
         }
     }

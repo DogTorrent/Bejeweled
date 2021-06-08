@@ -109,7 +109,7 @@ Item {
                     easing.type: Easing.InOutQuad
                 }
             }
-            onClicked: stopMenu.hide()
+            onClicked: stopMenuLoader.closeStopMenu() //stopMenu.hide()
         }
     }
 
