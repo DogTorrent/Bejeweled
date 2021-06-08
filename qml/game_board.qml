@@ -22,18 +22,6 @@ Item {
                 border.color: "#5D101D"
             }
         }
-        displaced: Transition {
-            NumberAnimation {
-                properties: "x,y"
-                duration: 200
-            }
-        }
-        move: Transition {
-            NumberAnimation {
-                properties: "x,y"
-                duration: 200
-            }
-        }
     }
 
     ListModel {
@@ -101,26 +89,16 @@ Item {
                 }
             }
         }
-        displaced: Transition {
+        Transition {
+            id: itemMovingTransition
             NumberAnimation {
                 properties: "x,y"
                 duration: 200
+                alwaysRunToEnd: true
             }
         }
-        move: Transition {
-            SequentialAnimation {
-                NumberAnimation {
-                    properties: "x"
-                    duration: 200
-                    alwaysRunToEnd: true
-                }
-                NumberAnimation {
-                    properties: "y"
-                    duration: 200
-                    alwaysRunToEnd: true
-                }
-            }
-        }
+        moveDisplaced: itemMovingTransition
+        move: itemMovingTransition
     }
 
     ListModel {
@@ -137,20 +115,48 @@ Item {
     }
 
     Connections {
+        id: gameServiceConnection
         target: GameService
+        property var jobQueue: []
         function onItemMoved(from, to) {
-            if (from < to) {
-                jewelModel.move(from, to, 1)
-                jewelModel.move(to - 1, from, 1)
-            } else {
-                jewelModel.move(from, to, 1)
-                jewelModel.move(to + 1, from, 1)
-            }
+            jobQueue.push(["ItemMoved", () => {
+                               if (from < to) {
+                                   jewelModel.move(from, to, 1)
+                                   jewelModel.move(to - 1, from, 1)
+                               } else {
+                                   jewelModel.move(from, to, 1)
+                                   jewelModel.move(to + 1, from, 1)
+                               }
+                           }])
         }
         function onItemChanged(number, type) {
-            jewelModel.set(number, {
-                               "mainImage": type
-                           })
+            jobQueue.push(["ItemChanged", () => {
+                               jewelModel.set(number, {
+                                                  "mainImage": type
+                                              })
+                           }])
+        }
+    }
+
+    Timer {
+        id: timer
+        interval: 20
+        repeat: true
+        running: true
+        triggeredOnStart: true
+        onTriggered: {
+            var temp = gameServiceConnection.jobQueue[0]
+            if (temp) {
+                if (temp[0] === "ItemMoved") {
+                    gameServiceConnection.jobQueue.shift()
+                    temp[1]()
+                } else if (temp[0] === "ItemChanged") {
+                    if (!itemMovingTransition.running) {
+                        gameServiceConnection.jobQueue.shift()
+                        temp[1]()
+                    }
+                }
+            }
         }
     }
 }

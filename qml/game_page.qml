@@ -71,4 +71,6 @@ Item {
         Component.onCompleted: forceActiveFocus()
         onActiveFocusChanged: forceActiveFocus()
     }
+
+    Component.onCompleted: GameService.gameInit()
 }

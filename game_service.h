@@ -32,9 +32,6 @@ private:
     std::list<Grid> *colRemoveList = new std::list<Grid>();
     std::list<Grid> *removeList = new std::list<Grid>();
 
-    //游戏初始化
-    void gameInit();
-
     //向左向下判断是否存在可消除行
     bool isLine(int i, int j) const;
 
@@ -105,7 +102,10 @@ private:
     void blocksDown();
 
 public:
-    Q_INVOKABLE GameService(int rowCount, int colCount);
+    GameService(int rowCount, int colCount);
+
+    //游戏初始化
+    Q_INVOKABLE void gameInit();
 
     Q_INVOKABLE bool isDead() const;
 
