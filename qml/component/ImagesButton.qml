@@ -6,7 +6,7 @@ Item {
     property int imageWidth: image.sourceSize.width
     property int imageHeight: image.sourceSize.height
     property int column: 1
-    property int row: 1
+    property int rowCount: 1
     property int normalImage: 0
     property int horverImage: 0
     property int onclickImage: 0
@@ -31,7 +31,7 @@ Item {
             id: image
             source: imagePath
             width: parent.width * column
-            height: parent.height * row
+            height: parent.height * rowCount
             smooth: imagesButton.smooth
             mipmap: imagesButton.mipmap
             cache: imagesButton.cache

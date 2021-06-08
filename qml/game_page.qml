@@ -20,7 +20,7 @@ Item {
             implicitHeight: 64
             imagePath: "qrc:/res/image/pause"
             column: 3
-            row: 1
+            rowCount: 1
             normalImage: 0
             horverImage: 1
             onclickImage: 2

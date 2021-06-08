@@ -6,7 +6,7 @@ import "component"
 Item {
 
     Loader {
-        id:backGround
+        id: backGround
         anchors.fill: parent
         source: "qrc:/qml/back_ground.qml"
     }

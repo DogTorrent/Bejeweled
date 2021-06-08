@@ -55,7 +55,7 @@ Item {
                 id: jewelSample
                 imagePath: "qrc:/res/image/jewels"
                 column: 1
-                row: 8
+                rowCount: 8
                 width: jewelGrid.width / 8
                 height: jewelGrid.height / 8
                 normalImage: mainImage
@@ -90,7 +90,9 @@ Item {
                                 || jewelGrid.lastSelectIndex === r
                                 || jewelGrid.lastSelectIndex === u
                                 || jewelGrid.lastSelectIndex === d) {
-                            gameBoard.move(jewelGrid.lastSelectIndex, index)
+                            GameService.inputSwap(jewelGrid.lastSelectIndex,
+                                                  index)
+                            //gameBoard.move(jewelGrid.lastSelectIndex, index)
                         }
                         jewelGrid.lastSelectIndex = -1
                     } else {
@@ -106,9 +108,17 @@ Item {
             }
         }
         move: Transition {
-            NumberAnimation {
-                properties: "x,y"
-                duration: 200
+            SequentialAnimation {
+                NumberAnimation {
+                    properties: "x"
+                    duration: 200
+                    alwaysRunToEnd: true
+                }
+                NumberAnimation {
+                    properties: "y"
+                    duration: 200
+                    alwaysRunToEnd: true
+                }
             }
         }
     }
@@ -120,19 +130,27 @@ Item {
     Component.onCompleted: {
         for (var i = 0; i < 64; i++) {
             jewelModel.append({
-                                  "mainImage": Math.random() * 7
+                                  "mainImage": GameService.getStat(i)
                               })
             boardModel.append({})
         }
     }
-    signal move(var from, var to)
-    onMove: {
-        if (from < to) {
-            jewelModel.move(from, to, 1)
-            jewelModel.move(to - 1, from, 1)
-        } else {
-            jewelModel.move(from, to, 1)
-            jewelModel.move(to + 1, from, 1)
+
+    Connections {
+        target: GameService
+        function onItemMoved(from, to) {
+            if (from < to) {
+                jewelModel.move(from, to, 1)
+                jewelModel.move(to - 1, from, 1)
+            } else {
+                jewelModel.move(from, to, 1)
+                jewelModel.move(to + 1, from, 1)
+            }
+        }
+        function onItemChanged(number, type) {
+            jewelModel.set(number, {
+                               "mainImage": type
+                           })
         }
     }
 }

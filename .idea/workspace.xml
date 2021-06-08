@@ -10,7 +10,7 @@
       <config projectName="Bejeweled" targetName="Bejeweled" />
     </generated>
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="true">
+  <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="false" />
       <configuration PROFILE_NAME="Debug (Qt)" CONFIG_NAME="Debug" TOOLCHAIN_NAME="MinGW (Qt)" GENERATION_OPTIONS="-G Ninja" GENERATION_DIR="$PROJECT_DIR$/../build-Bejeweled-Desktop_Qt_5_15_2_MinGW_64_bit-Debug" BUILD_OPTIONS="-- -j 6" ENABLED="true">
@@ -24,10 +24,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae6fece2-ad5a-48c9-a3e4-5ed6331c9400" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Bejeweled.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/en_US.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en_US.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lang/zh_CN.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lang/zh_CN.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game_service.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game_service.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qml/component/CanvasImagesButton.qml" beforeDir="false" afterPath="$PROJECT_DIR$/qml/component/CanvasImagesButton.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qml/component/ImagesButton.qml" beforeDir="false" afterPath="$PROJECT_DIR$/qml/component/ImagesButton.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qml/config_page.qml" beforeDir="false" afterPath="$PROJECT_DIR$/qml/config_page.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qml/game_board.qml" beforeDir="false" afterPath="$PROJECT_DIR$/qml/game_board.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qml/game_page.qml" beforeDir="false" afterPath="$PROJECT_DIR$/qml/game_page.qml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/translation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation.h" beforeDir="false" afterPath="$PROJECT_DIR$/translation.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +67,9 @@
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -80,7 +87,8 @@
       <option name="presentableId" value="Default" />
       <updated>1622569442839</updated>
       <workItem from="1622569445128" duration="1459000" />
-      <workItem from="1622570942291" duration="1159000" />
+      <workItem from="1622570942291" duration="2241000" />
+      <workItem from="1623087723881" duration="9749000" />
     </task>
     <servers />
   </component>
@@ -97,5 +105,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

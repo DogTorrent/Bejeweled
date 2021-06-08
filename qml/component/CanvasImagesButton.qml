@@ -6,7 +6,7 @@ Canvas {
     property int imageWidth: 240
     property int imageHeight: 100
     property int column: 1
-    property int row: 1
+    property int rowCount: 1
     property int normalImage: 0
     property int horverImage: 0
     property int onclickImage: 0
@@ -24,7 +24,7 @@ Canvas {
     onOnclickImageChanged: requestPaint()
     onPaint: {
         var singleWidth = canvas.imageWidth / canvas.column
-        var singleHeight = canvas.imageHeight / canvas.row
+        var singleHeight = canvas.imageHeight / canvas.rowCount
 
         var currCol = canvas.currBtnState % canvas.column
         var currRow = (canvas.currBtnState - currCol) / canvas.column

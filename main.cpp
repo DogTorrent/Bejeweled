@@ -1,32 +1,36 @@
+#include "translation.h"
+#include "game_service.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QQuickStyle>
 #include <QSettings>
 #include <QTextCodec>
-#include <QQmlContext>
-#include "translation.h"
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
     QGuiApplication app(argc, argv);
 
-    QSettings settings("config.ini",QSettings::IniFormat);
+    QSettings settings("config.ini", QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QQmlApplicationEngine engine;
 
-    TranslationHandler *translationHandler = new TranslationHandler(&engine);
-    engine.rootContext()->setContextProperty("TranslationHandler",translationHandler);
+    auto *translationHandler = new TranslationHandler(&engine);
+    engine.rootContext()->setContextProperty("TranslationHandler", translationHandler);
+    auto *gameService = new GameService(8, 8);
+    engine.rootContext()->setContextProperty("GameService", gameService);
 
     const QUrl url(QStringLiteral("qrc:/qml/main_window.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
+    QObject::connect(
+        &engine, &QQmlApplicationEngine::objectCreated, &app,
+        [url](QObject *obj, const QUrl &objUrl) {
+            if (!obj && url == objUrl) QCoreApplication::exit(-1);
+        },
+        Qt::QueuedConnection);
 
     engine.load(url);
 
