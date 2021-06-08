@@ -232,6 +232,7 @@ void GameService::addNewBlocks() {
 
     if (hasLine()) {
         cleanLines();
+        destroyValidBlocks();
     }
 }
 
