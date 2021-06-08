@@ -44,7 +44,7 @@ Column {
         optionSlider.from: 0
         optionSlider.to: 100
         optionSlider.live: false
-        optionSlider.stepSize: 320
+        optionSlider.stepSize: 10
         optionSlider.snapMode: Slider.SnapAlways
         backgroundRec.color: recMouseArea.containsMouse ? parent.colHighlightColor : parent.colColor
     }
@@ -61,7 +61,7 @@ Column {
         optionSlider.from: 0
         optionSlider.to: 100
         optionSlider.live: false
-        optionSlider.stepSize: 180
+        optionSlider.stepSize: 10
         optionSlider.snapMode: Slider.SnapAlways
         backgroundRec.color: recMouseArea.containsMouse ? parent.colHighlightColor : parent.colColor
     }
