@@ -23,9 +23,6 @@ Item {
     signal released
 
     property int currBtnState: normalImage
-    onNormalImageChanged: currBtnState = normalImage
-    onHorverImageChanged: currBtnState = horverImage
-    onOnclickImageChanged: currBtnState = onclickImage
 
     Item {
         clip: true
@@ -61,19 +58,30 @@ Item {
         hoverEnabled: enabled
         onEntered: {
             parent.entered()
-            parent.currBtnState = horverImage
+            parent.currBtnState = Qt.binding(() => {
+                                                 return horverImage
+                                             })
         }
         onExited: {
             parent.exited()
-            parent.currBtnState = normalImage
+            parent.currBtnState = Qt.binding(() => {
+                                                 return normalImage
+                                             })
         }
         onPressed: {
             parent.pressed()
-            parent.currBtnState = onclickImage
+            parent.currBtnState = Qt.binding(() => {
+                                                 return onclickImage
+                                             })
         }
         onReleased: {
             parent.released()
-            parent.currBtnState = containsMouse ? horverImage : normalImage
+            parent.currBtnState = containsMouse ? Qt.binding(() => {
+                                                                 return horverImage
+                                                             }) : Qt.binding(
+                                                      () => {
+                                                          return normalImage
+                                                      })
         }
         onClicked: parent.clicked()
     }
