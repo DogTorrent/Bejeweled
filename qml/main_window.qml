@@ -104,11 +104,11 @@ ApplicationWindow {
         }
     }
 
-    function setMainPage(page) {
-        mainPageView.replace(null, page)
+    function setMainPage(page, properties) {
+        mainPageView.replace(null, page, properties)
     }
-    function pushMainPage(page) {
-        mainPageView.push(page)
+    function pushMainPage(page, properties) {
+        mainPageView.push(page, properties)
     }
     function popMainPage(page) {
         if (page)

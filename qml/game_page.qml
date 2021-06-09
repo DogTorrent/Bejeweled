@@ -5,6 +5,8 @@ import QtQuick.Window 2.1
 import "component"
 
 Item {
+    id: gamePageRoot
+    property string mode: "Normal"
     Item {
         id: gamePageMain
         anchors.fill: parent
@@ -17,13 +19,16 @@ Item {
 
         Loader {
             id: gameBoardLoader
-            source: "qrc:/qml/game_board.qml"
             asynchronous: true
+            property alias mode: gamePageRoot.mode
 
             width: Math.min(parent.width, parent.height) * 4 / 5
             height: width
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
+            Component.onCompleted: setSource("qrc:/qml/game_board.qml", {
+                                                 "mode": gamePageRoot.mode
+                                             })
         }
 
         ProgressBar {

@@ -111,13 +111,19 @@ Item {
                 Qt.quit()
                 break
             case "NormalMode":
-                setMainPage("qrc:/qml/game_page.qml")
+                setMainPage("qrc:/qml/game_page.qml", {
+                                "mode": "Normal"
+                            })
                 break
             case "HardMode":
-                setMainPage("qrc:/qml/game_page.qml")
+                setMainPage("qrc:/qml/game_page.qml", {
+                                "mode": "Hard"
+                            })
                 break
             case "ChallengeMode":
-                setMainPage("qrc:/qml/game_page.qml")
+                setMainPage("qrc:/qml/game_page.qml", {
+                                "mode": "Challenge"
+                            })
                 break
             }
         }
