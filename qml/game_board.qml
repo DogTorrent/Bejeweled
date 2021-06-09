@@ -40,7 +40,7 @@ Item {
         keyNavigationEnabled: true
         property int lastSelectIndex: -1
         property bool itemChangeToBlankAnimationRunning: false
-        property bool itemChangefromBlankAnimationRunning: false
+        property bool itemChangeFromBlankAnimationRunning: false
         property bool itemMovingAnimationRunning: objectMovingTransition.running
                                                   || subjectMovingTransition.running
         delegate: Component {
@@ -117,11 +117,11 @@ Item {
                     }
 
                     onStarted: {
-                        jewelGrid.itemChangefromBlankAnimationRunning = true
+                        jewelGrid.itemChangeFromBlankAnimationRunning = true
                     }
 
                     onStopped: {
-                        jewelGrid.itemChangefromBlankAnimationRunning = false
+                        jewelGrid.itemChangeFromBlankAnimationRunning = false
                     }
                 }
 
@@ -131,7 +131,7 @@ Item {
                         jewelGrid.itemChangeToBlankAnimationRunning = true
                         itemChangeToBlankAnimation.start()
                     } else if (normalImage == 8) {
-                        jewelGrid.itemChangefromBlankAnimationRunning = true
+                        jewelGrid.itemChangeFromBlankAnimationRunning = true
                         itemChangefromBlankAnimation.start()
                     } else
                         normalImage = currJewelImage
@@ -157,7 +157,9 @@ Item {
                                 || jewelGrid.lastSelectIndex === d) {
                             //如果当前没有正在执行的任务
                             if (gameServiceConnection.jobQueue.length == 0
-                                    && !jewelGrid.itemMovingAnimationRunning)
+                                    && !jewelGrid.itemMovingAnimationRunning
+                                    && !jewelGrid.itemChangeToBlankAnimationRunning
+                                    && !jewelGrid.itemChangeFromBlankAnimationRunning)
                                 //调用后端尝试执行交换
                                 GameService.inputSwap(
                                             jewelGrid.lastSelectIndex, index)
@@ -244,14 +246,14 @@ Item {
             if (jobNeedToDo) {
                 if (jobNeedToDo.opType === "ItemMoved") {
                     if (!jewelGrid.itemChangeToBlankAnimationRunning
-                            && !jewelGrid.itemChangefromBlankAnimationRunning) {
+                            && !jewelGrid.itemChangeFromBlankAnimationRunning) {
                         gameServiceConnection.jobQueue.shift()
                         jobNeedToDo.func()
                     }
                 } else {
                     if (!jewelGrid.itemMovingAnimationRunning) {
                         if (jobNeedToDo.opPara === 8) {
-                            if (!jewelGrid.itemChangefromBlankAnimationRunning) {
+                            if (!jewelGrid.itemChangeFromBlankAnimationRunning) {
                                 timeLimitBar.value += 1
                                 gameServiceConnection.jobQueue.shift()
                                 jobNeedToDo.func()
