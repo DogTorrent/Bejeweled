@@ -1,4 +1,5 @@
-import QtQuick 2.3
+import QtQuick 2.7
+import QtQml.Models 2.15
 import "component"
 
 Item {
@@ -22,70 +23,103 @@ Item {
         cache: settings_graphic.enable_cache
     }
 
-    Column {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: (buttonHeight + spacing) * 4 / 2 + 50
-        property var buttonWidth: 240
-        property var buttonHeight: Math.min(
+    ListView {
+        id: titleButtonListView
+        x: (parent.width - width) / 2
+        y: parent.height / 2 + (parent.height / 2 - height) / 2
+        width: buttonWidth
+        height: (buttonHeight + spacing) * count
+        property int buttonWidth: 240
+        property int buttonHeight: Math.min(
                                        60,
-                                       (parent.height / 2 - 50) / 4 - spacing)
+                                       (parent.height / 2) / count - spacing)
+        interactive: false
+
         spacing: 10
-
-        CustButton {
-            id: startButton
-            width: parent.buttonWidth
-            height: parent.buttonHeight
-            text: qsTr("START")
-
-            radius: 5
-            color: "#FFA607"
-            borderWidth: 3
-            borderColor: "#5D101D"
-            rippleColor: "#60FFFFFF"
-            shouldRippleCoverBorder: true
-            onClicked: setMainPage("qrc:/qml/game_page.qml")
-        }
-        CustButton {
-            id: configButton
-            width: parent.buttonWidth
-            height: parent.buttonHeight
-            text: qsTr("CONFIG")
-            radius: 5
-            color: "#E5E5E5"
-            borderWidth: 3
-            borderColor: "#5D101D"
-            rippleColor: "#90FFFFFF"
-            shouldRippleCoverBorder: true
-            onClicked: pushMainPage("qrc:/qml/config_page.qml")
-        }
-        CustButton {
-            id: rankButton
-            width: parent.buttonWidth
-            height: parent.buttonHeight
-            text: qsTr("SCORE")
-            radius: 5
-            color: "#E5E5E5"
-            borderWidth: 3
-            borderColor: "#5D101D"
-            rippleColor: "#90FFFFFF"
-            shouldRippleCoverBorder: true
-            onClicked: {
-
+        delegate: Component {
+            CustButton {
+                width: titleButtonListView.buttonWidth
+                height: titleButtonListView.buttonHeight
+                text: buttonText
+                radius: 5
+                color: "#FFA607"
+                borderWidth: 3
+                borderColor: "#5D101D"
+                rippleColor: "#60FFFFFF"
+                shouldRippleCoverBorder: true
+                onClicked: titleButtonListView.titleButtonClicked(operation)
             }
         }
-        CustButton {
-            id: exitButton
-            width: parent.buttonWidth
-            height: parent.buttonHeight
-            text: qsTr("EXIT")
-            radius: 5
-            color: "#E5E5E5"
-            borderWidth: 3
-            borderColor: "#5D101D"
-            rippleColor: "#90FFFFFF"
-            shouldRippleCoverBorder: true
-            onClicked: Qt.quit()
+
+        model: titleMainMenuList
+
+        ListModel {
+            id: titleMainMenuList
+            ListElement {
+                operation: "StartMenu"
+                buttonText: qsTr("START")
+            }
+            ListElement {
+                operation: "ConfigPage"
+                buttonText: qsTr("CONFIG")
+            }
+            ListElement {
+                operation: "ScorePage"
+                buttonText: qsTr("SCORE")
+            }
+            ListElement {
+                operation: "Exit"
+                buttonText: qsTr("EXIT")
+            }
+        }
+
+        ListModel {
+            id: titleStartMenuList
+            ListElement {
+                operation: "NormalMode"
+                buttonText: qsTr("NORMAL")
+            }
+            ListElement {
+                operation: "HardMode"
+                buttonText: qsTr("HARD")
+            }
+            ListElement {
+                operation: "ChallengeMode"
+                buttonText: qsTr("CHALLENGE")
+            }
+            ListElement {
+                operation: "MainMenu"
+                buttonText: qsTr("BACK")
+            }
+        }
+
+        signal titleButtonClicked(var operation)
+        onTitleButtonClicked: {
+            switch (operation) {
+            case "StartMenu":
+                titleButtonListView.model = titleStartMenuList
+                break
+            case "MainMenu":
+                titleButtonListView.model = titleMainMenuList
+                break
+            case "ConfigPage":
+                pushMainPage("qrc:/qml/config_page.qml")
+                break
+            case "ScorePage":
+                break
+            case "Exit":
+                Qt.quit()
+                break
+            case "NormalMode":
+                setMainPage("qrc:/qml/game_page.qml")
+                break
+            case "HardMode":
+                setMainPage("qrc:/qml/game_page.qml")
+                break
+            case "ChallengeMode":
+                setMainPage("qrc:/qml/game_page.qml")
+                break
+            }
         }
     }
 }

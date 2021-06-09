@@ -148,24 +148,44 @@
 <context>
     <name>title_page</name>
     <message>
-        <location filename="../qml/title_page.qml" line="39"/>
+        <location filename="../qml/title_page.qml" line="60"/>
         <source>START</source>
         <translation>START</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="53"/>
+        <location filename="../qml/title_page.qml" line="64"/>
         <source>CONFIG</source>
         <translation>CONFIG</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="66"/>
+        <location filename="../qml/title_page.qml" line="68"/>
         <source>SCORE</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/title_page.qml" line="81"/>
+        <location filename="../qml/title_page.qml" line="72"/>
         <source>EXIT</source>
         <translation>EXIT</translation>
+    </message>
+    <message>
+        <location filename="../qml/title_page.qml" line="80"/>
+        <source>NORMAL</source>
+        <translation>NORMAL</translation>
+    </message>
+    <message>
+        <location filename="../qml/title_page.qml" line="84"/>
+        <source>HARD</source>
+        <translation>HARD</translation>
+    </message>
+    <message>
+        <location filename="../qml/title_page.qml" line="88"/>
+        <source>CHALLENGE</source>
+        <translation>CHALLENGE</translation>
+    </message>
+    <message>
+        <location filename="../qml/title_page.qml" line="92"/>
+        <source>BACK</source>
+        <translation>BACK</translation>
     </message>
 </context>
 </TS>
