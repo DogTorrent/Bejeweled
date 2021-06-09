@@ -8,8 +8,8 @@ Item {
     property int column: 1
     property int rowCount: 1
     property int normalImage: 0
-    property int horverImage: 0
-    property int onclickImage: 0
+    property int horverImage: normalImage
+    property int onclickImage: normalImage
     property alias containsMouse: mouseArea.containsMouse
     property font font
     property string text

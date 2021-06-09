@@ -1,9 +1,10 @@
-import QtQuick 2.7
+import QtQuick 2.12
 import "component"
 
 Item {
     id: gameBoard
     anchors.fill: parent
+    property string mode: "Normal"
 
     GridView {
         id: boardGrid
@@ -38,6 +39,10 @@ Item {
         interactive: false
         keyNavigationEnabled: true
         property int lastSelectIndex: -1
+        property bool itemChangeToBlankAnimationRunning: false
+        property bool itemChangefromBlankAnimationRunning: false
+        property bool itemMovingAnimationRunning: objectMovingTransition.running
+                                                  || subjectMovingTransition.running
         delegate: Component {
             ImagesButton {
                 id: jewelSample
@@ -46,9 +51,7 @@ Item {
                 rowCount: 8
                 width: jewelGrid.width / 8
                 height: jewelGrid.height / 8
-                normalImage: mainImage
-                horverImage: mainImage
-                onclickImage: mainImage
+                property int currJewelImage: mainImage
                 smooth: settings_graphic.enable_smooth
                 mipmap: settings_graphic.enable_mipmap
                 cache: settings_graphic.enable_cache
@@ -59,6 +62,79 @@ Item {
                     anchors.fill: parent
                     color: "#00515151"
                     border.color: "lightblue"
+                }
+
+                SequentialAnimation {
+                    id: itemChangeToBlankAnimation
+                    NumberAnimation {
+                        target: jewelSample
+                        property: "opacity"
+                        from: 1
+                        to: 0
+                        duration: 100
+                    }
+
+                    ScriptAction {
+                        script: normalImage = currJewelImage
+                    }
+
+                    NumberAnimation {
+                        target: jewelSample
+                        property: "opacity"
+                        from: 0
+                        to: 1
+                        duration: 100
+                    }
+                    onStarted: {
+                        jewelGrid.itemChangeToBlankAnimationRunning = true
+                    }
+
+                    onStopped: {
+                        jewelGrid.itemChangeToBlankAnimationRunning = false
+                    }
+                }
+
+                SequentialAnimation {
+                    id: itemChangefromBlankAnimation
+                    NumberAnimation {
+                        target: jewelSample
+                        property: "opacity"
+                        from: 1
+                        to: 0
+                        duration: 100
+                    }
+
+                    ScriptAction {
+                        script: normalImage = currJewelImage
+                    }
+
+                    NumberAnimation {
+                        target: jewelSample
+                        property: "opacity"
+                        from: 0
+                        to: 1
+                        duration: 100
+                    }
+
+                    onStarted: {
+                        jewelGrid.itemChangefromBlankAnimationRunning = true
+                    }
+
+                    onStopped: {
+                        jewelGrid.itemChangefromBlankAnimationRunning = false
+                    }
+                }
+
+                onCurrJewelImageChanged: {
+                    jewelGrid.forceLayout()
+                    if (currJewelImage == 8) {
+                        jewelGrid.itemChangeToBlankAnimationRunning = true
+                        itemChangeToBlankAnimation.start()
+                    } else if (normalImage == 8) {
+                        jewelGrid.itemChangefromBlankAnimationRunning = true
+                        itemChangefromBlankAnimation.start()
+                    } else
+                        normalImage = currJewelImage
                 }
                 onClicked: {
                     jewelGrid.update()
@@ -81,7 +157,7 @@ Item {
                                 || jewelGrid.lastSelectIndex === d) {
                             //如果当前没有正在执行的任务
                             if (gameServiceConnection.jobQueue.length == 0
-                                    && !itemMovingTransition.running)
+                                    && !jewelGrid.itemMovingAnimationRunning)
                                 //调用后端尝试执行交换
                                 GameService.inputSwap(
                                             jewelGrid.lastSelectIndex, index)
@@ -93,16 +169,22 @@ Item {
                 }
             }
         }
-        Transition {
-            id: itemMovingTransition
+        moveDisplaced: Transition {
+            //被动
+            id: objectMovingTransition
             NumberAnimation {
                 properties: "x,y"
                 duration: 200
-                alwaysRunToEnd: true
             }
         }
-        moveDisplaced: itemMovingTransition
-        move: itemMovingTransition
+        move: Transition {
+            //主动
+            id: subjectMovingTransition
+            NumberAnimation {
+                properties: "x,y"
+                duration: 200
+            }
+        }
     }
 
     ListModel {
@@ -116,6 +198,7 @@ Item {
                               })
             boardModel.append({})
         }
+        console.debug(mode)
     }
 
     Connections {
@@ -123,22 +206,30 @@ Item {
         target: GameService
         property var jobQueue: [] //任务列表
         function onItemMoved(from, to) {
-            jobQueue.push(["ItemMoved", () => {
-                               if (from < to) {
-                                   jewelModel.move(from, to, 1)
-                                   jewelModel.move(to - 1, from, 1)
-                               } else {
-                                   jewelModel.move(from, to, 1)
-                                   jewelModel.move(to + 1, from, 1)
-                               }
-                           }])
+            jobQueue.push({
+                              "opType": "ItemMoved",
+                              "targetIndex": from,
+                              "opPara": to,
+                              "func": () => {
+                                  if (from < to) {
+                                      jewelModel.move(from, to, 1)
+                                      jewelModel.move(to - 1, from, 1)
+                                  } else {
+                                      jewelModel.move(from, to, 1)
+                                      jewelModel.move(to + 1, from, 1)
+                                  }
+                              }
+                          })
         }
         function onItemChanged(number, type) {
-            jobQueue.push(["ItemChanged" + type, () => {
-                               jewelModel.set(number, {
-                                                  "mainImage": type
-                                              })
-                           }])
+            jobQueue.push({
+                              "opType": "ItemChanged",
+                              "targetIndex": number,
+                              "opPara": type,
+                              "func": () => {
+                                  jewelModel.get(number).mainImage = type
+                              }
+                          })
         }
     }
 
@@ -149,23 +240,27 @@ Item {
         running: true
         triggeredOnStart: true
         onTriggered: {
-            var temp = gameServiceConnection.jobQueue[0]
-            if (temp) {
-                if (temp[0] === "ItemMoved") {
-                    gameServiceConnection.jobQueue.shift()
-                    temp[1]()
+            var jobNeedToDo = gameServiceConnection.jobQueue[0]
+            if (jobNeedToDo) {
+                if (jobNeedToDo.opType === "ItemMoved") {
+                    if (!jewelGrid.itemChangeToBlankAnimationRunning
+                            && !jewelGrid.itemChangefromBlankAnimationRunning) {
+                        gameServiceConnection.jobQueue.shift()
+                        jobNeedToDo.func()
+                    }
                 } else {
-                    if (!itemMovingTransition.running) {
-                        var next = temp
-                        //如果任务队列后面也全是ItemChange型，则全部一起改
-                        while (next) {
-                            if (next[0] === "ItemMoved")
-                                break
-                            if (next[0] === "ItemChanged8")
+                    if (!jewelGrid.itemMovingAnimationRunning) {
+                        if (jobNeedToDo.opPara === 8) {
+                            if (!jewelGrid.itemChangefromBlankAnimationRunning) {
                                 timeLimitBar.value += 1
-                            gameServiceConnection.jobQueue.shift()
-                            next[1]()
-                            next = gameServiceConnection.jobQueue[0]
+                                gameServiceConnection.jobQueue.shift()
+                                jobNeedToDo.func()
+                            }
+                        } else {
+                            if (!jewelGrid.itemChangeToBlankAnimationRunning) {
+                                gameServiceConnection.jobQueue.shift()
+                                jobNeedToDo.func()
+                            }
                         }
                     }
                 }
