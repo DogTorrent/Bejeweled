@@ -125,6 +125,7 @@ bool GameService::isDead() const //是否变成了死图
 
 void GameService::gameInit() {
     score = 0;
+    emit scoreChanged();
     srand(time(nullptr));
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < colCount; j++) {
@@ -237,7 +238,6 @@ void GameService::addNewBlocks() {
 }
 
 void GameService::blocksDown() {
-    // todo emit itemSwapped
     for (int x = 8; x >= 0; x--) {
         int upBlock = 0;
         int upSpace = 0;
@@ -276,6 +276,8 @@ void GameService::destroyValidBlocks() {
         int y = removeList->front().y;
         nums[x * colCount + y] = 8; //将销毁值设定为8
         removeList->pop_front();
+        score++;
+        emit scoreChanged();
         emit itemChanged(x * colCount + y, 8);
     }
 
@@ -291,7 +293,6 @@ void GameService::inputSwap(int from, int to) {
     if (isValid(x1, y1, x2, y2)) { //如果交换后可以消除
         //执行消除
         destroyValidBlocks();
-        score += 10;
     } else { //不能消除则交换回来
         swap(x1, y1, x2, y2);
     }
@@ -313,3 +314,7 @@ int GameService::getStat(int number) {
     int tempCol = number % colCount;
     return nums[tempRow * colCount + tempCol];
 }
+
+int GameService::getScore() { return score; }
+
+QPoint GameService::getHint() { return QPoint(0, 1); }

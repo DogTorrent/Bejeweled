@@ -52,17 +52,29 @@ Item {
                 width: jewelGrid.width / 8
                 height: jewelGrid.height / 8
                 property int currJewelImage: mainImage
+                property bool highlight: false
                 smooth: settings_graphic.enable_smooth
                 mipmap: settings_graphic.enable_mipmap
                 cache: settings_graphic.enable_cache
                 Rectangle {
                     id: borderRec
                     border.width: parent.containsMouse
-                                  || index === jewelGrid.lastSelectIndex ? 5 : 0
+                                  || index === jewelGrid.lastSelectIndex
+                                  || parent.highlight ? 5 : 0
                     anchors.fill: parent
                     color: "#00515151"
                     border.color: "lightblue"
                 }
+
+                Timer {
+                    id: unsetHighlightTimer
+                    interval: 1000
+                    repeat: false
+                    triggeredOnStart: false
+                    onTriggered: parent.highlight = false
+                }
+
+                onHighlightChanged: unsetHighlightTimer.start()
 
                 SequentialAnimation {
                     id: itemChangeToBlankAnimation
@@ -254,7 +266,7 @@ Item {
                     if (!jewelGrid.itemMovingAnimationRunning) {
                         if (jobNeedToDo.opPara === 8) {
                             if (!jewelGrid.itemChangeFromBlankAnimationRunning) {
-                                timeLimitBar.value += 1
+                                timeLimitBar.addTime()
                                 gameServiceConnection.jobQueue.shift()
                                 jobNeedToDo.func()
                             }
@@ -268,5 +280,10 @@ Item {
                 }
             }
         }
+    }
+
+    function hint(index1, index2) {
+        jewelGrid.itemAtIndex(index1).highlight = true
+        jewelGrid.itemAtIndex(index2).highlight = true
     }
 }

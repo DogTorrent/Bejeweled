@@ -120,6 +120,34 @@
     </message>
 </context>
 <context>
+    <name>game_page</name>
+    <message>
+        <location filename="../qml/game_page.qml" line="112"/>
+        <source>Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/game_page.qml" line="119"/>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/game_page.qml" line="120"/>
+        <source>Score</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/game_page.qml" line="129"/>
+        <source>Hint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/game_page.qml" line="145"/>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main_window</name>
     <message>
         <location filename="../qml/main_window.qml" line="75"/>

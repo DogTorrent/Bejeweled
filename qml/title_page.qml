@@ -98,9 +98,11 @@ Item {
             switch (operation) {
             case "StartMenu":
                 titleButtonListView.model = titleStartMenuList
+                titleButtonListView.forceLayout()
                 break
             case "MainMenu":
                 titleButtonListView.model = titleMainMenuList
+                titleButtonListView.forceLayout()
                 break
             case "ConfigPage":
                 pushMainPage("qrc:/qml/config_page.qml")

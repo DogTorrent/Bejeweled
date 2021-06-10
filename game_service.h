@@ -2,6 +2,7 @@
 #define GAME_SERVICE_H
 
 #include <QObject>
+#include <QPoint>
 #include <ctime>
 #include <iostream>
 #include <list>
@@ -15,7 +16,6 @@ class GameService : public QObject {
 private:
     int *nums;     //[8][8];
     bool *visited; //[8][8];
-    int score = 0;
     int rowCount = 8;
     int colCount = 8;
 
@@ -102,7 +102,10 @@ private:
     void blocksDown();
 
 public:
+    Q_PROPERTY(int score READ getScore NOTIFY scoreChanged)
     GameService(int rowCount, int colCount);
+
+    int score = 0;
 
     //游戏初始化
     Q_INVOKABLE void gameInit();
@@ -114,10 +117,13 @@ public:
 
     Q_INVOKABLE QVector<int> getStats();
     Q_INVOKABLE int getStat(int number);
+    Q_INVOKABLE int getScore();
+    Q_INVOKABLE QPoint getHint();
 
 signals:
     void itemMoved(int from, int to);
     void itemChanged(int number, int type);
+    void scoreChanged();
 };
 
 #endif // GAME_SERVICE_H
