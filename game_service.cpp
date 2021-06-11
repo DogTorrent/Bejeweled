@@ -1,4 +1,5 @@
 #include "game_service.h"
+#include <qdebug.h>
 
 GameService::GameService(int rowCount, int colCount) {
     this->rowCount = rowCount;
@@ -10,10 +11,10 @@ GameService::GameService(int rowCount, int colCount) {
 }
 bool GameService::isLine(int i, int j) const {
     if (i >= 2 && nums[i * colCount + j] == nums[(i - 1) * colCount + j] &&
-        nums[i * colCount + j] == nums[(i - 2) * colCount + j])
+            nums[i * colCount + j] == nums[(i - 2) * colCount + j])
         return true;
     if (j >= 2 && nums[i * colCount + j] == nums[i * colCount + (j - 1)] &&
-        nums[i * colCount + j] == nums[i * colCount + (j - 2)])
+            nums[i * colCount + j] == nums[i * colCount + (j - 2)])
         return true;
     return false;
 }
@@ -61,40 +62,44 @@ bool GameService::isFirstLineCast(int x, int y) {
 
 bool GameService::isSecondLineCast(int x, int y) {
     int lx = x - 1;
-    int ly = y - 2;
+    int ly = y - 1;
     int tx = x + 1;
-    int ty = y + 1;
-    bool isLeftBottomSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
-    bool isLeftTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
-    bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
-    bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    int ty = y + 2;
+    bool isLeftBottomSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
+    bool isLeftTopSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
+    bool isRightBottomSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    bool isRightTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
 
-    if (y - 1 >= 0 && nums[x * colCount + (y - 1)] == nums[x * colCount + y]) {
+    if (y + 1 >= 0 &&  y+1 < 8 && nums[x * colCount + (y + 1)] == nums[x * colCount + y]) {
         // 左上角
         if (isLeftTopSame) {
-            hintPoints.first = lx * colCount + ly;
-            hintPoints.second = lx * colCount + y;
+            hintPoints.first = x * colCount + ly;
+            hintPoints.second = lx * colCount + ly;
+            qDebug() << "1";
             return true;
         }
         // 右上角
         if (isRightTopSame) {
-            hintPoints.first = lx * colCount + ty;
-            hintPoints.second = lx * colCount + y;
+            hintPoints.first = lx * colCount + ly;
+            hintPoints.second = x * colCount + ly;
+            qDebug() << "2";
             return true;
         }
         // 左下角
         if (isLeftBottomSame) {
-            hintPoints.first = (tx + 1) * colCount + ly;
-            hintPoints.second = (tx + 1) * colCount + y;
+            hintPoints.first = x  * colCount + ly;
+            hintPoints.second = tx  * colCount + ly;
+            qDebug() << "3";
             return true;
         }
         // 右下角
         if (isRightBottomSame) {
-            hintPoints.first = (tx + 1) * colCount + ty;
-            hintPoints.second = (tx + 1) * colCount + y;
+            hintPoints.first = x * colCount + ty;
+            hintPoints.second = tx  * colCount + ty;
+            qDebug() << "4";
             return true;
         }
     }
@@ -106,37 +111,41 @@ bool GameService::isThirdLineCast(int x, int y) {
     int ly = y - 1;
     int tx = x + 2;
     int ty = y + 1;
-    bool isLeftBottomSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
-    bool isLeftTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
-    bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
-    bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    bool isLeftBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
+    bool isLeftTopSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
+    bool isRightBottomSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    bool isRightTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + y] == nums[x * colCount + y]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
 
-    if (x + 1 < 8 && nums[(x + 1) * colCount + y] == nums[x * colCount + y]) {
+    if (x + 1 < 8 && x+1 >= 0 && nums[(x + 1) * colCount + y] == nums[x * colCount + y]) {
         // 左上角
         if (isLeftTopSame) {
-            hintPoints.first = lx * colCount + ly;
-            hintPoints.second = x * colCount + ly;
+            hintPoints.first = lx * colCount + y;
+            hintPoints.second = lx * colCount + ly;
+            qDebug() << "5";
             return true;
         }
         // 右上角
         if (isRightTopSame) {
-            hintPoints.first = lx * colCount + (ty + 1);
-            hintPoints.second = x * colCount + (ty + 1);
+            hintPoints.first = lx * colCount + y;
+            hintPoints.second = lx * colCount + ty;
+            qDebug() << "6";
             return true;
         }
         // 左下角
         if (isLeftBottomSame) {
-            hintPoints.first = tx * colCount + ly;
-            hintPoints.second = x * colCount + ly;
+            hintPoints.first = tx * colCount + y;
+            hintPoints.second = tx * colCount + ly;
+            qDebug() << "7";
             return true;
         }
         // 右下角
         if (isRightBottomSame) {
-            hintPoints.first = tx * colCount + (ty + 1);
-            hintPoints.second = x * colCount + (ty + 1);
+            hintPoints.first = tx * colCount + y;
+            hintPoints.second = tx * colCount + ty;
+            qDebug() << "8";
             return true;
         }
     }
@@ -291,6 +300,8 @@ void GameService::addNewBlocks() {
         cleanLines();
         destroyValidBlocks();
     }
+
+
 }
 
 void GameService::blocksDown() {
