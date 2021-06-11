@@ -28,14 +28,41 @@ bool GameService::isFirstLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
+    pointList->clear();
+
     // 左下角与右下角
-    if (isLeftBottomSame && isRightBottomSame) return true;
+    if (isLeftBottomSame && isRightBottomSame){
+        pointList->push_back(x);
+        pointList->push_back(y);
+        pointList->push_back(tx);
+        pointList->push_back(y);
+        return true;
+    }
+    return true;
     // 左下角与左上角
-    if (isLeftBottomSame && isLeftTopSame) return true;
+    if (isLeftBottomSame && isLeftTopSame){
+        pointList->push_back(x);
+        pointList->push_back(y);
+        pointList->push_back(x);
+        pointList->push_back(ly);
+        return true;
+    }
     // 左上角与右上角
-    if (isLeftTopSame && isRightTopSame) return true;
+    if (isLeftTopSame && isRightTopSame){
+        pointList->push_back(x);
+        pointList->push_back(y);
+        pointList->push_back(lx);
+        pointList->push_back(y);
+        return true;
+    }
     // 右上角与右下角
-    if (isRightTopSame && isRightBottomSame) return true;
+    if (isRightTopSame && isRightBottomSame){
+        pointList->push_back(x);
+        pointList->push_back(y);
+        pointList->push_back(x);
+        pointList->push_back(ty);
+        return true;
+    }
 
     return false;
 }
@@ -50,15 +77,41 @@ bool GameService::isSecondLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
+    pointList->clear();
+
     if (y - 1 >= 0 && nums[x * colCount + (y - 1)] == nums[x * colCount + y]) {
         // 左上角
-        if (isLeftTopSame) return true;
+        if (isLeftTopSame){
+            pointList->push_back(lx);
+            pointList->push_back(ly);
+            pointList->push_back(lx);
+            pointList->push_back(y);
+            return true;
+        }
         // 右上角
-        if (isRightTopSame) return true;
+        if (isRightTopSame) {
+            pointList->push_back(lx);
+            pointList->push_back(ty);
+            pointList->push_back(lx);
+            pointList->push_back(y);
+            return true;
+        }
         // 左下角
-        if (isLeftBottomSame) return true;
+        if (isLeftBottomSame){
+            pointList->push_back(tx+1);
+            pointList->push_back(ly);
+            pointList->push_back(tx+1);
+            pointList->push_back(y);
+            return true;
+        }
         // 右下角
-        if (isRightBottomSame) return true;
+        if (isRightBottomSame){
+            pointList->push_back(tx+1);
+            pointList->push_back(ty);
+            pointList->push_back(tx+1);
+            pointList->push_back(y);
+            return true;
+        }
     }
     return false;
 }
@@ -73,15 +126,41 @@ bool GameService::isThirdLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
+    pointList->clear();
+
     if (x + 1 < 8 && nums[(x + 1) * colCount + y] == nums[x * colCount + y]) {
         // 左上角
-        if (isLeftTopSame) return true;
+        if (isLeftTopSame){
+            pointList->push_back(lx);
+            pointList->push_back(ly);
+            pointList->push_back(x);
+            pointList->push_back(ly);
+            return true;
+        }
         // 右上角
-        if (isRightTopSame) return true;
+        if (isRightTopSame){
+            pointList->push_back(lx);
+            pointList->push_back(ty+1);
+            pointList->push_back(x);
+            pointList->push_back(ty+1);
+            return true;
+        }
         // 左下角
-        if (isLeftBottomSame) return true;
+        if (isLeftBottomSame){
+            pointList->push_back(tx);
+            pointList->push_back(ly);
+            pointList->push_back(x);
+            pointList->push_back(ly);
+            return true;
+        }
         // 右下角
-        if (isRightBottomSame) return true;
+        if (isRightBottomSame) {
+            pointList->push_back(tx);
+            pointList->push_back(ty+1);
+            pointList->push_back(x);
+            pointList->push_back(ty+1);
+            return true;
+        }
     }
     return false;
 }

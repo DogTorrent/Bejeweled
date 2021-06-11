@@ -142,7 +142,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="145"/>
+        <location filename="../qml/game_page.qml" line="144"/>
         <source>Restart</source>
         <translation type="unfinished"></translation>
     </message>

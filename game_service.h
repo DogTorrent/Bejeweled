@@ -31,6 +31,7 @@ private:
     std::list<Grid> *rowRemoveList = new std::list<Grid>();
     std::list<Grid> *colRemoveList = new std::list<Grid>();
     std::list<Grid> *removeList = new std::list<Grid>();
+    std::list<int> *pointList= new std::list<int>();
 
     //向左向下判断是否存在可消除行
     bool isLine(int i, int j) const;
@@ -82,6 +83,10 @@ private:
      * @return
      */
     bool isThirdLineCast(int x, int y) const;
+
+    std::list<int> isFirstLineCastH(int x, int y) const;
+    std::list<int> isSecondLineCastH(int x, int y) const;
+    std::list<int> isThridLineCastH(int x, int y) const;
 
     //交换
     void swap(int x1, int y1, int x2, int y2);
