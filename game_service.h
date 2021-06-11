@@ -31,6 +31,8 @@ private:
     std::list<Grid> *rowRemoveList = new std::list<Grid>();
     std::list<Grid> *colRemoveList = new std::list<Grid>();
     std::list<Grid> *removeList = new std::list<Grid>();
+
+    //点击提示时获取的两个宝石的序号
     QPair<int, int> hintPoints;
 
     //向左向下判断是否存在可消除行
@@ -51,38 +53,38 @@ private:
      *  X
      * O O
      * @endverbatim
-     * @param x
-     * @param y
+     * @param row
+     * @param col
      * @return
      */
-    bool isFirstLineCast(int x, int y);
+    bool isFirstLineCast(int row, int col);
 
     /*!
      * @brief 非死图的第二种情况
      * @verbatim
-     * O O
-     *  X
-     *  X
-     * O O
+     * O O      O      O
+     *  X   or  x  or  O
+     *  X       O      X
+     * O O      O      O
      * @endverbatim
-     * @param x
-     * @param y
+     * @param row
+     * @param col
      * @return
      */
-    bool isSecondLineCast(int x, int y);
+    bool isSecondLineCast(int row, int col);
 
     /*!
      * @brief 非死图的第三种情况
      * @verbatim
      * O  O
-     *  XX
+     *  XX   or  OOXO  or  OXOO
      * O  O
      * @endverbatim
-     * @param x
-     * @param y
+     * @param row
+     * @param col
      * @return
      */
-    bool isThirdLineCast(int x, int y);
+    bool isThirdLineCast(int row, int col);
 
     //交换
     void swap(int x1, int y1, int x2, int y2);

@@ -20,42 +20,42 @@ bool GameService::isLine(int i, int j) const {
 }
 
 bool GameService::isFirstLineCast(int row, int col) {
-    int topRow = row - 1;
+    int upperRow = row - 1;
     int leftCol = col - 1;
     int bottomRow = row + 1;
     int rightCol = col + 1;
-    bool isLeftBottomSame =
+    bool isBottonLeftSame =
         (leftCol >= 0 && bottomRow < 8 && nums[bottomRow * colCount + leftCol] == nums[row * colCount + col]);
-    bool isLeftTopSame =
-        (leftCol >= 0 && topRow >= 0 && nums[topRow * colCount + leftCol] == nums[row * colCount + col]);
-    bool isRightBottomSame =
+    bool isUpperLeftSame =
+        (leftCol >= 0 && upperRow >= 0 && nums[upperRow * colCount + leftCol] == nums[row * colCount + col]);
+    bool isBottomRightSame =
         (rightCol < 8 && bottomRow < 8 && nums[bottomRow * colCount + rightCol] == nums[row * colCount + col]);
-    bool isRightTopSame =
-        (rightCol < 8 && topRow >= 0 && nums[topRow * colCount + rightCol] == nums[row * colCount + col]);
+    bool isUpperRightSame =
+        (rightCol < 8 && upperRow >= 0 && nums[upperRow * colCount + rightCol] == nums[row * colCount + col]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
 
     // 左下角与右下角
-    if (isLeftBottomSame && isRightBottomSame) {
+    if (isBottonLeftSame && isBottomRightSame) {
         hintPoints.first = row * colCount + col;
         hintPoints.second = bottomRow * colCount + col;
         return true;
     }
     // 左下角与左上角
-    if (isLeftBottomSame && isLeftTopSame) {
+    if (isBottonLeftSame && isUpperLeftSame) {
         hintPoints.first = row * colCount + col;
         hintPoints.second = row * colCount + leftCol;
         return true;
     }
     // 左上角与右上角
-    if (isLeftTopSame && isRightTopSame) {
+    if (isUpperLeftSame && isUpperRightSame) {
         hintPoints.first = row * colCount + col;
-        hintPoints.second = topRow * colCount + col;
+        hintPoints.second = upperRow * colCount + col;
         return true;
     }
     // 右上角与右下角
-    if (isRightTopSame && isRightBottomSame) {
+    if (isUpperRightSame && isBottomRightSame) {
         hintPoints.first = row * colCount + col;
         hintPoints.second = row * colCount + rightCol;
         return true;
@@ -65,123 +65,128 @@ bool GameService::isFirstLineCast(int row, int col) {
 }
 
 bool GameService::isSecondLineCast(int row, int col) {
-    int lx = row - 1;
-    int ly = col - 1;
-    int tx = row + 1;
-    int ty = col + 2;
-    bool isLeftBottomSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[row * colCount + col]);
-    bool isLeftTopSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[row * colCount + col]);
-    bool isRightBottomSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[row * colCount + col]);
-    bool isRightTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[row * colCount + col]);
-    bool isLeftSame = (col - 2 >= 0 && nums[row * colCount + col - 2] == nums[row * colCount + col]);
-    bool isRightSame = (col + 3 < 8 && nums[row * colCount + col + 3] == nums[row * colCount + col]);
+    int upperRow = row - 1;
+    int leftCol = col - 1;
+    int bottomRow = row + 1;
+    int rightCol = col + 1;
+    int rightTwoCol = col + 2;
+    int leftTwoCol = col - 2;
+    int rightThreeCol = col + 3;
+    bool isBottomLeftSame =
+        (upperRow >= 0 && rightTwoCol < 8 && nums[upperRow * colCount + rightTwoCol] == nums[row * colCount + col]);
+    bool isUpperLeftSame =
+        (upperRow >= 0 && leftCol >= 0 && nums[upperRow * colCount + leftCol] == nums[row * colCount + col]);
+    bool isBottomRightSame =
+        (bottomRow < 8 && rightTwoCol < 8 && nums[bottomRow * colCount + rightTwoCol] == nums[row * colCount + col]);
+    bool isUpperRightSame =
+        (upperRow >= 0 && rightTwoCol < 8 && nums[upperRow * colCount + rightTwoCol] == nums[row * colCount + col]);
+    bool isLeftSame = (leftTwoCol >= 0 && nums[row * colCount + leftTwoCol] == nums[row * colCount + col]);
+    bool isRightSame = (rightThreeCol < 8 && nums[row * colCount + rightThreeCol] == nums[row * colCount + col]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
 
-    if (col + 1 >= 0 && col + 1 < 8 && nums[row * colCount + (col + 1)] == nums[row * colCount + col]) {
+    if (col + 1 >= 0 && col + 1 < 8 && nums[row * colCount + rightCol] == nums[row * colCount + col]) {
         // 左上角
-        if (isLeftTopSame) {
-            hintPoints.first = row * colCount + ly;
-            hintPoints.second = lx * colCount + ly;
-            qDebug() << "1";
+        if (isUpperLeftSame) {
+            hintPoints.first = row * colCount + leftCol;
+            hintPoints.second = upperRow * colCount + leftCol;
             return true;
         }
         // 右上角
-        if (isRightTopSame) {
-            hintPoints.first = lx * colCount + ty;
-            hintPoints.second = row * colCount + ty;
-            qDebug() << "2";
+        if (isUpperRightSame) {
+            hintPoints.first = upperRow * colCount + rightTwoCol;
+            hintPoints.second = row * colCount + rightTwoCol;
             return true;
         }
         // 左下角
-        if (isLeftBottomSame) {
-            hintPoints.first = row * colCount + ly;
-            hintPoints.second = tx * colCount + ly;
-            qDebug() << "3";
+        if (isBottomLeftSame) {
+            hintPoints.first = row * colCount + leftCol;
+            hintPoints.second = bottomRow * colCount + leftCol;
             return true;
         }
         // 右下角
-        if (isRightBottomSame) {
-            hintPoints.first = row * colCount + ty;
-            hintPoints.second = tx * colCount + ty;
-            qDebug() << "4";
+        if (isBottomRightSame) {
+            hintPoints.first = row * colCount + rightTwoCol;
+            hintPoints.second = bottomRow * colCount + rightTwoCol;
             return true;
         }
 
         //左跳一格
         if (isLeftSame) {
-            hintPoints.first = row * colCount + col - 1;
-            hintPoints.second = row * colCount + col - 2;
+            hintPoints.first = row * colCount + leftCol;
+            hintPoints.second = row * colCount + leftTwoCol;
             return true;
         }
 
         //右跳一格
         if (isRightSame) {
-            hintPoints.first = row * colCount + col + 3;
-            hintPoints.second = row * colCount + col + 2;
+            hintPoints.first = row * colCount + rightThreeCol;
+            hintPoints.second = row * colCount + rightTwoCol;
             return true;
         }
     }
     return false;
 }
 
-bool GameService::isThirdLineCast(int x, int y) {
-    int lx = x - 1;
-    int ly = y - 1;
-    int tx = x + 2;
-    int ty = y + 1;
-    bool isLeftBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
-    bool isLeftTopSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
-    bool isRightBottomSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
-    bool isRightTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + y] == nums[x * colCount + y]);
-    bool isTopSame = (x - 2 >= 0 && nums[(x - 2) * colCount + y] == nums[x * colCount + y]);
-    bool isBottomSame = (x + 3 < 8 && nums[(x + 3) * colCount + y] == nums[x * colCount + y]);
+bool GameService::isThirdLineCast(int row, int col) {
+    int upperRow = row - 1;
+    int leftCol = col - 1;
+    int upperTwoRow = row - 2;
+    int bottomTwoRow = row + 2;
+    int bottomThreeRow = row + 3;
+    int rightCol = col + 1;
+    bool isLeftBottomSame =
+        (bottomTwoRow < 8 && leftCol >= 0 && nums[bottomTwoRow * colCount + leftCol] == nums[row * colCount + col]);
+    bool isLeftTopSame =
+        (upperRow >= 0 && leftCol >= 0 && nums[upperRow * colCount + leftCol] == nums[row * colCount + col]);
+    bool isRightBottomSame =
+        (bottomTwoRow < 8 && rightCol < 8 && nums[bottomTwoRow * colCount + rightCol] == nums[row * colCount + col]);
+    bool isRightTopSame =
+        (upperRow >= 0 && rightCol < 8 && nums[upperRow * colCount + col] == nums[row * colCount + col]);
+    bool isTopSame = (upperTwoRow >= 0 && nums[upperTwoRow * colCount + col] == nums[row * colCount + col]);
+    bool isBottomSame = (bottomThreeRow < 8 && nums[bottomThreeRow * colCount + col] == nums[row * colCount + col]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
 
-    if (x + 1 < 8 && x + 1 >= 0 && nums[(x + 1) * colCount + y] == nums[x * colCount + y]) {
+    if (row + 1 < 8 && row + 1 >= 0 && nums[(row + 1) * colCount + col] == nums[row * colCount + col]) {
         // 左上角
         if (isLeftTopSame) {
-            hintPoints.first = lx * colCount + y;
-            hintPoints.second = lx * colCount + ly;
-            qDebug() << "5";
+            hintPoints.first = upperRow * colCount + col;
+            hintPoints.second = upperRow * colCount + leftCol;
             return true;
         }
         // 右上角
         if (isRightTopSame) {
-            hintPoints.first = lx * colCount + y;
-            hintPoints.second = lx * colCount + ty;
-            qDebug() << "6";
+            hintPoints.first = upperRow * colCount + col;
+            hintPoints.second = upperRow * colCount + rightCol;
             return true;
         }
         // 左下角
         if (isLeftBottomSame) {
-            hintPoints.first = tx * colCount + y;
-            hintPoints.second = tx * colCount + ly;
-            qDebug() << "7";
+            hintPoints.first = bottomTwoRow * colCount + col;
+            hintPoints.second = bottomTwoRow * colCount + leftCol;
             return true;
         }
         // 右下角
         if (isRightBottomSame) {
-            hintPoints.first = tx * colCount + y;
-            hintPoints.second = tx * colCount + ty;
-            qDebug() << "8";
+            hintPoints.first = bottomTwoRow * colCount + col;
+            hintPoints.second = bottomTwoRow * colCount + rightCol;
             return true;
         }
 
         //上跳一格
         if (isTopSame) {
-            hintPoints.first = (x - 1) * colCount + y;
-            hintPoints.second = (x - 2) * colCount + y;
+            hintPoints.first = upperRow * colCount + col;
+            hintPoints.second = upperTwoRow * colCount + col;
             return true;
         }
 
         //下跳一格
         if (isBottomSame) {
-            hintPoints.first = (x + 3) * colCount + y;
-            hintPoints.second = (x + 2) * colCount + y;
+            hintPoints.first = bottomThreeRow * colCount + col;
+            hintPoints.second = bottomTwoRow * colCount + col;
             return true;
         }
     }
