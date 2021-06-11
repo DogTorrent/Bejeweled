@@ -18,7 +18,7 @@ bool GameService::isLine(int i, int j) const {
     return false;
 }
 
-bool GameService::isFirstLineCast(int x, int y) const {
+bool GameService::isFirstLineCast(int x, int y) {
     int lx = x - 1;
     int ly = y - 1;
     int tx = x + 1;
@@ -28,46 +28,38 @@ bool GameService::isFirstLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
-    pointList->clear();
+    hintPoints.first = -1;
+    hintPoints.second = -1;
 
     // 左下角与右下角
-    if (isLeftBottomSame && isRightBottomSame){
-        pointList->push_back(x);
-        pointList->push_back(y);
-        pointList->push_back(tx);
-        pointList->push_back(y);
+    if (isLeftBottomSame && isRightBottomSame) {
+        hintPoints.first = x * colCount + y;
+        hintPoints.second = tx * colCount + y;
         return true;
     }
-    return true;
     // 左下角与左上角
-    if (isLeftBottomSame && isLeftTopSame){
-        pointList->push_back(x);
-        pointList->push_back(y);
-        pointList->push_back(x);
-        pointList->push_back(ly);
+    if (isLeftBottomSame && isLeftTopSame) {
+        hintPoints.first = x * colCount + y;
+        hintPoints.second = x * colCount + ly;
         return true;
     }
     // 左上角与右上角
-    if (isLeftTopSame && isRightTopSame){
-        pointList->push_back(x);
-        pointList->push_back(y);
-        pointList->push_back(lx);
-        pointList->push_back(y);
+    if (isLeftTopSame && isRightTopSame) {
+        hintPoints.first = x * colCount + y;
+        hintPoints.second = lx * colCount + y;
         return true;
     }
     // 右上角与右下角
-    if (isRightTopSame && isRightBottomSame){
-        pointList->push_back(x);
-        pointList->push_back(y);
-        pointList->push_back(x);
-        pointList->push_back(ty);
+    if (isRightTopSame && isRightBottomSame) {
+        hintPoints.first = x * colCount + y;
+        hintPoints.second = x * colCount + ty;
         return true;
     }
 
     return false;
 }
 
-bool GameService::isSecondLineCast(int x, int y) const {
+bool GameService::isSecondLineCast(int x, int y) {
     int lx = x - 1;
     int ly = y - 2;
     int tx = x + 1;
@@ -77,46 +69,39 @@ bool GameService::isSecondLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
-    pointList->clear();
+    hintPoints.first = -1;
+    hintPoints.second = -1;
 
     if (y - 1 >= 0 && nums[x * colCount + (y - 1)] == nums[x * colCount + y]) {
         // 左上角
-        if (isLeftTopSame){
-            pointList->push_back(lx);
-            pointList->push_back(ly);
-            pointList->push_back(lx);
-            pointList->push_back(y);
+        if (isLeftTopSame) {
+            hintPoints.first = lx * colCount + ly;
+            hintPoints.second = lx * colCount + y;
             return true;
         }
         // 右上角
         if (isRightTopSame) {
-            pointList->push_back(lx);
-            pointList->push_back(ty);
-            pointList->push_back(lx);
-            pointList->push_back(y);
+            hintPoints.first = lx * colCount + ty;
+            hintPoints.second = lx * colCount + y;
             return true;
         }
         // 左下角
-        if (isLeftBottomSame){
-            pointList->push_back(tx+1);
-            pointList->push_back(ly);
-            pointList->push_back(tx+1);
-            pointList->push_back(y);
+        if (isLeftBottomSame) {
+            hintPoints.first = (tx + 1) * colCount + ly;
+            hintPoints.second = (tx + 1) * colCount + y;
             return true;
         }
         // 右下角
-        if (isRightBottomSame){
-            pointList->push_back(tx+1);
-            pointList->push_back(ty);
-            pointList->push_back(tx+1);
-            pointList->push_back(y);
+        if (isRightBottomSame) {
+            hintPoints.first = (tx + 1) * colCount + ty;
+            hintPoints.second = (tx + 1) * colCount + y;
             return true;
         }
     }
     return false;
 }
 
-bool GameService::isThirdLineCast(int x, int y) const {
+bool GameService::isThirdLineCast(int x, int y) {
     int lx = x - 1;
     int ly = y - 1;
     int tx = x + 2;
@@ -126,39 +111,32 @@ bool GameService::isThirdLineCast(int x, int y) const {
     bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
     bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
 
-    pointList->clear();
+    hintPoints.first = -1;
+    hintPoints.second = -1;
 
     if (x + 1 < 8 && nums[(x + 1) * colCount + y] == nums[x * colCount + y]) {
         // 左上角
-        if (isLeftTopSame){
-            pointList->push_back(lx);
-            pointList->push_back(ly);
-            pointList->push_back(x);
-            pointList->push_back(ly);
+        if (isLeftTopSame) {
+            hintPoints.first = lx * colCount + ly;
+            hintPoints.second = x * colCount + ly;
             return true;
         }
         // 右上角
-        if (isRightTopSame){
-            pointList->push_back(lx);
-            pointList->push_back(ty+1);
-            pointList->push_back(x);
-            pointList->push_back(ty+1);
+        if (isRightTopSame) {
+            hintPoints.first = lx * colCount + (ty + 1);
+            hintPoints.second = x * colCount + (ty + 1);
             return true;
         }
         // 左下角
-        if (isLeftBottomSame){
-            pointList->push_back(tx);
-            pointList->push_back(ly);
-            pointList->push_back(x);
-            pointList->push_back(ly);
+        if (isLeftBottomSame) {
+            hintPoints.first = tx * colCount + ly;
+            hintPoints.second = x * colCount + ly;
             return true;
         }
         // 右下角
         if (isRightBottomSame) {
-            pointList->push_back(tx);
-            pointList->push_back(ty+1);
-            pointList->push_back(x);
-            pointList->push_back(ty+1);
+            hintPoints.first = tx * colCount + (ty + 1);
+            hintPoints.second = x * colCount + (ty + 1);
             return true;
         }
     }
@@ -190,8 +168,7 @@ bool GameService::hasLine() const {
     return false;
 }
 
-bool GameService::isDead() const //是否变成了死图
-{
+bool GameService::isDead() { //是否变成了死图
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (isFirstLineCast(i, j)) return false;
@@ -396,4 +373,9 @@ int GameService::getStat(int number) {
 
 int GameService::getScore() { return score; }
 
-QPoint GameService::getHint() { return QPoint(0, 1); }
+QPoint GameService::getHint() {
+    if (!isDead())
+        return QPoint(hintPoints.first, hintPoints.second);
+    else
+        return QPoint();
+}

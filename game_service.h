@@ -31,7 +31,7 @@ private:
     std::list<Grid> *rowRemoveList = new std::list<Grid>();
     std::list<Grid> *colRemoveList = new std::list<Grid>();
     std::list<Grid> *removeList = new std::list<Grid>();
-    std::list<int> *pointList= new std::list<int>();
+    QPair<int, int> hintPoints;
 
     //向左向下判断是否存在可消除行
     bool isLine(int i, int j) const;
@@ -55,7 +55,7 @@ private:
      * @param y
      * @return
      */
-    bool isFirstLineCast(int x, int y) const;
+    bool isFirstLineCast(int x, int y);
 
     /*!
      * @brief 非死图的第二种情况
@@ -69,7 +69,7 @@ private:
      * @param y
      * @return
      */
-    bool isSecondLineCast(int x, int y) const;
+    bool isSecondLineCast(int x, int y);
 
     /*!
      * @brief 非死图的第三种情况
@@ -82,11 +82,7 @@ private:
      * @param y
      * @return
      */
-    bool isThirdLineCast(int x, int y) const;
-
-    std::list<int> isFirstLineCastH(int x, int y) const;
-    std::list<int> isSecondLineCastH(int x, int y) const;
-    std::list<int> isThridLineCastH(int x, int y) const;
+    bool isThirdLineCast(int x, int y);
 
     //交换
     void swap(int x1, int y1, int x2, int y2);
@@ -115,7 +111,7 @@ public:
     //游戏初始化
     Q_INVOKABLE void gameInit();
 
-    Q_INVOKABLE bool isDead() const;
+    Q_INVOKABLE bool isDead();
 
     //输入要交换的两块，如果交换后可以消除则交换并消除，如果不能消除则交换回来
     Q_INVOKABLE void inputSwap(int from, int to);
