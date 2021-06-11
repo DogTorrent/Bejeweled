@@ -23,10 +23,10 @@ bool GameService::isFirstLineCast(int x, int y) {
     int ly = y - 1;
     int tx = x + 1;
     int ty = y + 1;
-    bool isLeftBottomSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
-    bool isLeftTopSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
-    bool isRightBottomSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
-    bool isRightTopSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    bool isLeftBottomSame = (lx >= 0 && ty < 8 && nums[lx * colCount + ty] == nums[x * colCount + y]);
+    bool isLeftTopSame = (lx >= 0 && ly >= 0 && nums[lx * colCount + ly] == nums[x * colCount + y]);
+    bool isRightBottomSame = (tx < 8 && ty < 8 && nums[tx * colCount + ty] == nums[x * colCount + y]);
+    bool isRightTopSame = (tx < 8 && ly >= 0 && nums[tx * colCount + ly] == nums[x * colCount + y]);
 
     hintPoints.first = -1;
     hintPoints.second = -1;
@@ -34,25 +34,25 @@ bool GameService::isFirstLineCast(int x, int y) {
     // 左下角与右下角
     if (isLeftBottomSame && isRightBottomSame) {
         hintPoints.first = x * colCount + y;
-        hintPoints.second = tx * colCount + y;
+        hintPoints.second = x * colCount + ty;
         return true;
     }
     // 左下角与左上角
     if (isLeftBottomSame && isLeftTopSame) {
         hintPoints.first = x * colCount + y;
-        hintPoints.second = x * colCount + ly;
+        hintPoints.second = lx * colCount + y;
         return true;
     }
     // 左上角与右上角
     if (isLeftTopSame && isRightTopSame) {
         hintPoints.first = x * colCount + y;
-        hintPoints.second = lx * colCount + y;
+        hintPoints.second = x * colCount + ly;
         return true;
     }
     // 右上角与右下角
     if (isRightTopSame && isRightBottomSame) {
         hintPoints.first = x * colCount + y;
-        hintPoints.second = x * colCount + ty;
+        hintPoints.second = tx * colCount + y;
         return true;
     }
 
