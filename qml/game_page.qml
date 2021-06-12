@@ -184,10 +184,12 @@ Item {
         onLoadStopMenu: {
             timeLimitBarTimer.stop()
             item.show()
+            SoundService.playPausedBgm()
         }
         onCloseStopMenu: {
             timeLimitBarTimer.start()
             item.hide()
+            SoundService.playLastBgm()
         }
     }
 
@@ -214,5 +216,9 @@ Item {
         GameService.gameInit()
         timeLimitBar.value = mode === "Challenge" ? 0 : 100
         gameBoardLoader.Component.completed()
+        if(level>1)
+            SoundService.playClimaxBgm()
+        else
+            SoundService.playBeginningBgm()
     }
 }

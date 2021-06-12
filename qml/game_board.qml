@@ -269,6 +269,7 @@ Item {
                                 timeLimitBar.addTime()
                                 gameServiceConnection.jobQueue.shift()
                                 jobNeedToDo.func()
+                                SoundService.playCleanSound()
                             }
                         } else {
                             if (!jewelGrid.itemChangeToBlankAnimationRunning) {

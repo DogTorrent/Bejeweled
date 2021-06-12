@@ -1,5 +1,6 @@
 #include "translation.h"
 #include "game_service.h"
+#include "sound_service.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -21,8 +22,12 @@ int main(int argc, char *argv[]) {
 
     auto *translationHandler = new TranslationHandler(&engine);
     engine.rootContext()->setContextProperty("TranslationHandler", translationHandler);
+
     auto *gameService = new GameService(8, 8);
     engine.rootContext()->setContextProperty("GameService", gameService);
+
+    auto *soundService = new SoundService();
+    engine.rootContext()->setContextProperty("SoundService", soundService);
 
     const QUrl url(QStringLiteral("qrc:/qml/main_window.qml"));
     QObject::connect(

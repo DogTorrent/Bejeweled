@@ -8,5 +8,12 @@
         <file alias="res/image/background">res/image/background.jpg</file>
         <file alias="res/image/pause">res/image/pause.svg</file>
         <file alias="res/image/jewels">res/image/jewels.svg</file>
+        <file alias="res/sound/item_cleaned_se">res/sound/item_cleaned_se.mp3</file>
+        <file alias="res/sound/game_failed_bgm">res/sound/game_failed_bgm.mp3</file>
+        <file alias="res/sound/game_climax_bgm">res/sound/game_climax_bgm.mp3</file>
+        <file alias="res/sound/game_beginning_bgm">res/sound/game_beginning_bgm.mp3</file>
+        <file alias="res/sound/game_paused_bgm">res/sound/game_paused_bgm.mp3</file>
+        <file alias="res/sound/game_success_bgm">res/sound/game_success_bgm.mp3</file>
+        <file alias="res/sound/unused_bgm">res/sound/unused_bgm.mp3</file>
     </qresource>
 </RCC>
