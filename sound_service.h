@@ -1,12 +1,13 @@
 #ifndef SOUND_SERVICE_H
 #define SOUND_SERVICE_H
 
-#include <QObject>
-#include <QMediaPlayer>
 #include <QMediaContent>
+#include <QMediaMetaData>
+#include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QObject>
 
-class SoundService: public QObject {
+class SoundService : public QObject {
     Q_OBJECT
 public:
     SoundService();
@@ -17,17 +18,27 @@ public:
     Q_INVOKABLE void playPausedBgm();
     Q_INVOKABLE void playSuccessBgm();
     Q_INVOKABLE void playLastBgm();
+    Q_INVOKABLE void setBgmVolume(int volume);
+    Q_INVOKABLE void setSeVolume(int volume);
+
 private:
-    QMediaPlayer *bgm = new QMediaPlayer(this,QMediaPlayer::StreamPlayback);
-    QMediaPlayer *cleanSound = new QMediaPlayer(this,QMediaPlayer::LowLatency);
-    QMediaPlaylist *bgmList = new QMediaPlaylist(this);
-    int gameBeginningBgmIndex=-1;
-    int gameClimaxBgm = -1;
-    int gameFailedBgmIndex=-1;
-    int gamePausedBgmIndex=-1;
-    int gameSuccessBgmIndex=-1;
-    int lastBgmIndex=-1;
-signals:;
+    QMediaPlayer *cleanSound = new QMediaPlayer(this, QMediaPlayer::LowLatency);
+    QMediaPlayer *bgmMain = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
+    QMediaPlayer *bgmSub = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
+    QMediaPlaylist *bgmListMain = new QMediaPlaylist(this);
+    QMediaPlaylist *bgmListSub = new QMediaPlaylist(this);
+
+    enum BGM { GameBeginning, GameClimax, GameFailed, GamePaused, GameSuccess };
+
+    QMap<BGM, int> bgmIndexMap;
+    QMap<BGM, int> bgmDurationMap;
+
+    BGM lastBgm;
+    BGM currBgm;
+
+    void mainLoopToSub(qint64 position);
+    void subLoopToMain(qint64 position);
+    void playBgm(BGM bgm);
 };
 
 #endif // SOUND_SERVICE_H
