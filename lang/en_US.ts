@@ -150,7 +150,7 @@
 <context>
     <name>main_window</name>
     <message>
-        <location filename="../qml/main_window.qml" line="75"/>
+        <location filename="../qml/main_window.qml" line="82"/>
         <source>Bejeweled</source>
         <translation>Bejeweled</translation>
     </message>

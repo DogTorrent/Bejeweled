@@ -20,6 +20,8 @@ public:
     Q_INVOKABLE void playLastBgm();
     Q_INVOKABLE void setBgmVolume(int volume);
     Q_INVOKABLE void setSeVolume(int volume);
+    Q_INVOKABLE void setBgmEnabled(bool enabled);
+    Q_INVOKABLE void setSeEnabled(bool enabled);
 
 private:
     QMediaPlayer *cleanSound = new QMediaPlayer(this, QMediaPlayer::LowLatency);

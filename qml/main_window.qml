@@ -50,6 +50,13 @@ ApplicationWindow {
             property int bgm_volume: value("bgm_volume", 100)
             //音效音量
             property int effect_sound_volume: value("effect_sound_volume", 100)
+
+            onEnable_bgmChanged: SoundService.setBgmEnabled(enable_bgm)
+            onEnable_effect_soundChanged: SoundService.setSeEnabled(
+                                              enable_effect_sound)
+            onBgm_volumeChanged: SoundService.setBgmVolume(bgm_volume)
+            onEffect_sound_volumeChanged: SoundService.setSeVolume(
+                                              effect_sound_volume)
         }
         Settings {
             id: settings_control

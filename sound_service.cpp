@@ -44,21 +44,27 @@ SoundService::SoundService() {
 }
 
 void SoundService::playBgm(SoundService::BGM bgm) {
+    if (!bgmIndexMap.contains(bgm)) return;
     int index = bgmIndexMap.value(bgm);
-    if (currBgm != bgm) {
+    if (currBgm != bgm ||
+        (bgmMain->state() != QMediaPlayer::PlayingState && bgmSub->state() != QMediaPlayer::PlayingState)) {
         lastBgm = currBgm;
+        currBgm = bgm;
+        bgmMain->stop();
+        bgmSub->stop();
+        bgmMain->disconnect();
+        bgmSub->disconnect();
         bgmListMain->setCurrentIndex(index);
         bgmListSub->setCurrentIndex(index);
-        currBgm = bgm;
-    }
-    if (bgmMain->state() != QMediaPlayer::PlayingState && bgmSub->state() != QMediaPlayer::PlayingState)
         bgmMain->play();
-    bgmMain->disconnect();
-    bgmSub->disconnect();
-    connect(bgmMain, &QMediaPlayer::positionChanged, this, &SoundService::mainLoopToSub);
+        connect(bgmMain, &QMediaPlayer::positionChanged, this, &SoundService::mainLoopToSub);
+    }
 }
 
-void SoundService::playCleanSound() { cleanSound->play(); }
+void SoundService::playCleanSound() {
+    cleanSound->stop();
+    cleanSound->play();
+}
 
 void SoundService::playBeginningBgm() { playBgm(BGM::GameBeginning); }
 
@@ -79,6 +85,13 @@ void SoundService::setBgmVolume(int volume) {
 
 void SoundService::setSeVolume(int volume) { cleanSound->setVolume(volume); }
 
+void SoundService::setBgmEnabled(bool enabled) {
+    bgmMain->setMuted(!enabled);
+    bgmSub->setMuted(!enabled);
+}
+
+void SoundService::setSeEnabled(bool enabled) { cleanSound->setMuted(!enabled); }
+
 void SoundService::mainLoopToSub(qint64 position) {
     int index = bgmIndexMap.value(currBgm);
     int duration = bgmDurationMap.value(currBgm);
@@ -88,7 +101,6 @@ void SoundService::mainLoopToSub(qint64 position) {
         bgmSub->play();
         bgmSub->setPosition(duration - position);
         bgmMain->disconnect();
-        bgmSub->disconnect();
         connect(bgmSub, &QMediaPlayer::positionChanged, this, &SoundService::subLoopToMain);
     }
 }
@@ -101,7 +113,6 @@ void SoundService::subLoopToMain(qint64 position) {
         if (bgmListMain->currentIndex() != index) bgmListMain->setCurrentIndex(index);
         bgmMain->play();
         bgmMain->setPosition(duration - position);
-        bgmMain->disconnect();
         bgmSub->disconnect();
         connect(bgmMain, &QMediaPlayer::positionChanged, this, &SoundService::mainLoopToSub);
     }

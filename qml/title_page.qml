@@ -130,4 +130,5 @@ Item {
             }
         }
     }
+    Component.onCompleted: SoundService.playPausedBgm()
 }
