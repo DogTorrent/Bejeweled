@@ -8,6 +8,7 @@ Item {
     id: gamePage
     property string mode: "Normal"
     property int level: 1
+    property int hintTimes: 0
     Item {
         id: gamePageMain
         anchors.fill: parent
@@ -140,6 +141,7 @@ Item {
                     onClicked: {
                         var hintResult = GameService.getHint()
                         gameBoardLoader.item.hint(hintResult.x, hintResult.y)
+                        hintTimes++
                     }
                 }
                 CustButton {
@@ -217,6 +219,8 @@ Item {
                 setSource("qrc:/qml/success_panel.qml", {
                               "bottomLayerComponent": gamePageMain
                           })
+                if (mode == "Challenge")
+                    DatabaseService.addNewLevel(mode, level, hintTimes)
             }
         }
         onLoadFailedPanel: {
@@ -227,6 +231,9 @@ Item {
                 setSource("qrc:/qml/failed_panel.qml", {
                               "bottomLayerComponent": gamePageMain
                           })
+                if (mode == "Normal" || mode == "Hard")
+                    DatabaseService.addNewScore(mode, GameService.getScore(),
+                                                hintTimes)
             }
         }
         onClosePanel: {
@@ -253,6 +260,7 @@ Item {
 
     Component.onCompleted: {
         level = 1
+        hintTimes = 0
         timeLimitBar.value = mode === "Challenge" ? 0 : 100
         GameService.gameInit()
         if (level > 1)
@@ -268,6 +276,7 @@ Item {
             level = gamelevel
         else
             level = 1
+        hintTimes = 0
         GameService.gameInit()
         timeLimitBar.value = mode === "Challenge" ? 0 : 100
         timeLimitBarTimer.restart()

@@ -10,8 +10,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(REQUIRED_LIBS Core Quick QuickControls2 LinguistTools Multimedia MultimediaWidgets)
-set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Quick Qt5::QuickControls2 Qt5::Multimedia Qt5::MultimediaWidgets)
+set(REQUIRED_LIBS Core Quick QuickControls2 LinguistTools Multimedia MultimediaWidgets Sql)
+set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Quick Qt5::QuickControls2 Qt5::Multimedia Qt5::MultimediaWidgets Qt5::Sql)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

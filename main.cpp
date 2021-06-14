@@ -1,6 +1,7 @@
-#include "translation.h"
+#include "database_service.h"
 #include "game_service.h"
 #include "sound_service.h"
+#include "translation.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -28,6 +29,9 @@ int main(int argc, char *argv[]) {
 
     auto *soundService = new SoundService();
     engine.rootContext()->setContextProperty("SoundService", soundService);
+
+    auto *databaseService = new DatabaseService();
+    engine.rootContext()->setContextProperty("DatabaseService", databaseService);
 
     const QUrl url(QStringLiteral("qrc:/qml/main_window.qml"));
     QObject::connect(

@@ -150,27 +150,27 @@
 <context>
     <name>game_page</name>
     <message>
-        <location filename="../qml/game_page.qml" line="116"/>
+        <location filename="../qml/game_page.qml" line="117"/>
         <source>Mode</source>
         <translation>MODE</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="123"/>
+        <location filename="../qml/game_page.qml" line="124"/>
         <source>Level</source>
         <translation>LEVEL</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="124"/>
+        <location filename="../qml/game_page.qml" line="125"/>
         <source>Score</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="133"/>
+        <location filename="../qml/game_page.qml" line="134"/>
         <source>Hint</source>
         <translation>Hint</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="148"/>
+        <location filename="../qml/game_page.qml" line="150"/>
         <source>Restart</source>
         <translation>Restart</translation>
     </message>
