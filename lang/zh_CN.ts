@@ -102,47 +102,47 @@
 <context>
     <name>failed_panel</name>
     <message>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Score</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Leave</source>
-        <translation type="unfinished"></translation>
+        <translation>离开</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>重玩</translation>
+    </message>
+    <message>
+        <source>MODE</source>
+        <translation>模式</translation>
+    </message>
+    <message>
+        <source>LEVEL</source>
+        <translation>关卡</translation>
+    </message>
+    <message>
+        <source>SCORE</source>
+        <translation>分数</translation>
     </message>
 </context>
 <context>
     <name>game_page</name>
     <message>
         <source>Score</source>
-        <translation type="unfinished"></translation>
+        <translation>分数</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>模式</translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation>关卡</translation>
     </message>
     <message>
         <source>Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>提示</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>重玩</translation>
     </message>
 </context>
 <context>
@@ -171,23 +171,23 @@
     <name>success_panel</name>
     <message>
         <source>Leave</source>
-        <translation type="unfinished"></translation>
+        <translation>离开</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>MODE</source>
+        <translation>模式</translation>
     </message>
     <message>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
+        <source>LEVEL</source>
+        <translation>关卡</translation>
     </message>
     <message>
-        <source>Score</source>
-        <translation type="unfinished"></translation>
+        <source>SCORE</source>
+        <translation>分数</translation>
     </message>
 </context>
 <context>

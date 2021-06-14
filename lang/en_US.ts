@@ -123,28 +123,28 @@
     <name>failed_panel</name>
     <message>
         <location filename="../qml/failed_panel.qml" line="50"/>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>MODE</source>
+        <translation>MODE</translation>
     </message>
     <message>
         <location filename="../qml/failed_panel.qml" line="69"/>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
+        <source>LEVEL</source>
+        <translation>LEVEL</translation>
     </message>
     <message>
         <location filename="../qml/failed_panel.qml" line="69"/>
-        <source>Score</source>
-        <translation type="unfinished"></translation>
+        <source>SCORE</source>
+        <translation>SCORE</translation>
     </message>
     <message>
         <location filename="../qml/failed_panel.qml" line="91"/>
         <source>Leave</source>
-        <translation type="unfinished"></translation>
+        <translation>Leave</translation>
     </message>
     <message>
         <location filename="../qml/failed_panel.qml" line="102"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Restart</translation>
     </message>
 </context>
 <context>
@@ -152,27 +152,27 @@
     <message>
         <location filename="../qml/game_page.qml" line="116"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>MODE</translation>
     </message>
     <message>
         <location filename="../qml/game_page.qml" line="123"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation>LEVEL</translation>
     </message>
     <message>
         <location filename="../qml/game_page.qml" line="124"/>
         <source>Score</source>
-        <translation type="unfinished"></translation>
+        <translation>SCORE</translation>
     </message>
     <message>
         <location filename="../qml/game_page.qml" line="133"/>
         <source>Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>Hint</translation>
     </message>
     <message>
         <location filename="../qml/game_page.qml" line="148"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Restart</translation>
     </message>
 </context>
 <context>
@@ -205,28 +205,28 @@
     <name>success_panel</name>
     <message>
         <location filename="../qml/success_panel.qml" line="50"/>
-        <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <source>MODE</source>
+        <translation>MODE</translation>
     </message>
     <message>
         <location filename="../qml/success_panel.qml" line="68"/>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
+        <source>LEVEL</source>
+        <translation>LEVEL</translation>
     </message>
     <message>
         <location filename="../qml/success_panel.qml" line="68"/>
-        <source>Score</source>
-        <translation type="unfinished"></translation>
+        <source>SCORE</source>
+        <translation>SCORE</translation>
     </message>
     <message>
         <location filename="../qml/success_panel.qml" line="89"/>
         <source>Leave</source>
-        <translation type="unfinished"></translation>
+        <translation>Leave</translation>
     </message>
     <message>
         <location filename="../qml/success_panel.qml" line="100"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continue</translation>
     </message>
 </context>
 <context>
