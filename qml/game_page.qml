@@ -5,7 +5,7 @@ import QtQuick.Window 2.1
 import "component"
 
 Item {
-    id: gamePageRoot
+    id: gamePage
     property string mode: "Normal"
     property int level: 1
     Item {
@@ -20,14 +20,14 @@ Item {
 
         Loader {
             id: gameBoardLoader
-            property alias mode: gamePageRoot.mode
+            property alias mode: gamePage.mode
 
             width: Math.min(parent.width, parent.height) * 4 / 5
             height: width
             x: (parent.width * 3 / 5 - width / 2)
             y: (parent.height - height) / 2
             Component.onCompleted: setSource("qrc:/qml/game_board.qml", {
-                                                 "mode": gamePageRoot.mode
+                                                 "mode": gamePage.mode
                                              })
         }
 
@@ -65,7 +65,7 @@ Item {
                 repeat: true
                 running: true
                 onTriggered: {
-                    switch (gamePageRoot.mode) {
+                    switch (gamePage.mode) {
                     case "Normal":
                         timeLimitBar.value -= 0.1
                         break
@@ -80,13 +80,17 @@ Item {
             }
             onValueChanged: {
                 if (timeLimitBar.value == timeLimitBar.maximumValue
-                        && mode === "Challenge") {
-                    loadGame(mode, level + 1)
+                        && mode == "Challenge") {
+                    levelEndPanelLoader.loadSuccessPanel()
+                } else if (timeLimitBar.value == timeLimitBar.minimumValue
+                           && (mode == "Normal" || mode == "Hard")) {
+                    levelEndPanelLoader.loadFailedPanel()
                 }
             }
         }
 
         Rectangle {
+            id: gameInfoPanel
             width: Math.min(gameBoardLoader.x - 100, parent.width / 4)
             height: gameBoardLoader.height
             x: (gameBoardLoader.x - width) / 2
@@ -183,13 +187,55 @@ Item {
 
         onLoadStopMenu: {
             timeLimitBarTimer.stop()
+            gameBoardLoader.enabled = false
+            gameInfoPanel.enabled = false
             item.show()
             SoundService.playPausedBgm()
         }
         onCloseStopMenu: {
             timeLimitBarTimer.start()
+            gameBoardLoader.enabled = true
+            gameInfoPanel.enabled = true
             item.hide()
             SoundService.playLastBgm()
+        }
+    }
+
+    Loader {
+        id: levelEndPanelLoader
+        signal loadSuccessPanel
+        signal loadFailedPanel
+        signal closePanel
+        asynchronous: true
+        anchors.fill: parent
+
+        onLoadSuccessPanel: {
+            if (source == "") {
+                gameBoardLoader.enabled = false
+                gameInfoPanel.enabled = false
+                timeLimitBarTimer.stop()
+                setSource("qrc:/qml/success_panel.qml", {
+                              "bottomLayerComponent": gamePageMain
+                          })
+            }
+        }
+        onLoadFailedPanel: {
+            if (source == "") {
+                gameBoardLoader.enabled = false
+                gameInfoPanel.enabled = false
+                timeLimitBarTimer.stop()
+                setSource("qrc:/qml/failed_panel.qml", {
+                              "bottomLayerComponent": gamePageMain
+                          })
+            }
+        }
+        onClosePanel: {
+            setSource("")
+            if (mode === "Challenge") {
+                loadGame(mode, level + 1)
+            } else {
+                loadGame(mode)
+            }
         }
     }
 
@@ -205,7 +251,16 @@ Item {
         onActiveFocusChanged: forceActiveFocus()
     }
 
-    Component.onCompleted: loadGame(mode, 1)
+    Component.onCompleted: {
+        level = 1
+        timeLimitBar.value = mode === "Challenge" ? 0 : 100
+        GameService.gameInit()
+        if (level > 1)
+            SoundService.playClimaxBgm()
+        else
+            SoundService.playBeginningBgm()
+    }
+
     function loadGame(gameMode, gamelevel) {
         if (gameMode)
             mode = gameMode
@@ -215,8 +270,11 @@ Item {
             level = 1
         GameService.gameInit()
         timeLimitBar.value = mode === "Challenge" ? 0 : 100
+        timeLimitBarTimer.restart()
+        gameBoardLoader.enabled = true
+        gameInfoPanel.enabled = true
         gameBoardLoader.Component.completed()
-        if(level>1)
+        if (level > 1)
             SoundService.playClimaxBgm()
         else
             SoundService.playBeginningBgm()

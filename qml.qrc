@@ -19,5 +19,7 @@
         <file>qml/component/SliderOption.qml</file>
         <file>qml/component/ComboBoxOption.qml</file>
         <file>qml/back_ground.qml</file>
+        <file>qml/success_panel.qml</file>
+        <file>qml/failed_panel.qml</file>
     </qresource>
 </RCC>
