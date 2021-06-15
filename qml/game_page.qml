@@ -68,13 +68,13 @@ Item {
                 onTriggered: {
                     switch (gamePage.mode) {
                     case "Normal":
-                        timeLimitBar.value -= 0.1
+                        timeLimitBar.value -= 0.15
                         break
                     case "Hard":
-                        timeLimitBar.value -= 0.2
+                        timeLimitBar.value -= 0.3
                         break
                     case "Challenge":
-                        timeLimitBar.value -= (0.05 + level * 0.01)
+                        timeLimitBar.value -= (0.1 + level * 0.01)
                         break
                     }
                 }
