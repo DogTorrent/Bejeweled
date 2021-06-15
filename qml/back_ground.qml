@@ -5,7 +5,7 @@ Item {
     anchors.fill: parent
     Image {
         id: backGround
-        source: "qrc:/res/image/background" //16:9
+        source: settings_graphic.use_custom_bg ? settings_graphic.custom_bg_path : "qrc:/res/image/background" //16:9
         property var aspectRatio: 16 / 9
         width: (parent.width / parent.height
                 >= aspectRatio) ? parent.width : parent.height * aspectRatio

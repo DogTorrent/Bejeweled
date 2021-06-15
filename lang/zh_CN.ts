@@ -41,6 +41,14 @@
         <source>Image Cache</source>
         <translation>图像缓存</translation>
     </message>
+    <message>
+        <source>Use Custom Background</source>
+        <translation>自定义背景</translation>
+    </message>
+    <message>
+        <source>Choosing image file</source>
+        <translation>选择图像文件</translation>
+    </message>
 </context>
 <context>
     <name>config_other_panel</name>

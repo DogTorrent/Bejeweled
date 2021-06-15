@@ -35,19 +35,29 @@
 <context>
     <name>config_graphic_panel</name>
     <message>
-        <location filename="../qml/config_graphic_panel.qml" line="12"/>
+        <location filename="../qml/config_graphic_panel.qml" line="13"/>
         <source>Smooth Transition</source>
         <translation>Smooth Transition</translation>
     </message>
     <message>
-        <location filename="../qml/config_graphic_panel.qml" line="24"/>
+        <location filename="../qml/config_graphic_panel.qml" line="25"/>
         <source>Mipmap Filtering</source>
         <translation>Mipmap Filtering</translation>
     </message>
     <message>
-        <location filename="../qml/config_graphic_panel.qml" line="36"/>
+        <location filename="../qml/config_graphic_panel.qml" line="37"/>
         <source>Image Cache</source>
         <translation>Image Cache</translation>
+    </message>
+    <message>
+        <location filename="../qml/config_graphic_panel.qml" line="50"/>
+        <source>Use Custom Background</source>
+        <translation>Use Custom Background</translation>
+    </message>
+    <message>
+        <location filename="../qml/config_graphic_panel.qml" line="70"/>
+        <source>Choosing image file</source>
+        <translation>Choosing image file</translation>
     </message>
 </context>
 <context>
@@ -184,7 +194,7 @@
 <context>
     <name>main_window</name>
     <message>
-        <location filename="../qml/main_window.qml" line="82"/>
+        <location filename="../qml/main_window.qml" line="86"/>
         <source>Bejeweled</source>
         <translation>Bejeweled</translation>
     </message>
@@ -192,47 +202,47 @@
 <context>
     <name>score_page</name>
     <message>
-        <location filename="../qml/score_page.qml" line="139"/>
+        <location filename="../qml/score_page.qml" line="147"/>
         <source>Level</source>
         <translation>LEVEL</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="149"/>
+        <location filename="../qml/score_page.qml" line="157"/>
         <source>Score</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="130"/>
+        <location filename="../qml/score_page.qml" line="136"/>
         <source>Record Time</source>
         <translation>RECORD TIME</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="159"/>
+        <location filename="../qml/score_page.qml" line="167"/>
         <source>Hint Times</source>
         <translation>HINT TIMES</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="168"/>
+        <location filename="../qml/score_page.qml" line="176"/>
         <source>Duration</source>
         <translation>DURATION</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="236"/>
+        <location filename="../qml/score_page.qml" line="244"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="240"/>
+        <location filename="../qml/score_page.qml" line="248"/>
         <source>Hard</source>
         <translation>Hard</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="244"/>
+        <location filename="../qml/score_page.qml" line="252"/>
         <source>Challenge</source>
         <translation>Challenge</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="251"/>
+        <location filename="../qml/score_page.qml" line="259"/>
         <source>Back</source>
         <translation>Back</translation>
     </message>

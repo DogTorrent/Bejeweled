@@ -36,6 +36,10 @@ ApplicationWindow {
             property bool enable_mipmap: value("enable_mipmap", true)
             //加载图像时是否缓存
             property bool enable_cache: value("enable_cache", true)
+            //是否使用自定义背景
+            property bool use_custom_bg: value("use_custom_bg", false)
+            //自定义背景路径
+            property string custom_bg_path: value("custom_bg_path", "")
         }
         Settings {
             id: settings_sound
