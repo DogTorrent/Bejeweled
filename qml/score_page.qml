@@ -50,8 +50,10 @@ Item {
                         }
 
                         Row {
-                            anchors.fill: parent
-                            leftPadding: 20
+                            width: parent.width - 20
+                            height: parent.height
+                            x: 20
+                            y: 0
                             Text {
                                 width: parent.width / parent.visibleChildren.length
                                 font.family: settings_other.font_family
@@ -60,6 +62,8 @@ Item {
                                 horizontalAlignment: Text.AlignHCenter
                                 text: model.modelData.endTime
                                 anchors.verticalCenter: parent.verticalCenter
+                                fontSizeMode: Text.Fit
+                                wrapMode: Text.Wrap
                             }
                             Text {
                                 width: parent.width / parent.visibleChildren.length
@@ -119,8 +123,10 @@ Item {
                     onPressed: mouse.accepted = false
                 }
                 Row {
-                    anchors.fill: parent
-                    leftPadding: 20
+                    width: parent.width - 20
+                    height: parent.height
+                    x: 20
+                    y: 0
                     Text {
                         width: parent.width / parent.visibleChildren.length
                         font.family: settings_other.font_family
@@ -129,6 +135,8 @@ Item {
                         horizontalAlignment: Text.AlignHCenter
                         text: qsTr("Record Time")
                         anchors.verticalCenter: parent.verticalCenter
+                        fontSizeMode: Text.Fit
+                        wrapMode: Text.Wrap
                     }
                     Text {
                         width: parent.width / parent.visibleChildren.length

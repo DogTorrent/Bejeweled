@@ -30,7 +30,7 @@ Column {
         height: 80 //Math.min(parent.height / parent.children.length, 80)
         titleText.font.family: settings_other.font_family
         titleText.font.pointSize: settings_other.font_pt_size
-        optionSlider.from: 640
+        optionSlider.from: 960
         optionSlider.to: Screen.desktopAvailableWidth
         optionSlider.live: false
         optionSlider.stepSize: 320
@@ -47,7 +47,7 @@ Column {
         height: 80 //Math.min(parent.height / parent.children.length, 80)
         titleText.font.family: settings_other.font_family
         titleText.font.pointSize: settings_other.font_pt_size
-        optionSlider.from: 360
+        optionSlider.from: 540
         optionSlider.to: Screen.desktopAvailableHeight
         optionSlider.live: false
         optionSlider.stepSize: 180

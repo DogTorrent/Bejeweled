@@ -294,12 +294,12 @@ Item {
         focus: true
         Keys.enabled: true
         Keys.onEscapePressed: {
-            if (!stopMenuLoader.item.enabled) {
-                if (levelEndPanelLoader.source == "") {
+            if (levelEndPanelLoader.source == "") {
+                if (!stopMenuLoader.item.enabled) {
                     stopMenuLoader.loadStopMenu()
+                } else {
+                    stopMenuLoader.closeStopMenu()
                 }
-            } else {
-                stopMenuLoader.closeStopMenu()
             }
         }
         Component.onCompleted: forceActiveFocus()
