@@ -11,17 +11,25 @@ class SoundService : public QObject {
     Q_OBJECT
 public:
     SoundService();
-    Q_INVOKABLE void playCleanSound();
-    Q_INVOKABLE void playBeginningBgm();
-    Q_INVOKABLE void playClimaxBgm();
-    Q_INVOKABLE void playFailedBgm();
-    Q_INVOKABLE void playPausedBgm();
-    Q_INVOKABLE void playSuccessBgm();
-    Q_INVOKABLE void playLastBgm();
+    Q_INVOKABLE void onPlayCleanSound();
+    Q_INVOKABLE void onPlayBeginningBgm();
+    Q_INVOKABLE void onPlayClimaxBgm();
+    Q_INVOKABLE void onPlayFailedBgm();
+    Q_INVOKABLE void onPlayPausedBgm();
+    Q_INVOKABLE void onPlaySuccessBgm();
+    Q_INVOKABLE void onPlayLastBgm();
     Q_INVOKABLE void setBgmVolume(int volume);
     Q_INVOKABLE void setSeVolume(int volume);
     Q_INVOKABLE void setBgmEnabled(bool enabled);
     Q_INVOKABLE void setSeEnabled(bool enabled);
+signals:
+    void playCleanSound();
+    void playBeginningBgm();
+    void playClimaxBgm();
+    void playFailedBgm();
+    void playPausedBgm();
+    void playSuccessBgm();
+    void playLastBgm();
 
 private:
     QMediaPlayer *cleanSound = new QMediaPlayer(this, QMediaPlayer::LowLatency);

@@ -39,8 +39,16 @@ SoundService::SoundService() {
     bgmListSub->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     bgmMain->setPlaylist(bgmListMain);
     bgmSub->setPlaylist(bgmListSub);
-    bgmMain->setNotifyInterval(1);
-    bgmSub->setNotifyInterval(1);
+    bgmMain->setNotifyInterval(80);
+    bgmSub->setNotifyInterval(80);
+
+    connect(this, &SoundService::playBeginningBgm, this, &SoundService::onPlayBeginningBgm);
+    connect(this, &SoundService::playCleanSound, this, &SoundService::onPlayCleanSound);
+    connect(this, &SoundService::playClimaxBgm, this, &SoundService::onPlayClimaxBgm);
+    connect(this, &SoundService::playFailedBgm, this, &SoundService::onPlayFailedBgm);
+    connect(this, &SoundService::playLastBgm, this, &SoundService::onPlayLastBgm);
+    connect(this, &SoundService::playPausedBgm, this, &SoundService::onPlayPausedBgm);
+    connect(this, &SoundService::playSuccessBgm, this, &SoundService::onPlaySuccessBgm);
 }
 
 void SoundService::playBgm(SoundService::BGM bgm, bool loop) {
@@ -61,22 +69,22 @@ void SoundService::playBgm(SoundService::BGM bgm, bool loop) {
     }
 }
 
-void SoundService::playCleanSound() {
+void SoundService::onPlayCleanSound() {
     cleanSound->stop();
     cleanSound->play();
 }
 
-void SoundService::playBeginningBgm() { playBgm(BGM::GameBeginning, true); }
+void SoundService::onPlayBeginningBgm() { playBgm(BGM::GameBeginning, true); }
 
-void SoundService::playClimaxBgm() { playBgm(BGM::GameClimax, true); }
+void SoundService::onPlayClimaxBgm() { playBgm(BGM::GameClimax, true); }
 
-void SoundService::playFailedBgm() { playBgm(BGM::GameFailed, false); }
+void SoundService::onPlayFailedBgm() { playBgm(BGM::GameFailed, false); }
 
-void SoundService::playPausedBgm() { playBgm(BGM::GamePaused, true); }
+void SoundService::onPlayPausedBgm() { playBgm(BGM::GamePaused, true); }
 
-void SoundService::playSuccessBgm() { playBgm(BGM::GameSuccess, false); }
+void SoundService::onPlaySuccessBgm() { playBgm(BGM::GameSuccess, false); }
 
-void SoundService::playLastBgm() { playBgm(lastBgm, true); }
+void SoundService::onPlayLastBgm() { playBgm(lastBgm, true); }
 
 void SoundService::setBgmVolume(int volume) {
     bgmMain->setVolume(volume);
@@ -95,8 +103,9 @@ void SoundService::setSeEnabled(bool enabled) { cleanSound->setMuted(!enabled); 
 void SoundService::mainLoopToSub(qint64 position) {
     int index = bgmIndexMap.value(currBgm);
     int duration = bgmDurationMap.value(currBgm);
+    position = bgmMain->position();
 
-    if (duration != 0 && position <= duration && position >= duration - 100) {
+    if (duration != 0 && position <= duration && position >= duration - 160) {
         if (bgmListSub->currentIndex() != index) bgmListSub->setCurrentIndex(index);
         bgmSub->play();
         bgmSub->setPosition(duration - position);
@@ -108,8 +117,9 @@ void SoundService::mainLoopToSub(qint64 position) {
 void SoundService::subLoopToMain(qint64 position) {
     int index = bgmIndexMap.value(currBgm);
     int duration = bgmDurationMap.value(currBgm);
+    position = bgmSub->position();
 
-    if (duration != 0 && position <= duration && position >= duration - 100) {
+    if (duration != 0 && position <= duration && position >= duration - 160) {
         if (bgmListMain->currentIndex() != index) bgmListMain->setCurrentIndex(index);
         bgmMain->play();
         bgmMain->setPosition(duration - position);
