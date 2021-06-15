@@ -40,7 +40,7 @@ private:
 
     void mainLoopToSub(qint64 position);
     void subLoopToMain(qint64 position);
-    void playBgm(BGM bgm);
+    void playBgm(BGM bgm, bool loop);
 };
 
 #endif // SOUND_SERVICE_H

@@ -43,7 +43,7 @@ SoundService::SoundService() {
     bgmSub->setNotifyInterval(1);
 }
 
-void SoundService::playBgm(SoundService::BGM bgm) {
+void SoundService::playBgm(SoundService::BGM bgm, bool loop) {
     if (!bgmIndexMap.contains(bgm)) return;
     int index = bgmIndexMap.value(bgm);
     if (currBgm != bgm ||
@@ -57,7 +57,7 @@ void SoundService::playBgm(SoundService::BGM bgm) {
         bgmListMain->setCurrentIndex(index);
         bgmListSub->setCurrentIndex(index);
         bgmMain->play();
-        connect(bgmMain, &QMediaPlayer::positionChanged, this, &SoundService::mainLoopToSub);
+        if (loop) connect(bgmMain, &QMediaPlayer::positionChanged, this, &SoundService::mainLoopToSub);
     }
 }
 
@@ -66,17 +66,17 @@ void SoundService::playCleanSound() {
     cleanSound->play();
 }
 
-void SoundService::playBeginningBgm() { playBgm(BGM::GameBeginning); }
+void SoundService::playBeginningBgm() { playBgm(BGM::GameBeginning, true); }
 
-void SoundService::playClimaxBgm() { playBgm(BGM::GameClimax); }
+void SoundService::playClimaxBgm() { playBgm(BGM::GameClimax, true); }
 
-void SoundService::playFailedBgm() { playBgm(BGM::GameFailed); }
+void SoundService::playFailedBgm() { playBgm(BGM::GameFailed, false); }
 
-void SoundService::playPausedBgm() { playBgm(BGM::GamePaused); }
+void SoundService::playPausedBgm() { playBgm(BGM::GamePaused, true); }
 
-void SoundService::playSuccessBgm() { playBgm(BGM::GameSuccess); }
+void SoundService::playSuccessBgm() { playBgm(BGM::GameSuccess, false); }
 
-void SoundService::playLastBgm() { playBgm(lastBgm); }
+void SoundService::playLastBgm() { playBgm(lastBgm, true); }
 
 void SoundService::setBgmVolume(int volume) {
     bgmMain->setVolume(volume);
