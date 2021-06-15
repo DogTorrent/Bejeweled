@@ -137,12 +137,17 @@
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/failed_panel.qml" line="91"/>
+        <location filename="../qml/failed_panel.qml" line="89"/>
+        <source>HINT</source>
+        <translation>HINT</translation>
+    </message>
+    <message>
+        <location filename="../qml/failed_panel.qml" line="110"/>
         <source>Leave</source>
         <translation>Leave</translation>
     </message>
     <message>
-        <location filename="../qml/failed_panel.qml" line="102"/>
+        <location filename="../qml/failed_panel.qml" line="121"/>
         <source>Restart</source>
         <translation>Restart</translation>
     </message>
@@ -150,27 +155,28 @@
 <context>
     <name>game_page</name>
     <message>
-        <location filename="../qml/game_page.qml" line="117"/>
+        <location filename="../qml/game_page.qml" line="123"/>
         <source>Mode</source>
         <translation>MODE</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="124"/>
+        <location filename="../qml/game_page.qml" line="142"/>
         <source>Level</source>
         <translation>LEVEL</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="125"/>
+        <location filename="../qml/game_page.qml" line="142"/>
         <source>Score</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="134"/>
+        <location filename="../qml/game_page.qml" line="162"/>
+        <location filename="../qml/game_page.qml" line="176"/>
         <source>Hint</source>
         <translation>Hint</translation>
     </message>
     <message>
-        <location filename="../qml/game_page.qml" line="150"/>
+        <location filename="../qml/game_page.qml" line="192"/>
         <source>Restart</source>
         <translation>Restart</translation>
     </message>
@@ -206,17 +212,17 @@
         <translation type="obsolete">Other</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="119"/>
+        <location filename="../qml/score_page.qml" line="128"/>
         <source>Level</source>
         <translation>LEVEL</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="129"/>
+        <location filename="../qml/score_page.qml" line="138"/>
         <source>Score</source>
         <translation>SCORE</translation>
     </message>
     <message>
-        <location filename="../qml/score_page.qml" line="139"/>
+        <location filename="../qml/score_page.qml" line="119"/>
         <source>Time</source>
         <translation>Time</translation>
     </message>
@@ -272,22 +278,27 @@
         <translation>MODE</translation>
     </message>
     <message>
-        <location filename="../qml/success_panel.qml" line="68"/>
+        <location filename="../qml/success_panel.qml" line="69"/>
         <source>LEVEL</source>
         <translation>LEVEL</translation>
     </message>
     <message>
-        <location filename="../qml/success_panel.qml" line="68"/>
+        <location filename="../qml/success_panel.qml" line="69"/>
         <source>SCORE</source>
         <translation>SCORE</translation>
     </message>
     <message>
         <location filename="../qml/success_panel.qml" line="89"/>
+        <source>HINT</source>
+        <translation>HINT</translation>
+    </message>
+    <message>
+        <location filename="../qml/success_panel.qml" line="110"/>
         <source>Leave</source>
         <translation>Leave</translation>
     </message>
     <message>
-        <location filename="../qml/success_panel.qml" line="100"/>
+        <location filename="../qml/success_panel.qml" line="121"/>
         <source>Continue</source>
         <translation>Continue</translation>
     </message>

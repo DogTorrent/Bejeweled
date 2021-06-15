@@ -78,6 +78,25 @@ Item {
                     color: "lightgrey"
                 }
             }
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: 20
+                Text {
+                    font.family: settings_other.font_family
+                    font.pointSize: settings_other.font_pt_size
+                    font.bold: true
+                    verticalAlignment: Text.AlignVCenter
+                    text: qsTr("HINT")
+                    color: "white"
+                }
+                Text {
+                    font.family: settings_other.font_family
+                    font.pointSize: settings_other.font_pt_size
+                    verticalAlignment: Text.AlignVCenter
+                    text: gamePage.hintTimes
+                    color: "lightgrey"
+                }
+            }
         }
         Row {
             id: buttonsRow

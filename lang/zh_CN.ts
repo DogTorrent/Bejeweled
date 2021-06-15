@@ -121,6 +121,10 @@
         <source>SCORE</source>
         <translation>分数</translation>
     </message>
+    <message>
+        <source>HINT</source>
+        <translation>提示次数</translation>
+    </message>
 </context>
 <context>
     <name>game_page</name>
@@ -243,6 +247,10 @@
     <message>
         <source>SCORE</source>
         <translation>分数</translation>
+    </message>
+    <message>
+        <source>HINT</source>
+        <translation>提示次数</translation>
     </message>
 </context>
 <context>

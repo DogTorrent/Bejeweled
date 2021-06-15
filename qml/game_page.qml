@@ -112,21 +112,63 @@ Item {
                     mipmap: settings_graphic.enable_mipmap
                     cache: settings_graphic.enable_cache
                 }
-                Text {
+                Row {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: qsTr("Mode") + ": " + mode
-                    font.family: settings_other.font_family
-                    font.pointSize: settings_other.font_pt_size
-                    color: "orange"
+                    spacing: 20
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("Mode")
+                        color: "orange"
+                    }
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        verticalAlignment: Text.AlignVCenter
+                        text: gamePage.mode
+                        color: "white"
+                    }
                 }
-                Text {
+                Row {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: mode === "Challenge" ? (qsTr("Level") + ": "
-                                                  + level) : (qsTr("Score") + ": "
-                                                              + GameService.score)
-                    font.family: settings_other.font_family
-                    font.pointSize: settings_other.font_pt_size
-                    color: "orange"
+                    spacing: 20
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                        text: mode === "Challenge" ? qsTr("Level") : qsTr(
+                                                         "Score")
+                        color: "orange"
+                    }
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        verticalAlignment: Text.AlignVCenter
+                        text: mode === "Challenge" ? gamePage.level : GameService.score
+                        color: "white"
+                    }
+                }
+                Row {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    spacing: 20
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("Hint")
+                        color: "orange"
+                    }
+                    Text {
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        verticalAlignment: Text.AlignVCenter
+                        text: gamePage.hintTimes
+                        color: "white"
+                    }
                 }
                 CustButton {
                     width: parent.width - 2 * parent.padding
