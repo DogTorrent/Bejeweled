@@ -58,6 +58,15 @@ Item {
                                 font.pointSize: settings_other.font_pt_size
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: Text.AlignHCenter
+                                text: model.modelData.endTime
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                            Text {
+                                width: parent.width / parent.visibleChildren.length
+                                font.family: settings_other.font_family
+                                font.pointSize: settings_other.font_pt_size
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
                                 text: model.modelData.level
                                 visible: eachModeScoresTable.mode === "Challenge"
                                 anchors.verticalCenter: parent.verticalCenter
@@ -70,15 +79,6 @@ Item {
                                 horizontalAlignment: Text.AlignHCenter
                                 text: model.modelData.score
                                 visible: eachModeScoresTable.mode !== "Challenge"
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-                            Text {
-                                width: parent.width / parent.visibleChildren.length
-                                font.family: settings_other.font_family
-                                font.pointSize: settings_other.font_pt_size
-                                verticalAlignment: Text.AlignVCenter
-                                horizontalAlignment: Text.AlignHCenter
-                                text: model.modelData.endTime
                                 anchors.verticalCenter: parent.verticalCenter
                             }
                             Text {
@@ -116,6 +116,15 @@ Item {
                         font.pointSize: settings_other.font_pt_size
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Time")
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Text {
+                        width: parent.width / parent.visibleChildren.length
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
                         text: qsTr("Level")
                         visible: eachModeScoresTable.mode === "Challenge"
                         anchors.verticalCenter: parent.verticalCenter
@@ -128,15 +137,6 @@ Item {
                         horizontalAlignment: Text.AlignHCenter
                         text: qsTr("Score")
                         visible: eachModeScoresTable.mode !== "Challenge"
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Text {
-                        width: parent.width / parent.visibleChildren.length
-                        font.family: settings_other.font_family
-                        font.pointSize: settings_other.font_pt_size
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        text: qsTr("Time")
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     Text {
