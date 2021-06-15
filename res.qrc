@@ -13,5 +13,6 @@
         <file alias="res/sound/unused_bgm">res/sound/unused_bgm.mp3</file>
         <file alias="res/image/win">res/image/win.png</file>
         <file alias="res/image/lose">res/image/lose.png</file>
+        <file alias="res/image/gameover">res/image/gameover.png</file>
     </qresource>
 </RCC>

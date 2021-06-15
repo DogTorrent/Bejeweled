@@ -31,7 +31,7 @@ Item {
         radius: 10
         Image {
             id: resultImage
-            source: "qrc:/res/image/lose"
+            source: "qrc:/res/image/gameover"
             y: -sourceSize.height / 2
             anchors.horizontalCenter: parent.horizontalCenter
         }
