@@ -1,6 +1,7 @@
 #ifndef GAME_SERVICE_H
 #define GAME_SERVICE_H
 
+#include <QDateTime>
 #include <QObject>
 #include <QPoint>
 #include <ctime>
@@ -8,8 +9,6 @@
 #include <list>
 #include <string>
 #include <vector>
-//#define ROW 8
-//#define COL 8
 
 class GameService : public QObject {
     Q_OBJECT
@@ -105,10 +104,13 @@ private:
     void blocksDown();
 
 public:
-    Q_PROPERTY(int score READ getScore NOTIFY scoreChanged)
+    Q_PROPERTY(int score READ getScore WRITE setScore NOTIFY scoreChanged)
+    Q_PROPERTY(int duration READ getDuration)
     GameService(int rowCount, int colCount);
 
     int score = 0;
+    QDateTime startTime;
+    int duration = 0;
 
     //游戏初始化
     Q_INVOKABLE void gameInit();
@@ -121,7 +123,9 @@ public:
     Q_INVOKABLE QVector<int> getStats();
     Q_INVOKABLE int getStat(int number);
     Q_INVOKABLE int getScore();
+    Q_INVOKABLE void setScore(int value);
     Q_INVOKABLE QPoint getHint();
+    Q_INVOKABLE int getDuration();
 
 signals:
     void itemMoved(int from, int to);

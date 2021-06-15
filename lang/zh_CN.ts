@@ -159,26 +159,6 @@
 <context>
     <name>score_page</name>
     <message>
-        <source>General</source>
-        <translation type="obsolete">全局</translation>
-    </message>
-    <message>
-        <source>Graphic</source>
-        <translation type="obsolete">图像</translation>
-    </message>
-    <message>
-        <source>Sound</source>
-        <translation type="obsolete">声音</translation>
-    </message>
-    <message>
-        <source>Control</source>
-        <translation type="obsolete">控制</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation type="obsolete">其他</translation>
-    </message>
-    <message>
         <source>Back</source>
         <translation>返回</translation>
     </message>
@@ -189,10 +169,6 @@
     <message>
         <source>Score</source>
         <translation>分数</translation>
-    </message>
-    <message>
-        <source>Time</source>
-        <translation>记录时间</translation>
     </message>
     <message>
         <source>Hint Times</source>
@@ -209,6 +185,14 @@
     <message>
         <source>Challenge</source>
         <translation>挑战模式</translation>
+    </message>
+    <message>
+        <source>Record Time</source>
+        <translation>记录时间</translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation>用时</translation>
     </message>
 </context>
 <context>

@@ -196,7 +196,7 @@ Item {
                     borderColor: "#5D101D"
                     rippleColor: "#60FFFFFF"
                     shouldRippleCoverBorder: true
-                    onClicked: loadGame(mode, 1)
+                    onClicked: loadGame(mode, level)
                 }
             }
         }
@@ -262,7 +262,8 @@ Item {
                               "bottomLayerComponent": gamePageMain
                           })
                 if (mode == "Challenge")
-                    DatabaseService.addNewLevel(mode, level, hintTimes)
+                    DatabaseService.addNewLevel(mode, level, hintTimes,
+                                                GameService.getDuration())
             }
         }
         onLoadFailedPanel: {

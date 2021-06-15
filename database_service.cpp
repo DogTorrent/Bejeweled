@@ -11,9 +11,12 @@ DatabaseService::DatabaseService(QObject *parent) : QObject(parent) {
         qDebug() << db->lastError();
     } else {
         QSqlQuery sqlQuery(*db);
-        sqlQuery.exec("CREATE TABLE Normal (end_time TEXT ,score INTEGER NOT NULL , hint_times INTEGER);");
-        sqlQuery.exec("CREATE TABLE Hard (end_time TEXT ,score INTEGER NOT NULL , hint_times INTEGER);");
-        sqlQuery.exec("CREATE TABLE Challenge (end_time TEXT ,level INTEGER NOT NULL, hint_times INTEGER);");
+        sqlQuery.exec(
+            "CREATE TABLE Normal (end_time TEXT NOT NULL, score INTEGER NOT NULL, hint_times INTEGER NOT NULL);");
+        sqlQuery.exec(
+            "CREATE TABLE Hard (end_time TEXT NOT NULL, score INTEGER NOT NULL, hint_times INTEGER NOT NULL);");
+        sqlQuery.exec("CREATE TABLE Challenge (end_time TEXT NOT NULL, level INTEGER NOT NULL, hint_times INTEGER NOT "
+                      "NULL, duration INTEGER NOT NULL);");
     }
 }
 bool DatabaseService::addNewScore(QString mode, int score, int hintTimes) {
@@ -32,7 +35,7 @@ bool DatabaseService::addNewScore(QString mode, int score, int hintTimes) {
             db->close();
             return isSucceed;
         }
-        sqlQuery.addBindValue(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+        sqlQuery.addBindValue(QDateTime::currentDateTime().toString("yy/MM/dd hh:mm:ss"));
         sqlQuery.addBindValue(score);
         sqlQuery.addBindValue(hintTimes);
         if (sqlQuery.exec()) {
@@ -46,7 +49,7 @@ bool DatabaseService::addNewScore(QString mode, int score, int hintTimes) {
     }
 }
 
-bool DatabaseService::addNewLevel(QString mode, int level, int hintTimes) {
+bool DatabaseService::addNewLevel(QString mode, int level, int hintTimes, int duration) {
     if (!db->open()) {
         qDebug() << db->lastError();
         return false;
@@ -54,10 +57,11 @@ bool DatabaseService::addNewLevel(QString mode, int level, int hintTimes) {
         QSqlQuery sqlQuery(*db);
         bool isSucceed = false;
         if (mode == "Challenge") {
-            sqlQuery.prepare("INSERT INTO Challenge (end_time, level, hint_times) VALUES (?, ?, ?)");
-            sqlQuery.addBindValue(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+            sqlQuery.prepare("INSERT INTO Challenge (end_time, level, hint_times, duration) VALUES (?, ?, ?, ?)");
+            sqlQuery.addBindValue(QDateTime::currentDateTime().toString("yy/MM/dd hh:mm:ss"));
             sqlQuery.addBindValue(level);
             sqlQuery.addBindValue(hintTimes);
+            sqlQuery.addBindValue(duration);
         } else {
             isSucceed = false;
             db->close();
@@ -89,7 +93,7 @@ QList<QObject *> DatabaseService::getDataByMode(QString mode) {
         } else if (mode == "Hard") {
             sqlQuery.prepare("select end_time, score, hint_times from Hard");
         } else if (mode == "Challenge") {
-            sqlQuery.prepare("select end_time, level, hint_times from Challenge");
+            sqlQuery.prepare("select end_time, level, hint_times, duration from Challenge");
         } else {
             return list;
         }
@@ -101,9 +105,10 @@ QList<QObject *> DatabaseService::getDataByMode(QString mode) {
                 GameRoundDataObj *newData = new GameRoundDataObj;
                 newData->mode = mode;
                 newData->endTime = sqlQuery.value(0).toString();
-                if (mode == "Challenge")
+                if (mode == "Challenge") {
                     newData->level = sqlQuery.value(1).toInt();
-                else
+                    newData->duration = sqlQuery.value(3).toInt();
+                } else
                     newData->score = sqlQuery.value(1).toInt();
                 ;
                 newData->hintTimes = sqlQuery.value(2).toInt();
@@ -115,6 +120,10 @@ QList<QObject *> DatabaseService::getDataByMode(QString mode) {
 }
 
 GameRoundDataObj::GameRoundDataObj(QObject *parent) {}
+
+int GameRoundDataObj::getDuration() const { return duration; }
+
+void GameRoundDataObj::setDuration(const int &value) { duration = value; }
 
 QString GameRoundDataObj::getEndTime() const { return endTime; }
 

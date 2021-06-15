@@ -9,6 +9,16 @@ GameService::GameService(int rowCount, int colCount) {
     this->visited = new bool[rowCount * colCount];
     gameInit();
 }
+
+int GameService::getDuration() {
+    duration = startTime.secsTo(QDateTime::currentDateTime());
+    return duration;
+}
+
+void GameService::setScore(int value) {
+    score = value;
+    emit scoreChanged();
+}
 bool GameService::isLine(int i, int j) const {
     if (i >= 2 && nums[i * colCount + j] == nums[(i - 1) * colCount + j] &&
         nums[i * colCount + j] == nums[(i - 2) * colCount + j])
@@ -230,8 +240,9 @@ bool GameService::isDead() { //是否变成了死图
 }
 
 void GameService::gameInit() {
-    score = 0;
-    emit scoreChanged();
+    setScore(0);
+    startTime = QDateTime::currentDateTime();
+    duration = 0;
     srand(time(nullptr));
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < colCount; j++) {
@@ -382,8 +393,7 @@ void GameService::destroyValidBlocks() {
         int y = removeList->front().y;
         nums[x * colCount + y] = 8; //将销毁值设定为8
         removeList->pop_front();
-        score++;
-        emit scoreChanged();
+        setScore(score + 1);
         emit itemChanged(x * colCount + y, 8);
     }
 

@@ -37,7 +37,6 @@ Item {
                 y: tableHeader.height
                 delegate: Component {
                     Rectangle {
-                        //                    anchors.fill: parent
                         width: eachModeScoresTableValueRows.width
                         height: 60
                         color: mouseArea.containsMouse ? "#B0CEDAE9" : "#B0E1ECFF"
@@ -52,6 +51,7 @@ Item {
 
                         Row {
                             anchors.fill: parent
+                            leftPadding: 20
                             Text {
                                 width: parent.width / parent.visibleChildren.length
                                 font.family: settings_other.font_family
@@ -90,13 +90,23 @@ Item {
                                 text: model.modelData.hintTimes
                                 anchors.verticalCenter: parent.verticalCenter
                             }
+                            Text {
+                                width: parent.width / parent.visibleChildren.length
+                                font.family: settings_other.font_family
+                                font.pointSize: settings_other.font_pt_size
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                text: model.modelData.duration + "s"
+                                visible: eachModeScoresTable.mode === "Challenge"
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
                         }
                     }
                 }
             }
 
             Rectangle {
-                id: tableHeader
+                id: tableHeader //表头
                 width: eachModeScoresTableValueRows.width
                 height: 60
                 color: mouseArea.containsMouse ? "#CEDAE9" : "#E1ECFF"
@@ -110,13 +120,14 @@ Item {
                 }
                 Row {
                     anchors.fill: parent
+                    leftPadding: 20
                     Text {
                         width: parent.width / parent.visibleChildren.length
                         font.family: settings_other.font_family
                         font.pointSize: settings_other.font_pt_size
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
-                        text: qsTr("Time")
+                        text: qsTr("Record Time")
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     Text {
@@ -146,6 +157,16 @@ Item {
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                         text: qsTr("Hint Times")
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Text {
+                        width: parent.width / parent.visibleChildren.length
+                        font.family: settings_other.font_family
+                        font.pointSize: settings_other.font_pt_size
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Duration")
+                        visible: eachModeScoresTable.mode === "Challenge"
                         anchors.verticalCenter: parent.verticalCenter
                     }
                 }
