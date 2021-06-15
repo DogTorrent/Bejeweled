@@ -3,6 +3,7 @@
 #include "sound_service.h"
 #include "translation.h"
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
@@ -15,6 +16,7 @@ int main(int argc, char *argv[]) {
 #endif
 
     QGuiApplication app(argc, argv);
+    app.setWindowIcon(QIcon("://res/image/icon/icon-128"));
 
     QSettings settings("config.ini", QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));

@@ -16,6 +16,9 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Quick Qt5::QuickControls2 Qt5::Multim
 find_package(QT NAMES Qt6 Qt5 COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
+# Add RC file
+set(RC_FILE "app.rc")
+
 # Add C++ source files
 file(GLOB CPP_FILES "*.cpp" "*.h")
 
@@ -37,7 +40,7 @@ endforeach()
 # Auto update binary translation files
 qt5_create_translation(QM_FILES ${PROJECT_SOURCE_DIR} ${TS_FILES})
 
-set(PROJECT_SOURCES ${QML_FILES} ${CPP_FILES} ${RESOURCE_FILES} ${QM_FILES})
+set(PROJECT_SOURCES ${RC_FILE} ${QML_FILES} ${CPP_FILES} ${RESOURCE_FILES} ${QM_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
