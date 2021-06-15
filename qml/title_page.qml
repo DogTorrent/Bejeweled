@@ -108,6 +108,7 @@ Item {
                 pushMainPage("qrc:/qml/config_page.qml")
                 break
             case "ScorePage":
+                pushMainPage("qrc:/qml/score_page.qml")
                 break
             case "Exit":
                 Qt.quit()

@@ -153,6 +153,61 @@
     </message>
 </context>
 <context>
+    <name>score_page</name>
+    <message>
+        <source>General</source>
+        <translation type="obsolete">全局</translation>
+    </message>
+    <message>
+        <source>Graphic</source>
+        <translation type="obsolete">图像</translation>
+    </message>
+    <message>
+        <source>Sound</source>
+        <translation type="obsolete">声音</translation>
+    </message>
+    <message>
+        <source>Control</source>
+        <translation type="obsolete">控制</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation type="obsolete">其他</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>关卡</translation>
+    </message>
+    <message>
+        <source>Score</source>
+        <translation>分数</translation>
+    </message>
+    <message>
+        <source>Time</source>
+        <translation>记录时间</translation>
+    </message>
+    <message>
+        <source>Hint Times</source>
+        <translation>提示次数</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>普通模式</translation>
+    </message>
+    <message>
+        <source>Hard</source>
+        <translation>困难模式</translation>
+    </message>
+    <message>
+        <source>Challenge</source>
+        <translation>挑战模式</translation>
+    </message>
+</context>
+<context>
     <name>stop_menu</name>
     <message>
         <source>TITLE</source>

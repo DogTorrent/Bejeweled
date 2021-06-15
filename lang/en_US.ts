@@ -184,6 +184,69 @@
     </message>
 </context>
 <context>
+    <name>score_page</name>
+    <message>
+        <source>General</source>
+        <translation type="obsolete">General</translation>
+    </message>
+    <message>
+        <source>Graphic</source>
+        <translation type="obsolete">Graphic</translation>
+    </message>
+    <message>
+        <source>Sound</source>
+        <translation type="obsolete">Sound</translation>
+    </message>
+    <message>
+        <source>Control</source>
+        <translation type="obsolete">Control</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation type="obsolete">Other</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="119"/>
+        <source>Level</source>
+        <translation>LEVEL</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="129"/>
+        <source>Score</source>
+        <translation>SCORE</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="139"/>
+        <source>Time</source>
+        <translation>Time</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="148"/>
+        <source>Hint Times</source>
+        <translation>Hint Times</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="215"/>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="219"/>
+        <source>Hard</source>
+        <translation>Hard</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="223"/>
+        <source>Challenge</source>
+        <translation>Challenge</translation>
+    </message>
+    <message>
+        <location filename="../qml/score_page.qml" line="230"/>
+        <source>Back</source>
+        <translation>Back</translation>
+    </message>
+</context>
+<context>
     <name>stop_menu</name>
     <message>
         <location filename="../qml/stop_menu.qml" line="52"/>

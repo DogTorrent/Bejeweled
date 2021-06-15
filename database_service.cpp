@@ -73,3 +73,65 @@ bool DatabaseService::addNewLevel(QString mode, int level, int hintTimes) {
         return isSucceed;
     }
 }
+
+QList<QObject *> DatabaseService::getDataByMode(QString mode) {
+
+    auto list = QList<QObject *>();
+
+    if (!db->open()) {
+        qDebug() << db->lastError();
+        return list;
+    } else {
+        QSqlQuery sqlQuery(*db);
+
+        if (mode == "Normal") {
+            sqlQuery.prepare("select end_time, score, hint_times from Normal");
+        } else if (mode == "Hard") {
+            sqlQuery.prepare("select end_time, score, hint_times from Hard");
+        } else if (mode == "Challenge") {
+            sqlQuery.prepare("select end_time, level, hint_times from Challenge");
+        } else {
+            return list;
+        }
+
+        if (!sqlQuery.exec()) {
+            qDebug() << sqlQuery.lastError();
+        } else {
+            while (sqlQuery.next()) {
+                GameRoundDataObj *newData = new GameRoundDataObj;
+                newData->mode = mode;
+                newData->endTime = sqlQuery.value(0).toString();
+                if (mode == "Challenge")
+                    newData->level = sqlQuery.value(1).toInt();
+                else
+                    newData->score = sqlQuery.value(1).toInt();
+                ;
+                newData->hintTimes = sqlQuery.value(2).toInt();
+                list.append(newData);
+            }
+        }
+    }
+    return list;
+}
+
+GameRoundDataObj::GameRoundDataObj(QObject *parent) {}
+
+QString GameRoundDataObj::getEndTime() const { return endTime; }
+
+void GameRoundDataObj::setEndTime(const QString &value) { endTime = value; }
+
+int GameRoundDataObj::getScore() const { return score; }
+
+void GameRoundDataObj::setScore(int value) { score = value; }
+
+int GameRoundDataObj::getLevel() const { return level; }
+
+void GameRoundDataObj::setLevel(int value) { level = value; }
+
+int GameRoundDataObj::getHintTimes() const { return hintTimes; }
+
+void GameRoundDataObj::setHintTimes(int value) { hintTimes = value; }
+
+QString GameRoundDataObj::getMode() const { return mode; }
+
+void GameRoundDataObj::setMode(const QString &value) { mode = value; }

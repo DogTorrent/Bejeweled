@@ -251,8 +251,13 @@ Item {
         focus: true
         Keys.enabled: true
         Keys.onEscapePressed: {
-            stopMenuLoader.item.enabled ? stopMenuLoader.closeStopMenu(
-                                              ) : stopMenuLoader.loadStopMenu()
+            if (!stopMenuLoader.item.enabled) {
+                if (levelEndPanelLoader.source == "") {
+                    stopMenuLoader.loadStopMenu()
+                }
+            } else {
+                stopMenuLoader.closeStopMenu()
+            }
         }
         Component.onCompleted: forceActiveFocus()
         onActiveFocusChanged: forceActiveFocus()

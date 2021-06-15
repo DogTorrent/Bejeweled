@@ -21,5 +21,6 @@
         <file>qml/back_ground.qml</file>
         <file>qml/success_panel.qml</file>
         <file>qml/failed_panel.qml</file>
+        <file>qml/score_page.qml</file>
     </qresource>
 </RCC>
